@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>About</class>
+ <widget class="QMainWindow" name="About">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>780</width>
+      <height>390</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="Rec.qrc">:/images/Images/Pac-Man-Neon-Sign-474.jpg</pixmap>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>400</y>
+      <width>741</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Pac-Man is an &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Video_arcade&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;arcade&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Video_game&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;video game&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; that was made by &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Namco&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Namco&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; and designed by &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Toru_Iwatani&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Toru Iwatani&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;. It was released in &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/1980&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;1980&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;, and became very popular in the history of games.  In Pac-Man, the &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/w/index.php?title=Player&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;player&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; makes a &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/w/index.php?title=Pac-Man_(character)&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Pac-Man&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;, a &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Yellow&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;yellow&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Disc&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;disc&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;, move around a &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Maze&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;maze&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;. The goal is to eat every &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Yellow&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;yellow&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Pellet&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;pellet&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; (&lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Circle&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;circles&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;) while not getting caught by the &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Ghost&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;ghosts&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;/&lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Monster&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;monsters&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;. For extra points, &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Fruit&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;fruits&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; that appear can also be eaten. When Pac-Man eats a big pellet, the ghosts turn &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Blue&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;blue&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; and can be eaten. Even though the game has 256 stages, the last level can not be finished due to a problem with the creation of the game. The game is called Puck Man in &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Japan&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Japan&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;.The game was named Pac-Man in the &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/United_States&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;United States&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; so that nobody could change the &amp;quot;P&amp;quot; to &amp;quot;F&amp;quot;. There were many &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Sequel&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;sequels&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Remake&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;remakes&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; based on the game. &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Hanna-Barbera&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Hanna-Barbera&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; made a &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Pac-Man_(TV_series)&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;animated TV show&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; airing on &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/American_Broadcasting_Company&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;ABC&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; in the early 1970s. The game was also part of Namco Museum games. There is a &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Namco_Museum_Remix&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Namco Museum Remix&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt; for the &lt;/span&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Wii&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;Wii&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; text-decoration: underline; color:#ffffff;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>610</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:black;
+background-color:white;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+    <property name="shortcut">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Rec.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Images/Closed.png</file>
+        <file>Images/Dead.png</file>
+        <file>Images/Eyes Down.png</file>
+        <file>Images/Eyes Left.png</file>
+        <file>Images/Eyes Right.png</file>
+        <file>Images/Eyes Up.png</file>
+        <file>Images/Group 3.png</file>
+        <file>Images/Group 4.png</file>
+        <file>Images/Pac-Man-Neon-Sign-474.jpg</file>
+        <file>Images/Group 5.png</file>
+        <file>Images/Group 6.png</file>
+        <file>Images/Open.png</file>
+        <file>Images/About.png</file>
+        <file>Images/Help.png</file>
+        <file>Images/Play.png</file>
+        <file>Images/Settings.png</file>
+    </qresource>
+</RCC>
