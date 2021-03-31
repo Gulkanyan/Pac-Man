@@ -15,29 +15,33 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += GUI/ Core/
+
 SOURCES += \
-    About.cpp \
-    Game.cpp \
-    Help.cpp \
-    Player.cpp \
-    Settings.cpp \
+    Core/RedEnemy.cpp \
+    GUI\About.cpp \
+    GUI\Game.cpp \
+    GUI\Help.cpp \
+    GUI\Player.cpp \
+    GUI\Settings.cpp \
     main.cpp \
-    MainWindow.cpp
+    GUI\MainWindow.cpp
 
 HEADERS += \
-    About.h \
-    Game.h \
-    Help.h \
-    MainWindow.h \
-    Player.h \
-    Settings.h
+    Core/RedEnemy.h \
+    GUI\About.h \
+    GUI\Game.h \
+    GUI\Help.h \
+    GUI\MainWindow.h \
+    GUI\Player.h \
+    GUI\Settings.h
 
 FORMS += \
-    About.ui \
-    Game.ui \
-    Help.ui \
-    MainWindow.ui \
-    Settings.ui
+    GUI\About.ui \
+    GUI\Game.ui \
+    GUI\Help.ui \
+    GUI\MainWindow.ui \
+    GUI\Settings.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -17,4 +17,10 @@
         <file>Images/Settings.png</file>
         <file>Images/mainBackground.jpg</file>
     </qresource>
+    <qresource prefix="/Blinky">
+        <file>Images/Blinky(RED)/RedEnemyDown.png</file>
+        <file>Images/Blinky(RED)/RedEnemyLeft.png</file>
+        <file>Images/Blinky(RED)/RedEnemyRight.png</file>
+        <file>Images/Blinky(RED)/RedEnemyUp.png</file>
+    </qresource>
 </RCC>

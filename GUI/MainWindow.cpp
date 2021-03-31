@@ -13,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     setFixedSize(800,800);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
-    QPixmap pix1(":/images/Images/Pac-Man-Neon-Sign-474.jpg");
-    ui->label->setPixmap(pix1);
+    ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
 
 }
 MainWindow::~MainWindow()
