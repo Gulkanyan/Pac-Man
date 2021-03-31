@@ -4,6 +4,7 @@
 #include "About.h"
 #include "Settings.h"
 #include "Help.h"
+#include <Player.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
+
 
 }
 MainWindow::~MainWindow()

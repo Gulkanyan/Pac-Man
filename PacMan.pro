@@ -38,7 +38,6 @@ HEADERS += \
 
 FORMS += \
     GUI\About.ui \
-    GUI\Game.ui \
     GUI\Help.ui \
     GUI\MainWindow.ui \
     GUI\Settings.ui

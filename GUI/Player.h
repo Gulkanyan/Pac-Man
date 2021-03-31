@@ -1,19 +1,14 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QMainWindow>
-#include <QGraphicsEllipseItem>
+#include <QObject>
+#include <QGraphicsRectItem>
 
 class Player : public QObject, public QGraphicsEllipseItem
 {
-
     Q_OBJECT
-
 public:
-    explicit Player(QWidget *parent = nullptr);
-    ~Player();
-
-private:
+    Player(QGraphicsItem* parent=NULL);
 };
 
 #endif // PLAYER_H

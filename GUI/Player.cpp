@@ -1,17 +1,12 @@
 #include "Player.h"
-#include <QGraphicsRectItem>
-#include <QGraphicsItem>
 
+#include <QBrush>
 
-//Player::Player(QGraphicsItem *parent): QGraphicsEllipseItem(parent), QObject()
-//{
-//    setRect(0,0,35,35);
-//    QBrush brush;
-//    brush.setStyle(Qt::SolidPattern);
-//    brush.setColor(Qt::red);
-//}
-
-Player::~Player()
+Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
 {
-
+    setRect(0,0,100,100);
+    QBrush brush;
+    brush.setStyle(Qt::SolidPattern);
+    brush.setColor(Qt::red);
+    setBrush(brush);
 }
