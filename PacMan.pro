@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += GUI/ Core/
 
 SOURCES += \
+    Block.cpp \
     Core/RedEnemy.cpp \
     GUI\About.cpp \
     GUI\Game.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
     GUI\MainWindow.cpp
 
 HEADERS += \
+    Block.h \
     Core/RedEnemy.h \
     GUI\About.h \
     GUI\Game.h \

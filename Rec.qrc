@@ -14,10 +14,10 @@
         <file>Images/Settings.png</file>
         <file>Images/mainBackground.jpg</file>
         <file>Images/Dead.png</file>
-        <file>Images/Closed.png</file>
         <file>Images/Right.png</file>
         <file>Images/Down.png</file>
         <file>Images/Left.png</file>
         <file>Images/Up.png</file>
+        <file>Images/Closed.png</file>
     </qresource>
 </RCC>

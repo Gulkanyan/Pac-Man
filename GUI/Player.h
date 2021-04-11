@@ -5,6 +5,12 @@
 #include <QGraphicsRectItem>
 #include<QKeyEvent>
 
+enum Step
+{
+    First,
+    Second
+};
+
 enum Position
 {
     Left,
@@ -24,14 +30,18 @@ public:
     void MoveUp();
     void MoveDown();
 
-private:
+public:
     void SetRightImage();
     void SetLeftImage();
     void SetUpImage();
     void SetDownImage();
 
+    void SetClosedRightImage();
+
 private:
     Position m_state;
+
+    Step m_currentStep;
 };
 
 #endif // PLAYER_H

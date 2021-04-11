@@ -14,7 +14,8 @@ public:
     ~Game();
 
     void keyPressEvent(QKeyEvent *event) override;
-
+ //   void drawMap(const std::vector<std::vector<int> > &vec);
+//    void fill(int x, int y);
 private:
     QGraphicsScene* scene;
 
