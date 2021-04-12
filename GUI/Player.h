@@ -11,14 +11,6 @@ enum Step
     Second
 };
 
-enum Position
-{
-    Left,
-    Right,
-    Up,
-    Down
-};
-
 class Player : public QObject, public QGraphicsEllipseItem
 {
     Q_OBJECT
@@ -35,12 +27,9 @@ public:
     void SetLeftImage();
     void SetUpImage();
     void SetDownImage();
-
     void SetClosedRightImage();
 
 private:
-    Position m_state;
-
     Step m_currentStep;
 };
 

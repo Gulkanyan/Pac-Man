@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "ui_Game.h"
-
+//#include "RedEnemy.h"
 Game::Game(QWidget *parent) :
     QGraphicsView(parent),
     scene(new QGraphicsScene(this))
@@ -11,9 +11,15 @@ Game::Game(QWidget *parent) :
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
 
+
     m_player = new Player();
     m_player->setPos(50,350);
     scene->addItem(m_player);
+
+    m_red = new  Red();
+    m_red ->setPos(0,350);
+    scene->addItem(m_red);
+
 
 //    std::vector<std::vector<int>> vec {
 //           {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},

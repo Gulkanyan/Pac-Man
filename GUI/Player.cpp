@@ -12,6 +12,8 @@ Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
     setBrush(QBrush(pixmapItem));
 
     m_currentStep = Step::First;
+
+
 }
 
 

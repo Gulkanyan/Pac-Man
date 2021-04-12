@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include "Player.h"
+#include "Red.h"
 
 class Game : public QGraphicsView
 {
@@ -20,6 +21,7 @@ private:
     QGraphicsScene* scene;
 
     Player* m_player;
+    Red * m_red;
 };
 
 #endif // GAME_H

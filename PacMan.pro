@@ -19,24 +19,26 @@ INCLUDEPATH += GUI/ Core/
 
 SOURCES += \
     Block.cpp \
-    Core/RedEnemy.cpp \
     GUI\About.cpp \
     GUI\Game.cpp \
     GUI\Help.cpp \
     GUI\Player.cpp \
     GUI\Settings.cpp \
+    Orange.cpp \
+    Red.cpp \
     main.cpp \
     GUI\MainWindow.cpp
 
 HEADERS += \
     Block.h \
-    Core/RedEnemy.h \
     GUI\About.h \
     GUI\Game.h \
     GUI\Help.h \
     GUI\MainWindow.h \
     GUI\Player.h \
-    GUI\Settings.h
+    GUI\Settings.h \
+    Orange.h \
+    Red.h
 
 FORMS += \
     GUI\About.ui \

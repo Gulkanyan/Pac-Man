@@ -4,10 +4,6 @@
         <file>Images/Eyes Left.png</file>
         <file>Images/Eyes Right.png</file>
         <file>Images/Eyes Up.png</file>
-        <file>Images/Group 3.png</file>
-        <file>Images/Group 4.png</file>
-        <file>Images/Group 5.png</file>
-        <file>Images/Group 6.png</file>
         <file>Images/About.png</file>
         <file>Images/Help.png</file>
         <file>Images/Play.png</file>
@@ -19,5 +15,9 @@
         <file>Images/Left.png</file>
         <file>Images/Up.png</file>
         <file>Images/Closed.png</file>
+        <file>Images/Red.png</file>
+        <file>Images/Blue.png</file>
+        <file>Images/Orange.png</file>
+        <file>Images/Purple.png</file>
     </qresource>
 </RCC>
