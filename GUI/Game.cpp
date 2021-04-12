@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "ui_Game.h"
 //#include "RedEnemy.h"
 Game::Game(QWidget *parent) :
     QGraphicsView(parent),

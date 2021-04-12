@@ -5,6 +5,9 @@
 #include <QGraphicsScene>
 #include "Player.h"
 #include "Red.h"
+#include "Orange.h"
+#include "Blue.h"
+#include "Purple.h"
 
 class Game : public QGraphicsView
 {
@@ -22,6 +25,9 @@ private:
 
     Player* m_player;
     Red * m_red;
+
+
+
 };
 
 #endif // GAME_H

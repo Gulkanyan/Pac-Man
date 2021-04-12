@@ -18,27 +18,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += GUI/ Core/
 
 SOURCES += \
-    Block.cpp \
+    Core/Block.cpp \
+    Core/Blue.cpp \
+    Core/Orange.cpp \
+    Core/Purple.cpp \
+    Core/Red.cpp \
     GUI\About.cpp \
     GUI\Game.cpp \
     GUI\Help.cpp \
     GUI\Player.cpp \
     GUI\Settings.cpp \
-    Orange.cpp \
-    Red.cpp \
-    main.cpp \
-    GUI\MainWindow.cpp
+    GUI\MainWindow.cpp \
+    main.cpp
 
 HEADERS += \
-    Block.h \
+    Core/Block.h \
+    Core/Blue.h \
+    Core/Orange.h \
+    Core/Purple.h \
+    Core/Red.h \
     GUI\About.h \
     GUI\Game.h \
     GUI\Help.h \
     GUI\MainWindow.h \
     GUI\Player.h \
     GUI\Settings.h \
-    Orange.h \
-    Red.h
 
 FORMS += \
     GUI\About.ui \
