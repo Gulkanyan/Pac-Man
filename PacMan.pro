@@ -20,35 +20,38 @@ INCLUDEPATH += GUI/ Core/
 SOURCES += \
     Core/Block.cpp \
     Core/Blue.cpp \
+    Core/Utils/Levels.cpp \
     Core/Orange.cpp \
     Core/Purple.cpp \
     Core/Red.cpp \
-    GUI\About.cpp \
-    GUI\Game.cpp \
-    GUI\Help.cpp \
-    GUI\Player.cpp \
-    GUI\Settings.cpp \
-    GUI\MainWindow.cpp \
+    GUI/About.cpp \
+    GUI/Game.cpp \
+    GUI/Help.cpp \
+    GUI/Player.cpp \
+    GUI/Settings.cpp \
+    GUI/MainWindow.cpp \
     main.cpp
 
 HEADERS += \
     Core/Block.h \
     Core/Blue.h \
+    Core/GlobalDefs.h \
+    Core/Utils/Levels.h \
     Core/Orange.h \
     Core/Purple.h \
     Core/Red.h \
-    GUI\About.h \
-    GUI\Game.h \
-    GUI\Help.h \
-    GUI\MainWindow.h \
-    GUI\Player.h \
-    GUI\Settings.h \
+    GUI/About.h \
+    GUI/Game.h \
+    GUI/Help.h \
+    GUI/MainWindow.h \
+    GUI/Player.h \
+    GUI/Settings.h \
 
 FORMS += \
-    GUI\About.ui \
-    GUI\Help.ui \
-    GUI\MainWindow.ui \
-    GUI\Settings.ui
+    GUI/About.ui \
+    GUI/Help.ui \
+    GUI/MainWindow.ui \
+    GUI/Settings.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

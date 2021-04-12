@@ -1,5 +1,7 @@
 #include "Game.h"
-//#include "RedEnemy.h"
+#include "Utils/Levels.h"
+#include "GlobalDefs.h"
+
 Game::Game(QWidget *parent) :
     QGraphicsView(parent),
     scene(new QGraphicsScene(this))
@@ -19,22 +21,7 @@ Game::Game(QWidget *parent) :
     m_red ->setPos(0,350);
     scene->addItem(m_red);
 
-
-//    std::vector<std::vector<int>> vec {
-//           {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//           {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//           {1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1},
-//           {1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1},
-//           {1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,1},
-//           {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//           {1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1},
-//           {1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,1},
-//           {1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1},
-//           {1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-//           {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//           {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//       };
-//       drawMap(vec);
+    drawMap(Levels::level);
 }
 
 Game::~Game()
@@ -57,22 +44,22 @@ void Game::keyPressEvent(QKeyEvent *event)
         m_player->MoveDown();
 }
 
+void Game::drawMap(const std::vector<std::vector<int>> &vec)
+{
+    DEBUG_LOG;
 
-//void Game::drawMap(const std::vector<std::vector<int>> &vec)
-//{
+    for (size_t i = 0; i < vec.at(0).size(); ++i)
+        for (size_t j = 0; j < vec.size(); ++j)
+            if (vec[j][i] != 0)
+                fill(i, j);
+}
 
-//    for (int y = 0, n = 15; y < n; y++)
-//        for (int x = 0, p = 15; x < p; x++)
-//            if (vec[y][x] != 0)
-//                fill(x,y);
-//}
-//void Game::fill( int x,  int y){
-// //   pathingMap_.fillCell(x,y);
-//    QGraphicsRectItem* rect = new QGraphicsRectItem(0,0,50,50);
-//    rect->setPos(x*50,y*50);
-//    QBrush brush;
-//    brush.setColor(Qt::gray);
-//    brush.setStyle(Qt::SolidPattern);
-//    rect->setBrush(brush);
-//    scene->addItem(rect);
-//}
+void Game::fill(int x, int y)
+{
+    QGraphicsRectItem* rect = new QGraphicsRectItem(x * 50, y * 50, 50, 50);
+    QBrush brush;
+    brush.setColor(Qt::gray);
+    brush.setStyle(Qt::SolidPattern);
+    rect->setBrush(brush);
+    scene->addItem(rect);
+}
