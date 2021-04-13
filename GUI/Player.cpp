@@ -4,18 +4,19 @@
 #include <QSize>
 #include <QBrush>
 
+#include <QtDebug>
+
 Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
 {
-    setRect(0,0,50,50);
+    setRect(1,1,48,48);
     QPixmap pixmapItem(":/images/Images/Right.png");
-    pixmapItem = pixmapItem.scaled(QSize(50,50),  Qt::KeepAspectRatio);
+    pixmapItem = pixmapItem.scaled(QSize(48,48),  Qt::KeepAspectRatio);
     setBrush(QBrush(pixmapItem));
 
     m_currentStep = Step::First;
 
-
+    stepSize = 10;
 }
-
 
 void Player::MoveRight()
 {
@@ -30,8 +31,7 @@ void Player::MoveRight()
         m_currentStep = Step::First;
     }
 
-    setPos(pos().x() + 10, pos().y());
-
+    setPos(pos().x() + stepSize, pos().y());
 
     if(pos().x() > 800)
         setPos(0, pos().y());
@@ -62,13 +62,12 @@ void Player::MoveLeft()
         m_currentStep = Step::First;
     }
 
-    setPos(pos().x() - 10, pos().y());
+    setPos(pos().x() - stepSize, pos().y());
 
 
     if(pos().x() < 0)
         setPos(800, pos().y());
 }
-
 
 void Player::MoveUp()
 {
@@ -83,7 +82,7 @@ void Player::MoveUp()
         m_currentStep = Step::First;
     }
 
-    setPos(pos().x(), pos().y() - 10);
+    setPos(pos().x(), pos().y() - stepSize);
 
     if(pos().y() < 30)
         setPos(pos().x(), 800);
@@ -101,7 +100,7 @@ void Player::MoveDown()
         SetClosedRightImage();
         m_currentStep = Step::First;
     }
-    setPos(pos().x(), pos().y() + 10);
+    setPos(pos().x(), pos().y() + stepSize);
 
     if(pos().y() > 800)
         setPos(pos().x(), 0);
@@ -125,4 +124,44 @@ void Player::SetDownImage()
     setBrush(QBrush(pixmapItem));
 }
 
+bool Player::IsCollided(Directions currentDirection)
+{
+    QList<QGraphicsItem*> cItems = this->collidingItems();
 
+    for(int i = 0; i < cItems.size(); ++i)
+    {
+        if(currentDirection == Directions::Right)
+            if(qreal(this->pos().x() + stepSize + 60) >= cItems.at(i)->pos().x()) // 60 is offset
+            {
+                this->setX(this->pos().x() - 10);
+                return true;
+            }
+
+        if(currentDirection == Directions::Left)
+            if(qreal(this->pos().x() - stepSize - 60) <= cItems.at(i)->pos().x())
+            {
+                this->setX(this->pos().x() + 10);
+                return true;
+            }
+
+        if(currentDirection == Directions::Up)
+            if(cItems.at(i)->pos().y() - this->pos().y() <= 0)     // <---      // after change the rest. Let it be as it is
+            {
+                this->setY(this->pos().y() + 10);
+                return true;
+            }
+
+        if(currentDirection == Directions::Down)
+            if(qreal(this->pos().y() + stepSize + 60) >= cItems.at(i)->pos().y())
+            {
+                this->setY(this->pos().y() - 10);
+                return true;
+            }
+    }
+    return false;
+}
+
+int Player::GetStepSize()
+{
+    return stepSize;
+}

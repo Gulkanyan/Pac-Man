@@ -17,9 +17,23 @@ public:
     explicit Game(QWidget *parent = nullptr);
     ~Game();
 
+private:
     void keyPressEvent(QKeyEvent *event) override;
-    void drawMap(const std::vector<std::vector<int> > &vec);
+
+    void DrawMap(const std::vector<std::vector<int> > &vec);
+
     void fill(int x, int y);
+
+    void InitInterface();
+
+    void AddPlayer();
+
+    void AddEnemies();
+
+    void InitMovementTimer();
+
+private slots:
+    void DoMovement();
 private:
     QGraphicsScene* scene;
 

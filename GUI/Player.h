@@ -3,7 +3,8 @@
 
 #include <QObject>
 #include <QGraphicsRectItem>
-#include<QKeyEvent>
+
+#include "Utils/Directions.h"
 
 enum Step
 {
@@ -21,8 +22,10 @@ public:
     void MoveLeft();
     void MoveUp();
     void MoveDown();
+    bool IsCollided(Directions);
+    int GetStepSize();
 
-public:
+private:
     void SetRightImage();
     void SetLeftImage();
     void SetUpImage();
@@ -31,6 +34,7 @@ public:
 
 private:
     Step m_currentStep;
+    int stepSize;
 };
 
 #endif // PLAYER_H

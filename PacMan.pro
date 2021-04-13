@@ -18,8 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += GUI/ Core/
 
 SOURCES += \
-    Core/Block.cpp \
     Core/Blue.cpp \
+    Core/StandardBlock.cpp \
     Core/Utils/Levels.cpp \
     Core/Orange.cpp \
     Core/Purple.cpp \
@@ -33,9 +33,10 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
-    Core/Block.h \
     Core/Blue.h \
     Core/GlobalDefs.h \
+    Core/StandardBlock.h \
+    Core/Utils/Directions.h \
     Core/Utils/Levels.h \
     Core/Orange.h \
     Core/Purple.h \
