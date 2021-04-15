@@ -19,5 +19,6 @@
         <file>Images/Blue.png</file>
         <file>Images/Orange.png</file>
         <file>Images/Purple.png</file>
+        <file>Images/Rectangle.png</file>
     </qresource>
 </RCC>
