@@ -20,5 +20,7 @@
         <file>Images/Orange.png</file>
         <file>Images/Purple.png</file>
         <file>Images/Rectangle.png</file>
+        <file>Images/Pill.png</file>
+        <file>Images/Point.png</file>
     </qresource>
 </RCC>

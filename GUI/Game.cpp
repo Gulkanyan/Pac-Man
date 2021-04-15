@@ -3,7 +3,8 @@
 #include "GlobalDefs.h"
 #include "Utils/Directions.h"
 #include "StandardBlock.h"
-
+#include "Core/Utils/Coin.h"
+#include "Core/Utils/Pill.h"
 #include <QTimer>
 
 namespace
@@ -47,8 +48,9 @@ void Game::AddPlayer()
 void Game::AddEnemies()
 {
     m_red = new Red();
-    m_red->setPos(0,350);
+    m_red->setPos(350,350);
     scene->addItem(m_red);
+
 }
 
 void Game::InitMovementTimer()
@@ -142,8 +144,38 @@ void Game::DrawMap(const std::vector<std::vector<int>> &vec)
 {
     for (size_t i = 0; i < vec.at(0).size(); ++i)
         for (size_t j = 0; j < vec.size(); ++j)
-            if (vec[j][i] != 0)
+        {
+            if (vec[j][i] == 1)
                 fill(i, j);
+
+            if (vec[j][i] == 0)
+                fill_Coin(i,j);
+
+            if(vec[j][i] == 2)
+                fill_Pill(i,j);
+
+
+
+        }
+
+
+}
+
+void Game::fill_Coin(int x, int y)
+{
+    Coin *coin = new Coin();
+    coin->SetPosition(x * 50, y * 50);
+    scene->addItem(coin);
+
+}
+
+void Game::fill_Pill(int x, int y)
+{
+    Pill *pill = new Pill();
+    pill->SetPosition(x * 50, y * 50);
+    scene->addItem(pill);
+
+
 }
 
 void Game::fill(int x, int y)

@@ -20,10 +20,12 @@ INCLUDEPATH += GUI/ Core/
 SOURCES += \
     Core/Blue.cpp \
     Core/StandardBlock.cpp \
+    Core/Utils/Coin.cpp \
     Core/Utils/Levels.cpp \
     Core/Orange.cpp \
     Core/Purple.cpp \
     Core/Red.cpp \
+    Core/Utils/Pill.cpp \
     GUI/About.cpp \
     GUI/Game.cpp \
     GUI/Help.cpp \
@@ -36,11 +38,13 @@ HEADERS += \
     Core/Blue.h \
     Core/GlobalDefs.h \
     Core/StandardBlock.h \
+    Core/Utils/Coin.h \
     Core/Utils/Directions.h \
     Core/Utils/Levels.h \
     Core/Orange.h \
     Core/Purple.h \
     Core/Red.h \
+    Core/Utils/Pill.h \
     GUI/About.h \
     GUI/Game.h \
     GUI/Help.h \

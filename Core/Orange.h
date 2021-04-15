@@ -1,5 +1,5 @@
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef ORANGE_H
+#define ORANGE_H
 
 #include <QGraphicsRectItem>
 #include <QPainter>
