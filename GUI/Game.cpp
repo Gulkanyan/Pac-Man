@@ -81,8 +81,9 @@ Game::~Game()
     delete m_tmr;
     delete m_player;
     delete m_red;
-//add delete for enemies
-
+    delete m_blue;
+    delete m_purple;
+    delete m_orange;
     scene->clear();
     delete scene;
 }
