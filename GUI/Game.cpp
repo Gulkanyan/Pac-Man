@@ -5,13 +5,17 @@
 #include "StandardBlock.h"
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
+#include "GlobalDefs.h"
+
 #include <QTimer>
 
 namespace
 {
     QTimer *m_tmr;
     Directions m_directions = Directions::Up;
+    Directions m_previousDirection = Directions::Up;
     bool m_IsMovementEnabled = true;
+    int m_counter = 0;
 }
 
 Game::Game(QWidget *parent) :
@@ -69,7 +73,7 @@ void Game::InitMovementTimer()
 {
     m_tmr = new QTimer();
     connect(m_tmr, SIGNAL(timeout()), this, SLOT(DoMovement()));
-    m_tmr->start(150);
+    m_tmr->start(100);
 }
 
 Game::~Game()
@@ -114,41 +118,55 @@ void Game::DoMovement()
     if(m_IsMovementEnabled == false)
         return;
 
-    if(m_directions == Directions::Right)
+    if(m_counter == 0)
+    {
+        m_previousDirection = m_directions;
+        m_counter = 5;
+    }
+
+    if(m_previousDirection == Directions::Right)
     {
         if(m_player->IsCollided(Directions::Right))
         {
             m_IsMovementEnabled = false;
+            m_counter = 0;
             return;
         }
         m_player->MoveRight();
+        m_counter--;
     }
-    else if(m_directions == Directions::Left)
+    else if(m_previousDirection == Directions::Left)
     {
         if(m_player->IsCollided(Directions::Left))
         {
             m_IsMovementEnabled = false;
+            m_counter = 0;
             return;
         }
         m_player->MoveLeft();
+        m_counter--;
     }
-    else if(m_directions == Directions::Up)
+    else if(m_previousDirection == Directions::Up)
     {
         if(m_player->IsCollided(Directions::Up))
         {
             m_IsMovementEnabled = false;
+            m_counter = 0;
             return;
         }
         m_player->MoveUp();
+        m_counter--;
     }
-    else if(m_directions == Directions::Down)
+    else if(m_previousDirection == Directions::Down)
     {
         if(m_player->IsCollided(Directions::Down))
         {
             m_IsMovementEnabled = false;
+            m_counter = 0;
             return;
         }
         m_player->MoveDown();
+        m_counter--;
     }
     else
         qDebug() << "Direction is unknown\n";
