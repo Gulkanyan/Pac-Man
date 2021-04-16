@@ -51,6 +51,18 @@ void Game::AddEnemies()
     m_red->setPos(350,350);
     scene->addItem(m_red);
 
+    m_orange = new Orange();
+    m_orange->setPos(400,350);
+    scene->addItem(m_orange);
+
+    m_blue = new Blue();
+    m_blue->setPos(350,400);
+    scene->addItem(m_blue);
+
+    m_purple = new Purple();
+    m_purple->setPos(400,400);
+    scene->addItem(m_purple);
+
 }
 
 void Game::InitMovementTimer()
@@ -65,6 +77,8 @@ Game::~Game()
     delete m_tmr;
     delete m_player;
     delete m_red;
+//add delete for enemies
+
     scene->clear();
     delete scene;
 }

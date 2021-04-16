@@ -1,4 +1,8 @@
 #include "Player.h"
+#include "StandardBlock.h"
+
+#include "Utils/Coin.h"
+#include "Utils/Pill.h"
 
 #include <QPixmap>
 #include <QSize>
@@ -22,6 +26,7 @@ void Player::MoveRight()
 {
     if(m_currentStep == Step::First)
     {
+
         SetRightImage();
         m_currentStep = Step::Second;
     }
@@ -130,6 +135,23 @@ bool Player::IsCollided(Directions currentDirection)
 
     for(int i = 0; i < cItems.size(); ++i)
     {
+        // after transform to funcion
+        StandardBlock* block = dynamic_cast<StandardBlock*>(cItems[i]);
+        if(!block)
+        {
+            Coin* coin = dynamic_cast<Coin*>(cItems[i]);
+            if(coin)
+                delete coin;
+            else
+            {
+                Pill* pill = dynamic_cast<Pill*>(cItems[i]);
+                if(pill)
+                    delete pill;
+            }
+            continue;
+        }
+        //
+
         if(currentDirection == Directions::Right)
             if(qreal(this->pos().x() + stepSize + 60) >= cItems.at(i)->pos().x()) // 60 is offset
             {
@@ -158,6 +180,7 @@ bool Player::IsCollided(Directions currentDirection)
                 return true;
             }
     }
+    cItems.clear();
     return false;
 }
 
