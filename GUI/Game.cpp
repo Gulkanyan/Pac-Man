@@ -33,6 +33,7 @@ Game::Game(QWidget *parent) :
     InitMovementTimer();
 
     connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
+    connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
 }
 
 void Game::InitInterface()
@@ -48,6 +49,13 @@ void Game::InitInterface()
     m_scoreText->setFont(QFont("times",16));
     m_scoreText->setPos(850,30);
     scene->addItem(m_scoreText);
+
+    m_healthText = new QGraphicsTextItem();
+    m_healthText->setDefaultTextColor(Qt::cyan);
+    m_healthText-> setFont(QFont("times",16));
+    m_healthText->setPos(850, 100);
+    m_healthText->setPlainText(QString("Health: ")+ QString::number(5));
+    scene->addItem(m_healthText);
 }
 
 void Game::AddPlayer()
@@ -82,6 +90,11 @@ void Game::UpdateScore(int score)
     m_scoreText->setPlainText(QString("Միավոր: ")+ QString::number(score));
 }
 
+void Game::UpdateHealth(int health)
+{
+    m_healthText->setPlainText("");
+    m_healthText->setPlainText(QString("Health: ")+ QString::number(health));
+}
 void Game::InitMovementTimer()
 {
     m_tmr = new QTimer();

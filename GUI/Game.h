@@ -41,6 +41,7 @@ private slots:
     void DoMovement();
 
     void UpdateScore(int);
+    void UpdateHealth(int);
 
 private:
     QGraphicsScene* scene;
@@ -50,6 +51,7 @@ private:
     Purple * m_purple;
     Blue * m_blue;
     QGraphicsTextItem *m_scoreText;
+    QGraphicsTextItem *m_healthText;
 
     Player * m_player;
 };

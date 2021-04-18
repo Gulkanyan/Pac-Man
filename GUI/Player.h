@@ -34,12 +34,14 @@ private:
 
 signals:
     void ScoreIsUpdated(int);
+    void HealthIsUpdated(int);
 
 private:
     Step m_currentStep;
     int stepSize;
 
     int m_score;
+    int m_health;
 };
 
 #endif // PLAYER_H

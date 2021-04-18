@@ -26,6 +26,7 @@ Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
     stepSize = 10;
 
     m_score = 0;
+    m_health = 5;
 }
 
 void Player::MoveRight()
@@ -166,6 +167,8 @@ bool Player::IsCollided(Directions currentDirection)
                     if(red || orange || blue || purple)
                     {
 
+                        m_health--;
+                        emit HealthIsUpdated(m_health);
                         this->setPos(350, 150);
 
                     }
