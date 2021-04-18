@@ -8,7 +8,6 @@
 #include "Core/Orange.h"
 #include "Core/Blue.h"
 #include "Core/Purple.h"
-#include "ShowPoint.h"
 
 class Game : public QGraphicsView
 {
@@ -36,12 +35,13 @@ private:
 
     void AddEnemies();
 
-    void addScore();
-
     void InitMovementTimer();
 
 private slots:
     void DoMovement();
+
+    void UpdateScore(int);
+
 private:
     QGraphicsScene* scene;
 
@@ -49,10 +49,9 @@ private:
     Orange * m_orange;
     Purple * m_purple;
     Blue * m_blue;
+    QGraphicsTextItem *m_scoreText;
 
     Player * m_player;
-
-    ShowPoint * m_showpoint;
 };
 
 #endif // GAME_H

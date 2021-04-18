@@ -6,10 +6,8 @@
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
 #include "GlobalDefs.h"
-#include "ShowPoint.h"
 
 #include <QTimer>
-
 
 namespace
 {
@@ -34,8 +32,7 @@ Game::Game(QWidget *parent) :
 
     InitMovementTimer();
 
-    addScore();
-
+    connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
 }
 
 void Game::InitInterface()
@@ -45,6 +42,12 @@ void Game::InitInterface()
     setFixedSize(1100,800);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
+
+    m_scoreText = new QGraphicsTextItem();
+    m_scoreText->setDefaultTextColor(Qt::cyan);
+    m_scoreText->setFont(QFont("times",16));
+    m_scoreText->setPos(850,30);
+    scene->addItem(m_scoreText);
 }
 
 void Game::AddPlayer()
@@ -53,8 +56,6 @@ void Game::AddPlayer()
     m_player->setPos(350, 150);
     scene->addItem(m_player);
 }
-
-
 
 void Game::AddEnemies()
 {
@@ -73,13 +74,12 @@ void Game::AddEnemies()
     m_purple = new Purple();
     m_purple->setPos(400,400);
     scene->addItem(m_purple);
-
 }
-void Game::addScore()
+
+void Game::UpdateScore(int score)
 {
-    m_showpoint = new ShowPoint();
-    m_showpoint->setPos(850,30);
-    scene->addItem(m_showpoint);
+    m_scoreText->setPlainText("");
+    m_scoreText->setPlainText(QString("Միավոր: ")+ QString::number(score));
 }
 
 void Game::InitMovementTimer()

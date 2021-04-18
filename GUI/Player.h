@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QGraphicsRectItem>
 
-#include "ShowPoint.h"
 #include "Utils/Directions.h"
 
 enum Step
@@ -33,10 +32,14 @@ private:
     void SetDownImage();
     void SetClosedRightImage();
 
+signals:
+    void ScoreIsUpdated(int);
+
 private:
     Step m_currentStep;
-    ShowPoint * m_showpoint;
     int stepSize;
+
+    int m_score;
 };
 
 #endif // PLAYER_H

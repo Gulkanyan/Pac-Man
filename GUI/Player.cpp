@@ -8,7 +8,6 @@
 #include "Orange.h"
 #include "Purple.h"
 #include "Game.h"
-#include "ShowPoint.h"
 
 #include <QPixmap>
 #include <QSize>
@@ -24,15 +23,15 @@ Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
     setBrush(QBrush(pixmapItem));
 
     m_currentStep = Step::First;
-    m_showpoint = new ShowPoint();
     stepSize = 10;
+
+    m_score = 0;
 }
 
 void Player::MoveRight()
 {
     if(m_currentStep == Step::First)
     {
-
         SetRightImage();
         m_currentStep = Step::Second;
     }
@@ -54,12 +53,12 @@ void Player::SetRightImage()
     setBrush(QBrush(pixmapItem));
 }
 
-void Player::SetClosedRightImage(){
-
+void Player::SetClosedRightImage()
+{
     QPixmap pixmapItem(":/images/Images/Closed.png");
     setBrush(QBrush(pixmapItem));
-
 }
+
 void Player::MoveLeft()
 {
     if(m_currentStep == Step::First)
@@ -149,8 +148,8 @@ bool Player::IsCollided(Directions currentDirection)
             Coin* coin = dynamic_cast<Coin*>(cItems[i]);
             if(coin)
             {
-                m_showpoint->increaseShowPoint();
-                m_showpoint->PaintShowPoint();
+                m_score += 50;
+                emit ScoreIsUpdated(m_score);
                 delete coin;
             }
             else if(!coin)
@@ -158,8 +157,8 @@ bool Player::IsCollided(Directions currentDirection)
                 Pill* pill = dynamic_cast<Pill*>(cItems[i]);
                 if(pill)
                     delete pill;
-            else if(!pill)
-            {
+                else if(!pill)
+                {
                     Red *red = dynamic_cast<Red*>(cItems[i]);
                     Orange * orange = dynamic_cast<Orange*>(cItems[i]);
                     Blue * blue = dynamic_cast<Blue*>(cItems[i]);
@@ -170,8 +169,8 @@ bool Player::IsCollided(Directions currentDirection)
                         this->setPos(350, 150);
 
                     }
+                }
             }
-        }
 
             continue;
         }
