@@ -8,6 +8,7 @@
 #include "Core/Orange.h"
 #include "Core/Blue.h"
 #include "Core/Purple.h"
+#include "ShowPoint.h"
 
 class Game : public QGraphicsView
 {
@@ -16,7 +17,7 @@ class Game : public QGraphicsView
 public:
     explicit Game(QWidget *parent = nullptr);
     ~Game();
-
+    void addToScene();
 
 private:
     void keyPressEvent(QKeyEvent *event) override;
@@ -35,6 +36,8 @@ private:
 
     void AddEnemies();
 
+    void addScore();
+
     void InitMovementTimer();
 
 private slots:
@@ -42,13 +45,14 @@ private slots:
 private:
     QGraphicsScene* scene;
 
-    Player* m_player;
     Red * m_red;
     Orange * m_orange;
     Purple * m_purple;
     Blue * m_blue;
 
+    Player * m_player;
 
+    ShowPoint * m_showpoint;
 };
 
 #endif // GAME_H

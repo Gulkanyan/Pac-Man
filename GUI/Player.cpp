@@ -3,6 +3,12 @@
 
 #include "Utils/Coin.h"
 #include "Utils/Pill.h"
+#include "Red.h"
+#include "Blue.h"
+#include "Orange.h"
+#include "Purple.h"
+#include "Game.h"
+#include "ShowPoint.h"
 
 #include <QPixmap>
 #include <QSize>
@@ -18,7 +24,7 @@ Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
     setBrush(QBrush(pixmapItem));
 
     m_currentStep = Step::First;
-
+    m_showpoint = new ShowPoint();
     stepSize = 10;
 }
 
@@ -135,19 +141,38 @@ bool Player::IsCollided(Directions currentDirection)
 
     for(int i = 0; i < cItems.size(); ++i)
     {
-        // after transform to funcion
+        // during movement
         StandardBlock* block = dynamic_cast<StandardBlock*>(cItems[i]);
+
         if(!block)
         {
             Coin* coin = dynamic_cast<Coin*>(cItems[i]);
             if(coin)
+            {
+                m_showpoint->increaseShowPoint();
+                m_showpoint->PaintShowPoint();
                 delete coin;
-            else
+            }
+            else if(!coin)
             {
                 Pill* pill = dynamic_cast<Pill*>(cItems[i]);
                 if(pill)
                     delete pill;
+            else if(!pill)
+            {
+                    Red *red = dynamic_cast<Red*>(cItems[i]);
+                    Orange * orange = dynamic_cast<Orange*>(cItems[i]);
+                    Blue * blue = dynamic_cast<Blue*>(cItems[i]);
+                    Purple * purple = dynamic_cast<Purple*>(cItems[i]);
+                    if(red || orange || blue || purple)
+                    {
+
+                        this->setPos(350, 150);
+
+                    }
             }
+        }
+
             continue;
         }
         //

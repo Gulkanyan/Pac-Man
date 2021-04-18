@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsRectItem>
 
+#include "ShowPoint.h"
 #include "Utils/Directions.h"
 
 enum Step
@@ -34,6 +35,7 @@ private:
 
 private:
     Step m_currentStep;
+    ShowPoint * m_showpoint;
     int stepSize;
 };
 

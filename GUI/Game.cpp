@@ -6,8 +6,10 @@
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
 #include "GlobalDefs.h"
+#include "ShowPoint.h"
 
 #include <QTimer>
+
 
 namespace
 {
@@ -31,13 +33,16 @@ Game::Game(QWidget *parent) :
     DrawMap(Levels::level);
 
     InitMovementTimer();
+
+    addScore();
+
 }
 
 void Game::InitInterface()
 {
-    scene = new QGraphicsScene(0,0,790,790);
+    scene = new QGraphicsScene(0,0,1090,790);
     setScene(scene);
-    setFixedSize(800,800);
+    setFixedSize(1100,800);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
 }
@@ -48,6 +53,8 @@ void Game::AddPlayer()
     m_player->setPos(350, 150);
     scene->addItem(m_player);
 }
+
+
 
 void Game::AddEnemies()
 {
@@ -67,6 +74,12 @@ void Game::AddEnemies()
     m_purple->setPos(400,400);
     scene->addItem(m_purple);
 
+}
+void Game::addScore()
+{
+    m_showpoint = new ShowPoint();
+    m_showpoint->setPos(850,30);
+    scene->addItem(m_showpoint);
 }
 
 void Game::InitMovementTimer()
