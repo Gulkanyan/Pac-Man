@@ -35,13 +35,17 @@ private:
 
     void AddEnemies();
 
-    void InitMovementTimer();
+    void InitPlayerTimer();
+
+    void InitEnemysTimer();
 
 private slots:
     void DoMovement();
 
     void UpdateScore(int);
     void UpdateHealth(int);
+
+    void DoEnemysMovement();
 
 private:
     QGraphicsScene* scene;
@@ -52,6 +56,8 @@ private:
     Blue * m_blue;
     QGraphicsTextItem *m_scoreText;
     QGraphicsTextItem *m_healthText;
+
+
 
     Player * m_player;
 };

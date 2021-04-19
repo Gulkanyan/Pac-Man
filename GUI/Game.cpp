@@ -5,13 +5,14 @@
 #include "StandardBlock.h"
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
-#include "GlobalDefs.h"
+#include "CoreGlobals.h"
 
 #include <QTimer>
 
 namespace
 {
-    QTimer *m_tmr;
+    QTimer *m_playerTimer;
+    QTimer *m_enemysTimer;
     Directions m_directions = Directions::Up;
     Directions m_previousDirection = Directions::Up;
     bool m_IsMovementEnabled = true;
@@ -30,7 +31,9 @@ Game::Game(QWidget *parent) :
 
     DrawMap(Levels::level);
 
-    InitMovementTimer();
+    InitPlayerTimer();
+
+    InitEnemysTimer();
 
     connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
     connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
@@ -68,7 +71,6 @@ void Game::AddPlayer()
 void Game::AddEnemies()
 {
     m_red = new Red();
-    m_red->setPos(350,350);
     scene->addItem(m_red);
 
     m_orange = new Orange();
@@ -95,16 +97,24 @@ void Game::UpdateHealth(int health)
     m_healthText->setPlainText("");
     m_healthText->setPlainText(QString("Health: ")+ QString::number(health));
 }
-void Game::InitMovementTimer()
+
+void Game::InitPlayerTimer()
 {
-    m_tmr = new QTimer();
-    connect(m_tmr, SIGNAL(timeout()), this, SLOT(DoMovement()));
-    m_tmr->start(100);
+    m_playerTimer = new QTimer();
+    connect(m_playerTimer, SIGNAL(timeout()), this, SLOT(DoMovement()));
+    m_playerTimer->start(100);
+}
+
+void Game::InitEnemysTimer()
+{
+    m_enemysTimer = new QTimer();
+    connect(m_enemysTimer, SIGNAL(timeout()), this, SLOT(DoEnemysMovement()));
+    m_enemysTimer->start(100);
 }
 
 Game::~Game()
 {
-    delete m_tmr;
+    delete m_playerTimer;
     delete m_player;
     delete m_red;
     delete m_blue;
@@ -197,6 +207,23 @@ void Game::DoMovement()
     }
     else
         qDebug() << "Direction is unknown\n";
+
+    CoreGlobals::playersCoords.x = m_player->pos().x() / DEFAULT_BLOCK_SIZE;
+}
+
+void Game::DoEnemysMovement()
+{
+    CoreGlobals::playersCoords.x = m_player->x() / DEFAULT_BLOCK_SIZE;
+    CoreGlobals::playersCoords.y = m_player->y() / DEFAULT_BLOCK_SIZE;
+
+    m_red->DoMove();
+    /// red - move
+    ///
+    /// blue - move
+    ///
+    /// orange - move
+    ///
+    /// purple - move
 }
 
 void Game::DrawMap(const std::vector<std::vector<int>> &vec)

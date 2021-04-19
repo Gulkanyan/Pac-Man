@@ -19,6 +19,7 @@ INCLUDEPATH += GUI/ Core/
 
 SOURCES += \
     Core/Blue.cpp \
+    Core/CoreGlobals.cpp \
     Core/StandardBlock.cpp \
     Core/Utils/Coin.cpp \
     Core/Utils/Levels.cpp \
@@ -36,9 +37,11 @@ SOURCES += \
 
 HEADERS += \
     Core/Blue.h \
+    Core/CoreGlobals.h \
     Core/GlobalDefs.h \
     Core/StandardBlock.h \
     Core/Utils/Coin.h \
+    Core/Utils/DataStructs.h \
     Core/Utils/Directions.h \
     Core/Utils/Levels.h \
     Core/Orange.h \

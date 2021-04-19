@@ -7,7 +7,6 @@
 #include "Blue.h"
 #include "Orange.h"
 #include "Purple.h"
-#include "Game.h"
 
 #include <QPixmap>
 #include <QSize>
