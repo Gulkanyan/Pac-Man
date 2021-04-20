@@ -21,6 +21,11 @@ private:
 
     void SetPositions();
 
+    void MoveUp();
+    void MoveDown();
+    void MoveRight();
+    void MoveLeft();
+
 private:
 
     Coords m_coordinates;

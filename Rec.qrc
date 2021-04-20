@@ -15,12 +15,17 @@
         <file>Images/Left.png</file>
         <file>Images/Up.png</file>
         <file>Images/Closed.png</file>
-        <file>Images/Red.png</file>
         <file>Images/Blue.png</file>
         <file>Images/Orange.png</file>
         <file>Images/Purple.png</file>
         <file>Images/Rectangle.png</file>
         <file>Images/Pill.png</file>
         <file>Images/Point.png</file>
+    </qresource>
+    <qresource prefix="/red">
+        <file>Images/Red/RedEnemyDown.png</file>
+        <file>Images/Red/RedEnemyLeft.png</file>
+        <file>Images/Red/RedEnemyRight.png</file>
+        <file>Images/Red/RedEnemyUp.png</file>
     </qresource>
 </RCC>

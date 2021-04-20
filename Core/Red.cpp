@@ -1,10 +1,15 @@
 #include "Red.h"
 
 #include <QBrush>
-#include <QtDebug>
 
 #include "Utils/Levels.h"
 #include "CoreGlobals.h"
+
+namespace
+{
+    int m_counter = 5;
+    Directions m_movementDirection = Directions::Unknown;
+}
 
 Red::Red(QGraphicsItem *parent): QGraphicsRectItem(parent)
 {
@@ -14,10 +19,9 @@ Red::Red(QGraphicsItem *parent): QGraphicsRectItem(parent)
 void Red::InitDefaultSettings()
 {
     setRect(0,0,50,50);
-    QPixmap pixmapItem(":/images/Images/Red.png");
+    QPixmap pixmapItem(":/red/Images/Red/RedEnemyDown.png");
 
     setBrush(QBrush(pixmapItem));
-
 
     this->setPos(350,350);
     SetPositions();
@@ -31,27 +35,32 @@ void Red::SetPositions()
 
 void Red::DoMove()
 {
-    GetAvilableDirections();
-
-    Directions movementDirection = ChooseShorterWay();
-
-    switch (movementDirection)
+    if(m_counter == 0)
     {
-        case Directions::Up: setPos(pos().x(), pos().y() - 50); SetPositions(); break;
+        GetAvilableDirections();
 
-        case Directions::Down: setPos(pos().x(), pos().y() + 50); SetPositions(); break;
+        m_movementDirection = ChooseShorterWay();
 
-        case Directions::Right: setPos(pos().x() + 50, pos().y()); SetPositions(); break;
+        m_counter = 5;
+    }
 
-        case Directions::Left: setPos(pos().x() - 50, pos().y()); SetPositions(); break;
+    switch (m_movementDirection)
+    {
+        case Directions::Up: MoveUp(); break;
 
-        default: qDebug() << "Direction is uncnown";
+        case Directions::Down: MoveDown(); break;
+
+        case Directions::Right: MoveRight(); break;
+
+        case Directions::Left: MoveLeft(); break;
+
+        default: qDebug() << "Direction is uncnown"; m_counter--; break;
     }
 }
 
 void Red::GetAvilableDirections()
 {
-    m_availableDirections = {Directions::Left, Directions::Right, Directions::Up, Directions::Down};
+    m_availableDirections = {Directions::Left, Directions::Right, Directions::Down, Directions::Up};
 
     if(m_coordinates.x < CoreGlobals::playersCoords.x)
     {
@@ -83,7 +92,7 @@ void Red::GetAvilableDirections()
     {
         if(m_availableDirections.at(i) == Directions::Up)
         {
-            if(Levels::level.at(m_coordinates.x).at(m_coordinates.y - 1) == 1)
+            if(Levels::level.at(m_coordinates.y - 1).at(m_coordinates.x) == 1)
             {
                 m_availableDirections.removeOne(Directions::Up);
                 count--;
@@ -93,7 +102,7 @@ void Red::GetAvilableDirections()
         }
         if(m_availableDirections.at(i) == Directions::Down)
         {
-            if(Levels::level.at(m_coordinates.x).at(m_coordinates.y + 1) == 1)
+            if(Levels::level.at(m_coordinates.y + 1).at(m_coordinates.x) == 1)
             {
                 m_availableDirections.removeOne(Directions::Down);
                 count--;
@@ -103,7 +112,7 @@ void Red::GetAvilableDirections()
         }
         if(m_availableDirections.at(i) == Directions::Right)
         {
-            if(Levels::level.at(m_coordinates.x + 1).at(m_coordinates.y) == 1)
+            if(Levels::level.at(m_coordinates.y).at(m_coordinates.x + 1) == 1)
             {
                 m_availableDirections.removeOne(Directions::Right);
                 count--;
@@ -113,7 +122,7 @@ void Red::GetAvilableDirections()
         }
         if(m_availableDirections.at(i) == Directions::Left)
         {
-            if(Levels::level.at(m_coordinates.x - 1).at(m_coordinates.y) == 1)
+            if(Levels::level.at(m_coordinates.y).at(m_coordinates.x - 1) == 1)
             {
                 m_availableDirections.removeOne(Directions::Left);
                 count--;
@@ -122,11 +131,6 @@ void Red::GetAvilableDirections()
             }
         }
     }
-
-#ifdef DEBUG_UTILS
-    for(int i = 0; i < m_availableDirections.size(); ++i)
-        qDebug() << "Avilable Directions [" << i << "] = " << m_availableDirections.at(i);
-#endif
 }
 
 Directions Red::ChooseShorterWay()
@@ -143,7 +147,6 @@ Directions Red::ChooseShorterWay()
             double x = std::abs(CoreGlobals::playersCoords.x - m_coordinates.x);
             double y = std::abs(CoreGlobals::playersCoords.y - (m_coordinates.y - 1));
 
-            qDebug() << "UP :::: " << sqrt(x * x + y * y);
             ways.insert(Directions::Up, sqrt(x * x + y * y));
         }
         if(m_availableDirections.at(i) == Directions::Down)
@@ -204,7 +207,45 @@ Directions Red::ChooseShorterWay()
         }
     }
 
-    qDebug() << "Movement direction is <<< " << movementDirection;
-
     return movementDirection;
+}
+
+void Red::MoveUp()
+{
+    setPos(pos().x(), pos().y() - 10);
+    SetPositions();
+    m_counter--;
+
+    QPixmap pixmapItem(":/red/Images/Red/RedEnemyUp.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Red::MoveDown()
+{
+    setPos(pos().x(), pos().y() + 10);
+    SetPositions();
+    m_counter--;
+
+    QPixmap pixmapItem(":/red/Images/Red/RedEnemyDown.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Red::MoveRight()
+{
+    setPos(pos().x() + 10, pos().y());
+    SetPositions();
+    m_counter--;
+
+    QPixmap pixmapItem(":/red/Images/Red/RedEnemyRight.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Red::MoveLeft()
+{
+    setPos(pos().x() - 10, pos().y());
+    SetPositions();
+    m_counter--;
+
+    QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
+    setBrush(QBrush(pixmapItem));
 }
