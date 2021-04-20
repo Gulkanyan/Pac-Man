@@ -42,7 +42,7 @@ HEADERS += \
     Core/StandardBlock.h \
     Core/Utils/Coin.h \
     Core/Utils/DataStructs.h \
-    Core/Utils/Directions.h \
+    Core/Utils/Enums.h \
     Core/Utils/Levels.h \
     Core/Orange.h \
     Core/Purple.h \

@@ -25,6 +25,8 @@ void Red::InitDefaultSettings()
 
     this->setPos(350,350);
     SetPositions();
+
+    m_state = GhostsStates::Chase;
 }
 
 void Red::SetPositions()
@@ -35,11 +37,25 @@ void Red::SetPositions()
 
 void Red::DoMove()
 {
+    qDebug() << "/*/*/*/*/*/*/*/*/*/*/*/*/ == " << Levels::level.at(0).at(15);
+
     if(m_counter == 0)
     {
-        GetAvilableDirections();
-
-        m_movementDirection = ChooseShorterWay();
+        if(m_state == GhostsStates::Chase)
+        {
+            GetAvialableDirections(CoreGlobals::playersCoords.x, CoreGlobals::playersCoords.y);
+            m_movementDirection = ChooseShorterWay();
+        }
+        else if(m_state == GhostsStates::Scattered)
+        {
+            qDebug() << "Choose Directions for scattered mode";
+            GetAvialableDirections(15, 0);
+            m_movementDirection = ChooseScatteredShorterWay(15, 0);
+        }
+        else if(m_state == GhostsStates::Frightend)
+        {
+            qDebug() << "Choose Directions for scattered mode";
+        }
 
         m_counter = 5;
     }
@@ -58,29 +74,29 @@ void Red::DoMove()
     }
 }
 
-void Red::GetAvilableDirections()
+void Red::GetAvialableDirections(double targetX, double targetY)
 {
     m_availableDirections = {Directions::Left, Directions::Right, Directions::Down, Directions::Up};
 
-    if(m_coordinates.x < CoreGlobals::playersCoords.x)
+    if(m_coordinates.x < targetX)
     {
         // left is blocked
         m_availableDirections.removeOne(Directions::Left);
     }
 
-    if(m_coordinates.x > CoreGlobals::playersCoords.x)
+    if(m_coordinates.x > targetX)
     {
         // right is blocked
         m_availableDirections.removeOne(Directions::Right);
     }
 
-    if(m_coordinates.y > CoreGlobals::playersCoords.y)
+    if(m_coordinates.y > targetY)
     {
         // down is blocked
         m_availableDirections.removeOne(Directions::Down);
     }
 
-    if(m_coordinates.y < CoreGlobals::playersCoords.y)
+    if(m_coordinates.y < targetY)
     {
         // up is blocked
         m_availableDirections.removeOne(Directions::Up);
@@ -248,4 +264,90 @@ void Red::MoveLeft()
 
     QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
     setBrush(QBrush(pixmapItem));
+}
+
+// Scattered
+Directions Red::ChooseScatteredShorterWay(double targetX, double targetY)
+{
+    if(m_availableDirections.size() == 1)
+        return m_availableDirections.at(0);
+
+    QMap<Directions, double> ways;
+
+    for(int i = 0; i < m_availableDirections.size(); ++i)
+    {
+        if(m_availableDirections.at(i) == Directions::Up)
+        {
+            double x = std::abs(targetX - m_coordinates.x);
+            double y = std::abs(targetY - (m_coordinates.y - 1));
+
+            ways.insert(Directions::Up, sqrt(x * x + y * y));
+        }
+        if(m_availableDirections.at(i) == Directions::Down)
+        {
+            double x = std::abs(targetX - m_coordinates.x);
+            double y = std::abs(targetY - (m_coordinates.y + 1));
+
+            ways.insert(Directions::Down, sqrt(x * x + y * y));
+        }
+        if(m_availableDirections.at(i) == Directions::Right)
+        {
+            double x = std::abs(targetX - (m_coordinates.x + 1));
+            double y = std::abs(targetY - m_coordinates.y);
+
+            ways.insert(Directions::Right, sqrt(x * x + y * y));
+        }
+        if(m_availableDirections.at(i) == Directions::Left)
+        {
+            double x = std::abs(targetX - (m_coordinates.x - 1));
+            double y = std::abs(targetY - m_coordinates.y);
+
+            ways.insert(Directions::Left, sqrt(x * x + y * y));
+        }
+    }
+
+    Directions movementDirection = Directions::Unknown;
+    if((int)m_availableDirections.size() == 3)
+    {
+        if(ways.value(m_availableDirections.at(0)) < ways.value(m_availableDirections.at(1)))
+        {
+            if(ways.value(m_availableDirections.at(0)) < ways.value(m_availableDirections.at(2)))
+            {
+                movementDirection = m_availableDirections.at(0);
+            }
+            else
+            {
+                movementDirection = m_availableDirections.at(2);
+            }
+        }
+        else if(ways.value(m_availableDirections.at(1)) < ways.value(m_availableDirections.at(2)))
+        {
+            movementDirection = m_availableDirections.at(1);
+        }
+        else
+        {
+            movementDirection = m_availableDirections.at(2);
+        }
+    }
+    else if(m_availableDirections.size() == 2)
+    {
+        if(ways.value(m_availableDirections.at(0)) < ways.value(m_availableDirections.at(1)))
+        {
+            movementDirection = m_availableDirections.at(0);
+        }
+        else
+        {
+            movementDirection = m_availableDirections.at(1);
+        }
+    }
+
+    return movementDirection;
+}
+
+void Red::ChangeStates()
+{
+    if(m_state == GhostsStates::Chase)
+        m_state = GhostsStates::Scattered;
+    else if(m_state == GhostsStates::Scattered)
+        m_state = GhostsStates::Chase;
 }

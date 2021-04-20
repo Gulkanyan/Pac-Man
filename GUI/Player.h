@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QGraphicsRectItem>
 
-#include "Utils/Directions.h"
+#include "CoreGlobals.h"
 
 enum Step
 {

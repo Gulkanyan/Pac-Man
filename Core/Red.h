@@ -12,12 +12,18 @@ public:
 
     void DoMove();
 
+    void ChangeStates();
+
 private:
     void InitDefaultSettings();
 
-    void GetAvilableDirections();
+    void GetAvialableDirections(double targetX, double targetY);
 
+    // Chase mode
     Directions ChooseShorterWay();
+
+    // Scattered
+    Directions ChooseScatteredShorterWay(double targetX, double targetY);
 
     void SetPositions();
 
@@ -30,6 +36,7 @@ private:
 
     Coords m_coordinates;
     QList<Directions> m_availableDirections;
+    GhostsStates m_state;
 };
 
 #endif

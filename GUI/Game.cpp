@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "Utils/Levels.h"
 #include "GlobalDefs.h"
-#include "Utils/Directions.h"
 #include "StandardBlock.h"
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
@@ -146,6 +145,10 @@ void Game::keyPressEvent(QKeyEvent *event)
         case Qt::Key_Down:
             m_directions = Directions::Down;
             m_IsMovementEnabled = true;
+        break;
+
+        case Qt::Key_M:
+            m_red->ChangeStates();
         break;
     }
 }

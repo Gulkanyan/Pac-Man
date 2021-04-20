@@ -2,7 +2,7 @@
 #define COREGLOBALS_H
 
 #include "Utils/DataStructs.h"
-#include "Utils/Directions.h"
+#include "Utils/Enums.h"
 #include "GlobalDefs.h"
 
 namespace CoreGlobals
