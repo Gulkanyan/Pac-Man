@@ -16,9 +16,10 @@
 
 Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
 {
-    setRect(1,1,48,48);
-    QPixmap pixmapItem(":/images/Images/Right.png");
-    pixmapItem = pixmapItem.scaled(QSize(48,48),  Qt::KeepAspectRatio);
+    setRect(1,1,DEFAULT_BLOCK_SIZE - 2 , DEFAULT_BLOCK_SIZE - 2);
+    QPixmap pixmapItem(":/images/Images/pla.png");
+    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+
     setBrush(QBrush(pixmapItem));
 
     m_currentStep = Step::First;
@@ -43,7 +44,7 @@ void Player::MoveRight()
 
     setPos(pos().x() + stepSize, pos().y());
 
-    if(pos().x() > 800)
+    if(pos().x() > 470)
         setPos(0, pos().y());
 }
 
@@ -76,7 +77,7 @@ void Player::MoveLeft()
 
 
     if(pos().x() < 0)
-        setPos(800, pos().y());
+        setPos(470, pos().y());
 }
 
 void Player::MoveUp()
@@ -94,8 +95,8 @@ void Player::MoveUp()
 
     setPos(pos().x(), pos().y() - stepSize);
 
-    if(pos().y() < 30)
-        setPos(pos().x(), 800);
+    if(pos().y() < 0)
+        setPos(pos().x(), 550);
 }
 
 void Player::MoveDown()
@@ -112,7 +113,7 @@ void Player::MoveDown()
     }
     setPos(pos().x(), pos().y() + stepSize);
 
-    if(pos().y() > 800)
+    if(pos().y() > 500)
         setPos(pos().x(), 0);
 }
 
@@ -168,7 +169,11 @@ bool Player::IsCollided(Directions currentDirection)
 
                         m_health--;
                         emit HealthIsUpdated(m_health);
-                        this->setPos(350, 150);
+                        this->setPos(25, 25);
+                        red->setPos(225,250);
+//                        orange->setPos(250,250);
+//                        purple->setPos(250,275);
+                        //blue->setPos(225,275);
 
                     }
                 }
@@ -179,14 +184,14 @@ bool Player::IsCollided(Directions currentDirection)
         //
 
         if(currentDirection == Directions::Right)
-            if(qreal(this->pos().x() + stepSize + 60) >= cItems.at(i)->pos().x()) // 60 is offset
+            if(qreal(this->pos().x() + stepSize + 35) >= cItems.at(i)->pos().x()) // 60 is offset
             {
                 this->setX(this->pos().x() - 10);
                 return true;
             }
 
         if(currentDirection == Directions::Left)
-            if(qreal(this->pos().x() - stepSize - 60) <= cItems.at(i)->pos().x())
+            if(qreal(this->pos().x() - stepSize - 35) <= cItems.at(i)->pos().x())
             {
                 this->setX(this->pos().x() + 10);
                 return true;
@@ -200,7 +205,7 @@ bool Player::IsCollided(Directions currentDirection)
             }
 
         if(currentDirection == Directions::Down)
-            if(qreal(this->pos().y() + stepSize + 60) >= cItems.at(i)->pos().y())
+            if(qreal(this->pos().y() + stepSize + 35) >= cItems.at(i)->pos().y())
             {
                 this->setY(this->pos().y() - 10);
                 return true;

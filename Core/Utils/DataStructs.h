@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTS_H
 #define DATASTRUCTS_H
 
-#define DEFAULT_BLOCK_SIZE 50
+#define DEFAULT_BLOCK_SIZE 25
 
 struct Coords
 {

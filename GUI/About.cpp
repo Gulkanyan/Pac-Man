@@ -11,6 +11,8 @@ About::About(QWidget *parent) :
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
+    this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
+
 
 }
 

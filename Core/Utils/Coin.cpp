@@ -1,12 +1,12 @@
 #include "Coin.h"
 
 #include <QBrush>
-
+#include "Core/CoreGlobals.h"
 Coin::Coin(QGraphicsItem *parent): QObject(), QGraphicsRectItem(parent)
 {
-    setRect(0, 0, 50, 50);
+    setRect(0, 0, DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     QPixmap pixmapItem(":/images/Images/Point.png");
-    pixmapItem = pixmapItem.scaled(QSize(50,50),  Qt::KeepAspectRatio);
+    pixmapItem = pixmapItem.scaled(QSize(DEFAULT_BLOCK_SIZE,DEFAULT_BLOCK_SIZE),  Qt::KeepAspectRatio);
     setBrush(QBrush(pixmapItem));
 }
 

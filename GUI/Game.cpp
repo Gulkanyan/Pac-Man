@@ -40,22 +40,23 @@ Game::Game(QWidget *parent) :
 
 void Game::InitInterface()
 {
-    scene = new QGraphicsScene(0,0,1090,790);
+    scene = new QGraphicsScene(0,0,650,550);
     setScene(scene);
-    setFixedSize(1100,800);
+    setFixedSize(660,560);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
+    this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
 
     m_scoreText = new QGraphicsTextItem();
     m_scoreText->setDefaultTextColor(Qt::cyan);
     m_scoreText->setFont(QFont("times",16));
-    m_scoreText->setPos(850,30);
+    m_scoreText->setPos(500,30);
     scene->addItem(m_scoreText);
 
     m_healthText = new QGraphicsTextItem();
     m_healthText->setDefaultTextColor(Qt::cyan);
     m_healthText-> setFont(QFont("times",16));
-    m_healthText->setPos(850, 100);
+    m_healthText->setPos(500, 100);
     m_healthText->setPlainText(QString("Health: ")+ QString::number(5));
     scene->addItem(m_healthText);
 }
@@ -63,7 +64,7 @@ void Game::InitInterface()
 void Game::AddPlayer()
 {
     m_player = new Player();
-    m_player->setPos(350, 150);
+    m_player->setPos(25, 25);
     scene->addItem(m_player);
 }
 
@@ -72,17 +73,17 @@ void Game::AddEnemies()
     m_red = new Red();
     scene->addItem(m_red);
 
-    m_orange = new Orange();
-    m_orange->setPos(400,350);
-    scene->addItem(m_orange);
+//    m_orange = new Orange();
+//    m_orange->setPos(400,350);
+//    scene->addItem(m_orange);
 
-    m_blue = new Blue();
-    m_blue->setPos(350,400);
-    scene->addItem(m_blue);
+//    m_blue = new Blue();
+//    m_blue->setPos(350,400);
+//    scene->addItem(m_blue);
 
-    m_purple = new Purple();
-    m_purple->setPos(400,400);
-    scene->addItem(m_purple);
+//    m_purple = new Purple();
+//    m_purple->setPos(400,400);
+//    scene->addItem(m_purple);
 }
 
 void Game::UpdateScore(int score)
@@ -253,7 +254,7 @@ void Game::DrawMap(const std::vector<std::vector<int>> &vec)
 void Game::fill_Coin(int x, int y)
 {
     Coin *coin = new Coin();
-    coin->SetPosition(x * 50, y * 50);
+    coin->SetPosition(x * DEFAULT_BLOCK_SIZE, y * DEFAULT_BLOCK_SIZE);
     scene->addItem(coin);
 
 }
@@ -261,7 +262,7 @@ void Game::fill_Coin(int x, int y)
 void Game::fill_Pill(int x, int y)
 {
     Pill *pill = new Pill();
-    pill->SetPosition(x * 50, y * 50);
+    pill->SetPosition(x * DEFAULT_BLOCK_SIZE, y * DEFAULT_BLOCK_SIZE);
     scene->addItem(pill);
 
 
@@ -270,6 +271,6 @@ void Game::fill_Pill(int x, int y)
 void Game::fill(int x, int y)
 {
     StandardBlock *block = new StandardBlock();
-    block->SetPosition(x * 50, y * 50);
+    block->SetPosition(x * DEFAULT_BLOCK_SIZE, y * DEFAULT_BLOCK_SIZE);
     scene->addItem(block);
 }

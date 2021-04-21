@@ -18,9 +18,9 @@ Red::Red(QGraphicsItem *parent): QGraphicsRectItem(parent)
 
 void Red::InitDefaultSettings()
 {
-    setRect(0,0,50,50);
+    setRect(0,0,DEFAULT_BLOCK_SIZE,DEFAULT_BLOCK_SIZE);
     QPixmap pixmapItem(":/red/Images/Red/RedEnemyDown.png");
-
+    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 
     this->setPos(350,350);
@@ -233,6 +233,7 @@ void Red::MoveUp()
     m_counter--;
 
     QPixmap pixmapItem(":/red/Images/Red/RedEnemyUp.png");
+    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
 
@@ -243,6 +244,7 @@ void Red::MoveDown()
     m_counter--;
 
     QPixmap pixmapItem(":/red/Images/Red/RedEnemyDown.png");
+    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
 
@@ -253,6 +255,7 @@ void Red::MoveRight()
     m_counter--;
 
     QPixmap pixmapItem(":/red/Images/Red/RedEnemyRight.png");
+    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
 
@@ -263,6 +266,7 @@ void Red::MoveLeft()
     m_counter--;
 
     QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
+    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
 
