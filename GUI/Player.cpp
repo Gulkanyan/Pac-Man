@@ -16,14 +16,12 @@
 
 Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
 {
-    setRect(1,1,DEFAULT_BLOCK_SIZE - 2 , DEFAULT_BLOCK_SIZE - 2);
-    QPixmap pixmapItem(":/images/Images/pla.png");
-    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
-
+    setRect(1, 1, DEFAULT_BLOCK_SIZE - 2, DEFAULT_BLOCK_SIZE - 2);
+    QPixmap pixmapItem(":/pacman/Images/PacMan/RightClose.png");
     setBrush(QBrush(pixmapItem));
 
     m_currentStep = Step::First;
-    stepSize = 10;
+    stepSize = DEFAULT_BLOCK_SIZE / 5;
 
     m_score = 0;
     m_health = 5;
@@ -50,13 +48,49 @@ void Player::MoveRight()
 
 void Player::SetRightImage()
 {
-    QPixmap pixmapItem(":/images/Images/Right.png");
+    QPixmap pixmapItem(":/pacman/Images/PacMan/RightOpen.png");
     setBrush(QBrush(pixmapItem));
 }
 
 void Player::SetClosedRightImage()
 {
-    QPixmap pixmapItem(":/images/Images/Closed.png");
+    QPixmap pixmapItem(":/pacman/Images/PacMan/RightClose.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Player::SetLeftImage()
+{
+    QPixmap pixmapItem(":/pacman/Images/PacMan/LeftOpen.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Player::SetClosedLeftImage()
+{
+    QPixmap pixmapItem(":/pacman/Images/PacMan/LeftClose.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Player::SetUpImage()
+{
+    QPixmap pixmapItem(":/pacman/Images/PacMan/UpOpen.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Player::SetClosedUpImage()
+{
+    QPixmap pixmapItem(":/pacman/Images/PacMan/UpClose.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Player::SetDownImage()
+{
+    QPixmap pixmapItem(":/pacman/Images/PacMan/DownOpen.png");
+    setBrush(QBrush(pixmapItem));
+}
+
+void Player::SetClosedDownImage()
+{
+    QPixmap pixmapItem(":/pacman/Images/PacMan/DownClose.png");
     setBrush(QBrush(pixmapItem));
 }
 
@@ -117,24 +151,6 @@ void Player::MoveDown()
         setPos(pos().x(), 0);
 }
 
-void Player::SetLeftImage()
-{
-    QPixmap pixmapItem(":/images/Images/Left.png");
-    setBrush(QBrush(pixmapItem));
-}
-
-void Player::SetUpImage()
-{
-    QPixmap pixmapItem(":/images/Images/Up.png");
-    setBrush(QBrush(pixmapItem));
-}
-
-void Player::SetDownImage()
-{
-    QPixmap pixmapItem(":/images/Images/Down.png");
-    setBrush(QBrush(pixmapItem));
-}
-
 bool Player::IsCollided(Directions currentDirection)
 {
     QList<QGraphicsItem*> cItems = this->collidingItems();
@@ -186,28 +202,28 @@ bool Player::IsCollided(Directions currentDirection)
         if(currentDirection == Directions::Right)
             if(qreal(this->pos().x() + stepSize + 35) >= cItems.at(i)->pos().x()) // 60 is offset
             {
-                this->setX(this->pos().x() - 10);
+                this->setX(this->pos().x() - DEFAULT_BLOCK_SIZE / 5);
                 return true;
             }
 
         if(currentDirection == Directions::Left)
             if(qreal(this->pos().x() - stepSize - 35) <= cItems.at(i)->pos().x())
             {
-                this->setX(this->pos().x() + 10);
+                this->setX(this->pos().x() + DEFAULT_BLOCK_SIZE / 5);
                 return true;
             }
 
         if(currentDirection == Directions::Up)
             if(cItems.at(i)->pos().y() - this->pos().y() <= 0)     // <---      // after change the rest. Let it be as it is
             {
-                this->setY(this->pos().y() + 10);
+                this->setY(this->pos().y() + DEFAULT_BLOCK_SIZE / 5);
                 return true;
             }
 
         if(currentDirection == Directions::Down)
             if(qreal(this->pos().y() + stepSize + 35) >= cItems.at(i)->pos().y())
             {
-                this->setY(this->pos().y() - 10);
+                this->setY(this->pos().y() - DEFAULT_BLOCK_SIZE / 5);
                 return true;
             }
     }

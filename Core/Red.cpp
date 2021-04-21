@@ -37,8 +37,6 @@ void Red::SetPositions()
 
 void Red::DoMove()
 {
-    qDebug() << "/*/*/*/*/*/*/*/*/*/*/*/*/ == " << Levels::level.at(0).at(15);
-
     if(m_counter == 0)
     {
         if(m_state == GhostsStates::Chase)
@@ -49,8 +47,8 @@ void Red::DoMove()
         else if(m_state == GhostsStates::Scattered)
         {
             qDebug() << "Choose Directions for scattered mode";
-            GetAvialableDirections(15, 0);
-            m_movementDirection = ChooseScatteredShorterWay(15, 0);
+            GetAvialableDirections(16, 0);
+            m_movementDirection = ChooseScatteredShorterWay(16, 0);
         }
         else if(m_state == GhostsStates::Frightend)
         {
@@ -228,7 +226,7 @@ Directions Red::ChooseShorterWay()
 
 void Red::MoveUp()
 {
-    setPos(pos().x(), pos().y() - 10);
+    setPos(pos().x(), pos().y() - DEFAULT_BLOCK_SIZE / 5);
     SetPositions();
     m_counter--;
 
@@ -239,7 +237,7 @@ void Red::MoveUp()
 
 void Red::MoveDown()
 {
-    setPos(pos().x(), pos().y() + 10);
+    setPos(pos().x(), pos().y() + DEFAULT_BLOCK_SIZE / 5);
     SetPositions();
     m_counter--;
 
@@ -250,7 +248,7 @@ void Red::MoveDown()
 
 void Red::MoveRight()
 {
-    setPos(pos().x() + 10, pos().y());
+    setPos(pos().x() + DEFAULT_BLOCK_SIZE / 5, pos().y());
     SetPositions();
     m_counter--;
 
@@ -261,7 +259,7 @@ void Red::MoveRight()
 
 void Red::MoveLeft()
 {
-    setPos(pos().x() - 10, pos().y());
+    setPos(pos().x() - DEFAULT_BLOCK_SIZE / 5, pos().y());
     SetPositions();
     m_counter--;
 

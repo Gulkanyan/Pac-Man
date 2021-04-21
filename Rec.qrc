@@ -9,12 +9,6 @@
         <file>Images/Play.png</file>
         <file>Images/Settings.png</file>
         <file>Images/mainBackground.jpg</file>
-        <file>Images/Dead.png</file>
-        <file>Images/Right.png</file>
-        <file>Images/Down.png</file>
-        <file>Images/Left.png</file>
-        <file>Images/Up.png</file>
-        <file>Images/Closed.png</file>
         <file>Images/Blue.png</file>
         <file>Images/Orange.png</file>
         <file>Images/Purple.png</file>
@@ -29,5 +23,15 @@
         <file>Images/Red/RedEnemyLeft.png</file>
         <file>Images/Red/RedEnemyRight.png</file>
         <file>Images/Red/RedEnemyUp.png</file>
+    </qresource>
+    <qresource prefix="/pacman">
+        <file>Images/PacMan/DownClose.png</file>
+        <file>Images/PacMan/DownOpen.png</file>
+        <file>Images/PacMan/LeftClose.png</file>
+        <file>Images/PacMan/LeftOpen.png</file>
+        <file>Images/PacMan/RightClose.png</file>
+        <file>Images/PacMan/RightOpen.png</file>
+        <file>Images/PacMan/UpClose.png</file>
+        <file>Images/PacMan/UpOpen.png</file>
     </qresource>
 </RCC>

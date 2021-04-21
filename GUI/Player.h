@@ -31,6 +31,9 @@ private:
     void SetUpImage();
     void SetDownImage();
     void SetClosedRightImage();
+    void SetClosedLeftImage();
+    void SetClosedUpImage();
+    void SetClosedDownImage();
 
 signals:
     void ScoreIsUpdated(int);
