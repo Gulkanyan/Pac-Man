@@ -18,14 +18,17 @@ class Player : public QObject, public QGraphicsEllipseItem
 public:
     Player(QGraphicsItem* parent=NULL);
 
-    void MoveRight();
-    void MoveLeft();
-    void MoveUp();
-    void MoveDown();
+    void DoMovement();
+
     bool IsCollided(Directions);
     int GetStepSize();
 
 private:
+    void MoveRight();
+    void MoveLeft();
+    void MoveUp();
+    void MoveDown();
+
     void SetRightImage();
     void SetLeftImage();
     void SetUpImage();
@@ -45,6 +48,10 @@ private:
 
     int m_score;
     int m_health;
+
+public:
+    bool m_IsMovementEnabled;
+    Directions m_directions;
 };
 
 #endif // PLAYER_H

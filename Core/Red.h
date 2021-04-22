@@ -19,6 +19,8 @@ private:
 
     void GetAvialableDirections(double targetX, double targetY);
 
+    void DeleteWayIfOnFrontBlock();
+
     // Chase mode
     Directions ChooseShorterWay();
 
@@ -26,6 +28,9 @@ private:
     Directions ChooseScatteredShorterWay(double targetX, double targetY);
     void ScatteredLoop();
     void DisableScatteredLoop();
+
+    // Frightend
+    void ChooseFrightendWay();
 
     void SetPositions();
 
@@ -39,6 +44,9 @@ private:
     Coords m_coordinates;
     QList<Directions> m_availableDirections;
     GhostsStates m_state;
+
+public:
+    int m_counter;
 };
 
 #endif

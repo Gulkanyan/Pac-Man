@@ -7,7 +7,6 @@
 
 namespace
 {
-    int m_counter = 5;
     Directions m_movementDirection = Directions::Unknown;
     bool m_onScatteringLoop = false;
     int m_scatteringStep = 0;
@@ -29,6 +28,7 @@ void Red::InitDefaultSettings()
     SetPositions();
 
     m_state = GhostsStates::Chase;
+    m_counter = 5;
 }
 
 void Red::SetPositions()
@@ -39,18 +39,20 @@ void Red::SetPositions()
 
 void Red::DoMove()
 {
+    qDebug() << "*/*/*/*//*/*/*/*/*/* x = " << m_coordinates.x << " y = " << m_coordinates.y;
     if(m_counter == 0)
     {
         if(m_state == GhostsStates::Chase)
         {
+            qDebug() << "Choose Directions for Chase mode";
+            DisableScatteredLoop();
+
             GetAvialableDirections(CoreGlobals::playersCoords.x, CoreGlobals::playersCoords.y);
             m_movementDirection = ChooseShorterWay();
-
-            DisableScatteredLoop();
         }
         else if(m_state == GhostsStates::Scattered)
         {
-            qDebug() << "Choose Directions for scattered mode";
+            qDebug() << "Choose Directions for Scattered mode";
             if(m_coordinates.x == 17 && m_coordinates.y == 1)
                 m_onScatteringLoop = true;
 
@@ -65,7 +67,10 @@ void Red::DoMove()
         else if(m_state == GhostsStates::Frightend)
         {
             DisableScatteredLoop();
-            qDebug() << "Choose Directions for scattered mode";
+            qDebug() << "Choose Directions for Frightend mode";
+
+            ChooseFrightendWay();
+            m_movementDirection = ChooseShorterWay();
         }
 
         m_counter = 5;
@@ -113,6 +118,11 @@ void Red::GetAvialableDirections(double targetX, double targetY)
         m_availableDirections.removeOne(Directions::Up);
     }
 
+    DeleteWayIfOnFrontBlock();
+}
+
+void Red::DeleteWayIfOnFrontBlock()
+{
     // Delete way if front is block
     int count = m_availableDirections.size();
     for(int i = 0; i < count; ++i)
@@ -139,6 +149,13 @@ void Red::GetAvialableDirections(double targetX, double targetY)
         }
         if(m_availableDirections.at(i) == Directions::Right)
         {
+            if(int(m_coordinates.x) == 14 && int(m_coordinates.y) == 10)
+            {
+                m_availableDirections.removeOne(Directions::Right);
+                count--;
+                i--;
+                continue;
+            }
             if(Levels::level.at(m_coordinates.y).at(m_coordinates.x + 1) == 1)
             {
                 m_availableDirections.removeOne(Directions::Right);
@@ -149,6 +166,13 @@ void Red::GetAvialableDirections(double targetX, double targetY)
         }
         if(m_availableDirections.at(i) == Directions::Left)
         {
+            if(int(m_coordinates.x) == 4 && int(m_coordinates.y) == 10)
+            {
+                m_availableDirections.removeOne(Directions::Left);
+                count--;
+                i--;
+                continue;
+            }
             if(Levels::level.at(m_coordinates.y).at(m_coordinates.x - 1) == 1)
             {
                 m_availableDirections.removeOne(Directions::Left);
@@ -387,10 +411,39 @@ void Red::DisableScatteredLoop()
     m_scatteringStep = 0;
 }
 
+void Red::ChooseFrightendWay()
+{
+    m_availableDirections = {Directions::Left, Directions::Right, Directions::Down, Directions::Up};
+
+    if(m_coordinates.x < CoreGlobals::playersCoords.x)
+    {
+        // Right is blocked
+        m_availableDirections.removeOne(Directions::Right);
+    }
+    if(m_coordinates.x > CoreGlobals::playersCoords.x)
+    {
+        // Left is blocked
+        m_availableDirections.removeOne(Directions::Left);
+    }
+    if(m_coordinates.y < CoreGlobals::playersCoords.y)
+    {
+        // Down is blocked
+        m_availableDirections.removeOne(Directions::Down);
+    }
+    if(m_coordinates.y > CoreGlobals::playersCoords.y)
+    {
+        // left is blocked
+        m_availableDirections.removeOne(Directions::Up);
+    }
+
+    DeleteWayIfOnFrontBlock();
+}
+
 void Red::ChangeStates()
 {
-    if(m_state == GhostsStates::Chase)
-        m_state = GhostsStates::Scattered;
-    else if(m_state == GhostsStates::Scattered)
-        m_state = GhostsStates::Chase;
+    int x = m_state;
+    x++;
+    if(x == 3)
+        x = 0;
+    m_state = (GhostsStates)x;
 }

@@ -14,6 +14,12 @@
 
 #include <QtDebug>
 
+namespace
+{
+    Directions m_previousDirection = Directions::Up;
+    int m_counter = 0;
+}
+
 Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
 {
     setRect(1, 1, DEFAULT_BLOCK_SIZE - 2, DEFAULT_BLOCK_SIZE - 2);
@@ -25,6 +31,68 @@ Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
 
     m_score = 0;
     m_health = 5;
+
+    m_IsMovementEnabled = true;
+    m_directions = Directions::Up;
+}
+
+void Player::DoMovement()
+{
+    if(m_IsMovementEnabled == false)
+        return;
+
+    if(m_counter == 0)
+    {
+        m_previousDirection = m_directions;
+        m_counter = 5;
+    }
+
+    if(m_previousDirection == Directions::Right)
+    {
+        if(IsCollided(Directions::Right))
+        {
+            m_IsMovementEnabled = false;
+            m_counter = 0;
+            return;
+        }
+        MoveRight();
+        m_counter--;
+    }
+    else if(m_previousDirection == Directions::Left)
+    {
+        if(IsCollided(Directions::Left))
+        {
+            m_IsMovementEnabled = false;
+            m_counter = 0;
+            return;
+        }
+        MoveLeft();
+        m_counter--;
+    }
+    else if(m_previousDirection == Directions::Up)
+    {
+        if(IsCollided(Directions::Up))
+        {
+            m_IsMovementEnabled = false;
+            m_counter = 0;
+            return;
+        }
+        MoveUp();
+        m_counter--;
+    }
+    else if(m_previousDirection == Directions::Down)
+    {
+        if(IsCollided(Directions::Down))
+        {
+            m_IsMovementEnabled = false;
+            m_counter = 0;
+            return;
+        }
+        MoveDown();
+        m_counter--;
+    }
+    else
+        qDebug() << "Direction is unknown\n";
 }
 
 void Player::MoveRight()
@@ -185,8 +253,12 @@ bool Player::IsCollided(Directions currentDirection)
 
                         m_health--;
                         emit HealthIsUpdated(m_health);
+
+                        m_counter = 0;          //  start movement from first step
                         this->setPos(25, 25);
-                        red->setPos(225,250);
+
+                        red->m_counter = 5;     //  start movement from first step
+                        red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
 //                        orange->setPos(250,250);
 //                        purple->setPos(250,275);
                         //blue->setPos(225,275);

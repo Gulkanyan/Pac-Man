@@ -12,10 +12,6 @@ namespace
 {
     QTimer *m_playerTimer;
     QTimer *m_enemysTimer;
-    Directions m_directions = Directions::Up;
-    Directions m_previousDirection = Directions::Up;
-    bool m_IsMovementEnabled = true;
-    int m_counter = 0;
 }
 
 Game::Game(QWidget *parent) :
@@ -129,23 +125,23 @@ void Game::keyPressEvent(QKeyEvent *event)
     switch(event->key())
     {
         case Qt::Key_Right:
-            m_directions = Directions::Right;
-            m_IsMovementEnabled = true;
+            m_player->m_directions = Directions::Right;
+            m_player->m_IsMovementEnabled = true;
         break;
 
         case Qt::Key_Left:
-            m_directions = Directions::Left;
-            m_IsMovementEnabled = true;
+            m_player->m_directions = Directions::Left;
+            m_player->m_IsMovementEnabled = true;
         break;
 
         case Qt::Key_Up:
-            m_directions = Directions::Up;
-            m_IsMovementEnabled = true;
+            m_player->m_directions = Directions::Up;
+            m_player->m_IsMovementEnabled = true;
         break;
 
         case Qt::Key_Down:
-            m_directions = Directions::Down;
-            m_IsMovementEnabled = true;
+            m_player->m_directions = Directions::Down;
+            m_player->m_IsMovementEnabled = true;
         break;
 
         case Qt::Key_M:
@@ -156,63 +152,7 @@ void Game::keyPressEvent(QKeyEvent *event)
 
 void Game::DoMovement()
 {
-    if(m_IsMovementEnabled == false)
-        return;
-
-    if(m_counter == 0)
-    {
-        m_previousDirection = m_directions;
-        m_counter = 5;
-    }
-
-    if(m_previousDirection == Directions::Right)
-    {
-        if(m_player->IsCollided(Directions::Right))
-        {
-            m_IsMovementEnabled = false;
-            m_counter = 0;
-            return;
-        }
-        m_player->MoveRight();
-        m_counter--;
-    }
-    else if(m_previousDirection == Directions::Left)
-    {
-        if(m_player->IsCollided(Directions::Left))
-        {
-            m_IsMovementEnabled = false;
-            m_counter = 0;
-            return;
-        }
-        m_player->MoveLeft();
-        m_counter--;
-    }
-    else if(m_previousDirection == Directions::Up)
-    {
-        if(m_player->IsCollided(Directions::Up))
-        {
-            m_IsMovementEnabled = false;
-            m_counter = 0;
-            return;
-        }
-        m_player->MoveUp();
-        m_counter--;
-    }
-    else if(m_previousDirection == Directions::Down)
-    {
-        if(m_player->IsCollided(Directions::Down))
-        {
-            m_IsMovementEnabled = false;
-            m_counter = 0;
-            return;
-        }
-        m_player->MoveDown();
-        m_counter--;
-    }
-    else
-        qDebug() << "Direction is unknown\n";
-
-    CoreGlobals::playersCoords.x = m_player->pos().x() / DEFAULT_BLOCK_SIZE;
+    m_player->DoMovement();
 }
 
 void Game::DoEnemysMovement()
