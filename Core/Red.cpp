@@ -9,6 +9,8 @@ namespace
 {
     int m_counter = 5;
     Directions m_movementDirection = Directions::Unknown;
+    bool m_onScatteringLoop = false;
+    int m_scatteringStep = 0;
 }
 
 Red::Red(QGraphicsItem *parent): QGraphicsRectItem(parent)
@@ -43,15 +45,26 @@ void Red::DoMove()
         {
             GetAvialableDirections(CoreGlobals::playersCoords.x, CoreGlobals::playersCoords.y);
             m_movementDirection = ChooseShorterWay();
+
+            DisableScatteredLoop();
         }
         else if(m_state == GhostsStates::Scattered)
         {
             qDebug() << "Choose Directions for scattered mode";
-            GetAvialableDirections(16, 0);
-            m_movementDirection = ChooseScatteredShorterWay(16, 0);
+            if(m_coordinates.x == 17 && m_coordinates.y == 1)
+                m_onScatteringLoop = true;
+
+            if(m_onScatteringLoop)
+                ScatteredLoop();
+            else
+            {
+                GetAvialableDirections(17, 1);
+                m_movementDirection = ChooseScatteredShorterWay(17, 1);
+            }
         }
         else if(m_state == GhostsStates::Frightend)
         {
+            DisableScatteredLoop();
             qDebug() << "Choose Directions for scattered mode";
         }
 
@@ -344,6 +357,34 @@ Directions Red::ChooseScatteredShorterWay(double targetX, double targetY)
     }
 
     return movementDirection;
+}
+
+void Red::ScatteredLoop()
+{
+    switch (m_scatteringStep)
+    {
+        case 0: m_movementDirection = Directions::Down; ++m_scatteringStep; break;
+        case 1: m_movementDirection = Directions::Down; ++m_scatteringStep; break;
+        case 2: m_movementDirection = Directions::Down; ++m_scatteringStep; break;
+
+        case 3: m_movementDirection = Directions::Left; ++m_scatteringStep; break;
+        case 4: m_movementDirection = Directions::Left; ++m_scatteringStep; break;
+        case 5: m_movementDirection = Directions::Left; ++m_scatteringStep; break;
+
+        case 6: m_movementDirection = Directions::Up; ++m_scatteringStep; break;
+        case 7: m_movementDirection = Directions::Up; ++m_scatteringStep; break;
+        case 8: m_movementDirection = Directions::Up; ++m_scatteringStep; break;
+
+        case 9: m_movementDirection = Directions::Right; ++m_scatteringStep; break;
+        case 10: m_movementDirection = Directions::Right; ++m_scatteringStep; break;
+        default: m_scatteringStep = 0; break;
+    }
+}
+
+void Red::DisableScatteredLoop()
+{
+    m_onScatteringLoop = false;
+    m_scatteringStep = 0;
 }
 
 void Red::ChangeStates()

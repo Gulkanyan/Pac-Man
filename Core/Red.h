@@ -24,6 +24,8 @@ private:
 
     // Scattered
     Directions ChooseScatteredShorterWay(double targetX, double targetY);
+    void ScatteredLoop();
+    void DisableScatteredLoop();
 
     void SetPositions();
 
