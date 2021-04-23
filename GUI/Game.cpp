@@ -187,12 +187,7 @@ void Game::DrawMap(const std::vector<std::vector<int>> &vec)
 
             if(vec[j][i] == 2)
                 fill_Pill(i,j);
-
-
-
         }
-
-
 }
 
 void Game::fill_Coin(int x, int y)
@@ -200,7 +195,6 @@ void Game::fill_Coin(int x, int y)
     Coin *coin = new Coin();
     coin->SetPosition(x * DEFAULT_BLOCK_SIZE, y * DEFAULT_BLOCK_SIZE);
     scene->addItem(coin);
-
 }
 
 void Game::fill_Pill(int x, int y)
@@ -208,8 +202,6 @@ void Game::fill_Pill(int x, int y)
     Pill *pill = new Pill();
     pill->SetPosition(x * DEFAULT_BLOCK_SIZE, y * DEFAULT_BLOCK_SIZE);
     scene->addItem(pill);
-
-
 }
 
 void Game::fill(int x, int y)

@@ -42,4 +42,10 @@
         <file>Music/pacman_eatghost.wav</file>
         <file>Music/name.wav</file>
     </qresource>
+    <qresource prefix="/blue">
+        <file>Images/Blue/BlueEnemyDown.png</file>
+        <file>Images/Blue/BlueEnemyLeft.png</file>
+        <file>Images/Blue/BlueEnemyRight.png</file>
+        <file>Images/Blue/BlueEnemyUp.png</file>
+    </qresource>
 </RCC>

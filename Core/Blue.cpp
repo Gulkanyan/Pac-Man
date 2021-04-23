@@ -20,7 +20,7 @@ Blue::Blue(QGraphicsItem *parent): QGraphicsRectItem(parent)
 void Blue::InitDefaultSettings()
 {
     setRect(0,0,DEFAULT_BLOCK_SIZE,DEFAULT_BLOCK_SIZE);
-    QPixmap pixmapItem(":/red/Images/red/redEnemyDown.png");
+    QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyDown.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 
@@ -267,7 +267,7 @@ void Blue::MoveUp()
     SetPositions();
     m_counter--;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
+    QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyUp.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
@@ -278,7 +278,7 @@ void Blue::MoveDown()
     SetPositions();
     m_counter--;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
+    QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyDown.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
@@ -289,7 +289,7 @@ void Blue::MoveRight()
     SetPositions();
     m_counter--;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
+    QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyRight.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
@@ -300,7 +300,7 @@ void Blue::MoveLeft()
     SetPositions();
     m_counter--;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
+    QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyLeft.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
