@@ -76,9 +76,8 @@ void Game::AddEnemies()
 //    m_orange->setPos(400,350);
 //    scene->addItem(m_orange);
 
-//    m_blue = new Blue();
-//    m_blue->setPos(350,400);
-//    scene->addItem(m_blue);
+    m_blue = new Blue();
+    scene->addItem(m_blue);
 
 //    m_purple = new Purple();
 //    m_purple->setPos(400,400);
@@ -167,6 +166,8 @@ void Game::DoEnemysMovement()
     /// red - move
     ///
     /// blue - move
+    ///
+    m_blue->DoMove();
     ///
     /// orange - move
     ///
