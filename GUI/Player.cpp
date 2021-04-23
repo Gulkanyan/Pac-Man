@@ -259,23 +259,12 @@ bool Player::IsCollided(Directions currentDirection)
 
                         m_counter = 0;          //  start movement from first step
                         this->setPos(25, 25);
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
 
                         red->m_counter = 5;     //  start movement from first step
                         red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
 //                        orange->setPos(250,250);
 //                        purple->setPos(250,275);
                         //blue->setPos(225,275);
-
-<<<<<<< Updated upstream
-=======
-                        red->setPos(225,250);
->>>>>>> f98064e...  Sound added
-=======
->>>>>>> Stashed changes
                     }
                 }
             }
