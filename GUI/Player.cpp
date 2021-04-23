@@ -20,6 +20,9 @@ namespace
 {
     Directions m_previousDirection = Directions::Up;
     int m_counter = 0;
+    QSound m_eatfruit_sound(":/Sound/Music/pacman_eatfruit.wav");
+    QSound m_death_sound(":/Sound/Music/pacman_death.wav");
+
 }
 
 Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
@@ -217,7 +220,7 @@ void Player::MoveDown()
     }
     setPos(pos().x(), pos().y() + stepSize);
 
-    if(pos().y() > 500)
+    if(pos().y() > 530)
         setPos(pos().x(), 0);
 }
 
@@ -235,7 +238,8 @@ bool Player::IsCollided(Directions currentDirection)
             Coin* coin = dynamic_cast<Coin*>(cItems[i]);
             if(coin)
             {
-                QSound::play(":/Sound/Music/pacman_eatfruit.wav");
+                m_eatfruit_sound.play();
+
                 m_score += 50;
                 emit ScoreIsUpdated(m_score);
                 delete coin;
@@ -244,35 +248,48 @@ bool Player::IsCollided(Directions currentDirection)
             {
                 Pill* pill = dynamic_cast<Pill*>(cItems[i]);
                 if(pill)
+                {
+                    m_eatfruit_sound.play();
                     delete pill;
+                }
                 else if(!pill)
                 {
                     Red *red = dynamic_cast<Red*>(cItems[i]);
-                    Orange * orange = dynamic_cast<Orange*>(cItems[i]);
-                    Blue * blue = dynamic_cast<Blue*>(cItems[i]);
-                    Purple * purple = dynamic_cast<Purple*>(cItems[i]);
-                    if(red || orange || blue || purple)
+                    if(red)
                     {
-                        QSound::play(":/Sound/Music/pacman_death.wav");
+                        m_death_sound.play();
                         m_health--;
                         emit HealthIsUpdated(m_health);
 
                         m_counter = 0;          //  start movement from first step
-                        this->setPos(25, 25);
+                        this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
 
                         red->m_counter = 5;     //  start movement from first step
                         red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
-//                        orange->setPos(250,250);
-//                        purple->setPos(250,275);
-                        //blue->setPos(225,275);
+
+
+                    }
+                    else if(!red)
+                    {
+                        Blue * blue = dynamic_cast<Blue*>(cItems[i]);
+                        if(blue)
+                        {
+                            m_death_sound.play();
+                            m_health--;
+                            emit HealthIsUpdated(m_health);
+
+                            m_counter = 0;
+                            this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+
+                            blue->m_counter = 5;
+                            blue->setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
+                        }
                     }
                 }
             }
 
             continue;
         }
-        //
-
         if(currentDirection == Directions::Right)
             if(qreal(this->pos().x() + stepSize + 35) >= cItems.at(i)->pos().x()) // 60 is offset
             {

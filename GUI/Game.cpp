@@ -13,6 +13,7 @@ namespace
 {
     QTimer *m_playerTimer;
     QTimer *m_enemysTimer;
+    QSound m_beggining_sound(":/Sound/Music/pacman_beginning.wav");
 }
 
 Game::Game(QWidget *parent) :
@@ -30,7 +31,7 @@ Game::Game(QWidget *parent) :
     InitPlayerTimer();
 
     InitEnemysTimer();
-    QSound::play(":/Sound/Music/pacman_beginning.wav");
+    m_beggining_sound.play();
 
     connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
     connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
@@ -63,7 +64,7 @@ void Game::InitInterface()
 void Game::AddPlayer()
 {
     m_player = new Player();
-    m_player->setPos(25, 25);
+    m_player->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     scene->addItem(m_player);
 }
 
