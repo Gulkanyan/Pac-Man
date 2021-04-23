@@ -34,4 +34,12 @@
         <file>Images/PacMan/UpClose.png</file>
         <file>Images/PacMan/UpOpen.png</file>
     </qresource>
+    <qresource prefix="/Sound">
+        <file>Music/pacman_beginning.wav</file>
+        <file>Music/pacman_chomp.wav</file>
+        <file>Music/pacman_death.wav</file>
+        <file>Music/pacman_eatfruit.wav</file>
+        <file>Music/pacman_eatghost.wav</file>
+        <file>Music/name.wav</file>
+    </qresource>
 </RCC>

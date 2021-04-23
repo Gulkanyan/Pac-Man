@@ -16,10 +16,11 @@ MainWindow::MainWindow(QWidget *parent)
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
-
+    QSound::play(":/Sound/Music/name.wav");
 
 
 }
+
 MainWindow::~MainWindow()
 {
     delete ui;

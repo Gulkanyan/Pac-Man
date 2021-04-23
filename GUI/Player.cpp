@@ -13,6 +13,8 @@
 #include <QBrush>
 
 #include <QtDebug>
+#include <QSound>
+
 
 namespace
 {
@@ -233,6 +235,7 @@ bool Player::IsCollided(Directions currentDirection)
             Coin* coin = dynamic_cast<Coin*>(cItems[i]);
             if(coin)
             {
+                QSound::play(":/Sound/Music/pacman_eatfruit.wav");
                 m_score += 50;
                 emit ScoreIsUpdated(m_score);
                 delete coin;
@@ -250,12 +253,13 @@ bool Player::IsCollided(Directions currentDirection)
                     Purple * purple = dynamic_cast<Purple*>(cItems[i]);
                     if(red || orange || blue || purple)
                     {
-
+                        QSound::play(":/Sound/Music/pacman_death.wav");
                         m_health--;
                         emit HealthIsUpdated(m_health);
 
                         m_counter = 0;          //  start movement from first step
                         this->setPos(25, 25);
+<<<<<<< HEAD
 
                         red->m_counter = 5;     //  start movement from first step
                         red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
@@ -263,6 +267,9 @@ bool Player::IsCollided(Directions currentDirection)
 //                        purple->setPos(250,275);
                         //blue->setPos(225,275);
 
+=======
+                        red->setPos(225,250);
+>>>>>>> f98064e...  Sound added
                     }
                 }
             }

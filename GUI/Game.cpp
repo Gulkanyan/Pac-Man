@@ -7,6 +7,7 @@
 #include "CoreGlobals.h"
 
 #include <QTimer>
+#include <QSound>
 
 namespace
 {
@@ -29,6 +30,7 @@ Game::Game(QWidget *parent) :
     InitPlayerTimer();
 
     InitEnemysTimer();
+    QSound::play(":/Sound/Music/pacman_beginning.wav");
 
     connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
     connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
@@ -42,6 +44,7 @@ void Game::InitInterface()
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
+
 
     m_scoreText = new QGraphicsTextItem();
     m_scoreText->setDefaultTextColor(Qt::cyan);

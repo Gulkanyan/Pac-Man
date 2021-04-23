@@ -24,7 +24,7 @@ void Red::InitDefaultSettings()
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 
-    this->setPos(350,350);
+    this->setPos(225,250);
     SetPositions();
 
     m_state = GhostsStates::Chase;
