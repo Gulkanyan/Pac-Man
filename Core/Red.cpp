@@ -40,12 +40,10 @@ void Red::SetPositions()
 
 void Red::DoMove()
 {
-    qDebug() << "*/*/*/*//*/*/*/*/*/* x = " << m_coordinates.x << " y = " << m_coordinates.y;
     if(m_counter == 0)
     {
         if(m_state == GhostsStates::Chase)
         {
-            qDebug() << "Choose Directions for Chase mode";
             DisableScatteredLoop();
 
             GetAvialableDirections(CoreGlobals::playersCoords.x, CoreGlobals::playersCoords.y);
@@ -53,7 +51,6 @@ void Red::DoMove()
         }
         else if(m_state == GhostsStates::Scattered)
         {
-            qDebug() << "Choose Directions for Scattered mode";
             if(m_coordinates.x == 17 && m_coordinates.y == 1)
                 m_onScatteringLoop = true;
 
@@ -68,11 +65,12 @@ void Red::DoMove()
         else if(m_state == GhostsStates::Frightend)
         {
             DisableScatteredLoop();
-            qDebug() << "Choose Directions for Frightend mode";
 
             ChooseFrightendWay();
             m_movementDirection = ChooseShorterWay();
         }
+        if(m_movementDirection == Directions::Unknown)
+            m_movementDirection = MoveToAvilablePoint();
 
         m_counter = 5;
     }
@@ -438,6 +436,74 @@ void Red::ChooseFrightendWay()
     }
 
     DeleteWayIfOnFrontBlock();
+}
+
+Directions Red::MoveToAvilablePoint()
+{
+    QList<Directions> availableDirections = {Directions::Left, Directions::Right, Directions::Down, Directions::Up};
+
+    // Delete way if front is block
+    int count = availableDirections.size();
+    for(int i = 0; i < count; ++i)
+    {
+        if(availableDirections.at(i) == Directions::Up)
+        {
+            if(Levels::level.at(m_coordinates.y - 1).at(m_coordinates.x) == 1)
+            {
+                availableDirections.removeOne(Directions::Up);
+                count--;
+                i--;
+                continue;
+            }
+        }
+        if(availableDirections.at(i) == Directions::Down)
+        {
+            if(Levels::level.at(m_coordinates.y + 1).at(m_coordinates.x) == 1)
+            {
+                availableDirections.removeOne(Directions::Down);
+                count--;
+                i--;
+                continue;
+            }
+        }
+        if(availableDirections.at(i) == Directions::Right)
+        {
+            if(int(m_coordinates.x) == 14 && int(m_coordinates.y) == 10)
+            {
+                availableDirections.removeOne(Directions::Right);
+                count--;
+                i--;
+                continue;
+            }
+            if(Levels::level.at(m_coordinates.y).at(m_coordinates.x + 1) == 1)
+            {
+                availableDirections.removeOne(Directions::Right);
+                count--;
+                i--;
+                continue;
+            }
+        }
+        if(availableDirections.at(i) == Directions::Left)
+        {
+            if(int(m_coordinates.x) == 4 && int(m_coordinates.y) == 10)
+            {
+                availableDirections.removeOne(Directions::Left);
+                count--;
+                i--;
+                continue;
+            }
+            if(Levels::level.at(m_coordinates.y).at(m_coordinates.x - 1) == 1)
+            {
+                availableDirections.removeOne(Directions::Left);
+                count--;
+                i--;
+                continue;
+            }
+        }
+    }
+
+    int randVal = availableDirections.count();
+    return availableDirections.at(rand() % randVal);
 }
 
 void Red::ChangeStates()

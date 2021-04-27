@@ -24,11 +24,11 @@ Game::Game(QWidget *parent) :
 
     AddPlayer();
 
-    AddEnemies();
-
     DrawMap(Levels::level);
 
     InitPlayerTimer();
+
+    AddEnemies();
 
     InitEnemysTimer();
     m_beggining_sound.play();
@@ -148,7 +148,7 @@ void Game::keyPressEvent(QKeyEvent *event)
         break;
 
         case Qt::Key_M:
-            m_red->ChangeStates();
+            m_blue->ChangeStates();
         break;
     }
 }

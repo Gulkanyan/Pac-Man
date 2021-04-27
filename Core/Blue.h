@@ -39,6 +39,8 @@ private:
     void MoveRight();
     void MoveLeft();
 
+    Directions MoveToAvilablePoint();
+
 private:
 
     Coords m_coordinates;
