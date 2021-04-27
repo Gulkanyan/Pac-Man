@@ -3,6 +3,8 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QKeyEvent>
+
 #include "Player.h"
 #include "Ghosts/Red.h"
 #include "Ghosts/Orange.h"

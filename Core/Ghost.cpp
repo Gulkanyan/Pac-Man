@@ -7,14 +7,23 @@ Ghost::Ghost(QGraphicsItem *parent): QGraphicsRectItem(parent)
 
 }
 
-void Ghost::SetPositions()
-{
-
-}
 
 Directions Ghost::GetShortestWay(double targetX, double targetY, Coords selfCords)
 {
     QList<Directions> availableDirections = GetAvialableDirections(targetX, targetY, selfCords);
+    availableDirections = DeleteWayIfOnFrontBlock(availableDirections, selfCords);
+    return ChooseShorterWay(targetX, targetY, availableDirections, selfCords);
+}
+
+Directions Ghost::GetShortestWayForPurple(double targetX, double targetY, Coords selfCords)
+{
+    QList<Directions> availableDirections;
+
+    if(abs((int)(targetX + targetY) - (int)(selfCords.x + selfCords.y)) <= 5)
+        availableDirections = GetAvialableDirections(targetX, targetY, selfCords);
+    else
+        return MoveToAvilablePoint(selfCords);
+
     availableDirections = DeleteWayIfOnFrontBlock(availableDirections, selfCords);
     return ChooseShorterWay(targetX, targetY, availableDirections, selfCords);
 }

@@ -6,6 +6,7 @@
 
 #include <QTimer>
 #include <QSound>
+#include <QMainWindow>
 
 namespace
 {
@@ -76,9 +77,8 @@ void Game::AddEnemies()
     m_blue = new Blue();
     scene->addItem(m_blue);
 
-//    m_purple = new Purple();
-//    m_purple->setPos(400,400);
-//    scene->addItem(m_purple);
+    m_purple = new Purple();
+    scene->addItem(m_purple);
 }
 
 void Game::UpdateScore(int score)
@@ -144,7 +144,7 @@ void Game::keyPressEvent(QKeyEvent *event)
         break;
 
         case Qt::Key_M:
-            m_orange->ChangeStates();
+            m_purple->ChangeStates();
         break;
     }
 }
@@ -164,8 +164,8 @@ void Game::DoEnemysMovement()
     m_blue->DoMove(m_player->m_directions);
 
     m_orange->DoMove(m_player->m_directions);
-    ///
-    /// purple - move
+
+    m_purple->DoMove(m_player->m_directions);
 }
 
 void Game::DrawMap(const std::vector<std::vector<int>> &vec)

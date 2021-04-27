@@ -11,8 +11,6 @@ public:
     Ghost(QGraphicsItem* parent=NULL);
 
 protected:
-    virtual void SetPositions();
-
     virtual QList<Directions> GetAvialableDirections(double targetX, double targetY, Coords selfCords);
 
     virtual QList<Directions> DeleteWayIfOnFrontBlock(QList<Directions> availableDirections, Coords selfCords);
@@ -24,6 +22,7 @@ protected:
     virtual Directions MoveToAvilablePoint(Coords selfCords);
 
     Directions GetShortestWay(double targetX, double targetY, Coords selfCords);
+    Directions GetShortestWayForPurple(double targetX, double targetY, Coords selfCords);
 
 protected:
 };
