@@ -144,6 +144,9 @@ void Game::keyPressEvent(QKeyEvent *event)
         break;
 
         case Qt::Key_M:
+            m_red->ChangeStates();
+            m_blue->ChangeStates();
+            m_orange->ChangeStates();
             m_purple->ChangeStates();
         break;
     }

@@ -19,7 +19,7 @@ private:
     void ScatteredLoop();
     void DisableScatteredLoop();
 
-    void SetPositions() override;
+    void SetPositions();
 
     void MoveUp();
     void MoveDown();

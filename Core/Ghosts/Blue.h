@@ -19,7 +19,7 @@ private:
     void ScatteringLoop();
     void DisableScatteBlueLoop();
 
-    void SetPositions() override;
+    void SetPositions();
 
     void MoveUp();
     void MoveDown();
