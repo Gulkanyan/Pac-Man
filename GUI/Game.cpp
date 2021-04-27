@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "Utils/Levels.h"
 #include "GlobalDefs.h"
-#include "StandardBlock.h"
+#include "Utils/StandardBlock.h"
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
 #include "CoreGlobals.h"

@@ -18,14 +18,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += GUI/ Core/
 
 SOURCES += \
-    Core/Blue.cpp \
+    Core/Ghost.cpp \
+    Core/Ghosts/Blue.cpp \
     Core/CoreGlobals.cpp \
-    Core/StandardBlock.cpp \
+    Core/Utils/StandardBlock.cpp \
     Core/Utils/Coin.cpp \
     Core/Utils/Levels.cpp \
-    Core/Orange.cpp \
-    Core/Purple.cpp \
-    Core/Red.cpp \
+    Core/Ghosts/Orange.cpp \
+    Core/Ghosts/Purple.cpp \
+    Core/Ghosts/Red.cpp \
     Core/Utils/Pill.cpp \
     GUI/About.cpp \
     GUI/Game.cpp \
@@ -36,17 +37,18 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
-    Core/Blue.h \
+    Core/Ghost.h \
+    Core/Ghosts/Blue.h \
     Core/CoreGlobals.h \
     Core/GlobalDefs.h \
-    Core/StandardBlock.h \
+    Core/Utils/StandardBlock.h \
     Core/Utils/Coin.h \
     Core/Utils/DataStructs.h \
     Core/Utils/Enums.h \
     Core/Utils/Levels.h \
-    Core/Orange.h \
-    Core/Purple.h \
-    Core/Red.h \
+    Core/Ghosts/Orange.h \
+    Core/Ghosts/Purple.h \
+    Core/Ghosts/Red.h \
     Core/Utils/Pill.h \
     GUI/About.h \
     GUI/Game.h \

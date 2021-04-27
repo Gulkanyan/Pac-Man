@@ -1,16 +1,17 @@
 #ifndef ORANGE_H
 #define ORANGE_H
 
-#include <QGraphicsRectItem>
 #include <QPainter>
 #include <QPaintEvent>
 #include <QMainWindow>
 #include <QObject>
 
-class Orange: public QGraphicsRectItem{
+#include "Ghost.h"
+
+class Orange: public Ghost{
 public:
     // constructors
-    Orange(QGraphicsItem* parent=NULL);
+    Orange(Ghost* parent=NULL);
 
 };
 

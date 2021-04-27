@@ -1,12 +1,12 @@
 #include "Player.h"
-#include "StandardBlock.h"
+#include "Utils/StandardBlock.h"
 
 #include "Utils/Coin.h"
 #include "Utils/Pill.h"
-#include "Red.h"
-#include "Blue.h"
-#include "Orange.h"
-#include "Purple.h"
+#include "Ghosts/Red.h"
+#include "Ghosts/Blue.h"
+#include "Ghosts/Orange.h"
+#include "Ghosts/Purple.h"
 
 #include <QPixmap>
 #include <QSize>

@@ -4,10 +4,10 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include "Player.h"
-#include "Red.h"
-#include "Core/Orange.h"
-#include "Core/Blue.h"
-#include "Core/Purple.h"
+#include "Ghosts/Red.h"
+#include "Ghosts/Orange.h"
+#include "Ghosts/Blue.h"
+#include "Ghosts/Purple.h"
 
 class Game : public QGraphicsView
 {

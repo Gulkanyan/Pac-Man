@@ -3,6 +3,7 @@
 
 #include "Utils/DataStructs.h"
 #include "Utils/Enums.h"
+#include "Utils/Levels.h"
 #include "GlobalDefs.h"
 
 namespace CoreGlobals

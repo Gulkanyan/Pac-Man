@@ -4,11 +4,12 @@
 #include <QGraphicsRectItem>
 
 #include "CoreGlobals.h"
+#include "Ghost.h"
 
-class Red: public QGraphicsRectItem{
+class Red: public Ghost{
 public:
     // constructors
-    Red(QGraphicsItem* parent=NULL);
+    Red(Ghost* parent=NULL);
 
     void DoMove();
 
@@ -17,29 +18,16 @@ public:
 private:
     void InitDefaultSettings();
 
-    void GetAvialableDirections(double targetX, double targetY);
-
-    void DeleteWayIfOnFrontBlock();
-
-    // Chase mode
-    Directions ChooseShorterWay();
-
-    // Scattered
-    Directions ChooseScatteredShorterWay(double targetX, double targetY);
+    // Scattered mode
     void ScatteredLoop();
     void DisableScatteredLoop();
 
-    // Frightend
-    void ChooseFrightendWay();
-
-    void SetPositions();
+    void SetPositions() override;
 
     void MoveUp();
     void MoveDown();
     void MoveRight();
     void MoveLeft();
-
-    Directions MoveToAvilablePoint();
 
 private:
 
