@@ -168,7 +168,7 @@ void Game::DoEnemysMovement()
     ///
     /// blue - move
     ///
-    m_blue->DoMove();
+    m_blue->DoMove(m_player->m_directions);
     ///
     /// orange - move
     ///

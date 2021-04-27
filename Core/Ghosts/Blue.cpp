@@ -38,7 +38,7 @@ void Blue::SetPositions()
     m_coordinates.y = this->pos().y() / DEFAULT_BLOCK_SIZE;
 }
 
-void Blue::DoMove()
+void Blue::DoMove(Directions targetDirection)
 {
     if(m_counter == 0)
     {
@@ -46,11 +46,13 @@ void Blue::DoMove()
         {
             DisableScatteBlueLoop();
 
-            m_movementDirection = GetShortestWay(CoreGlobals::playersCoords.x, CoreGlobals::playersCoords.y, m_coordinates);
+            Coords targetCords;
+            ChooseForntPointOfTarget(targetDirection, targetCords);
+
+            m_movementDirection = GetShortestWay(targetCords.x, targetCords.y, m_coordinates);
         }
         else if(m_state == GhostsStates::Scattered)
         {
-            qDebug() << "Scattered";
             if(m_coordinates.x == 1 && m_coordinates.y == 20)
                 m_onScatteringLoop = true;
 
@@ -167,6 +169,32 @@ void Blue::ScatteBlueLoop()
         case 20: m_movementDirection = Directions::Down; ++m_scatteringStep; break;
 
         default: m_scatteringStep = 0; break;
+    }
+}
+
+void Blue::ChooseForntPointOfTarget(Directions targetDirection, Coords &targetCoords)
+{
+    targetCoords = CoreGlobals::playersCoords;
+
+    if(targetDirection == Directions::Up)
+    {
+        targetCoords.y = targetCoords.y - 1;
+        return;
+    }
+    else if(targetDirection == Directions::Down)
+    {
+        targetCoords.y = targetCoords.y + 1;
+        return;
+    }
+    else if(targetDirection == Directions::Right)
+    {
+        targetCoords.x = targetCoords.x + 1;
+        return;
+    }
+    else if(targetDirection == Directions::Left)
+    {
+        targetCoords.x = targetCoords.x - 1;
+        return;
     }
 }
 

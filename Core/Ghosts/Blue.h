@@ -11,7 +11,7 @@ public:
     // constructors
     Blue(Ghost* parent=NULL);
 
-    void DoMove();
+    void DoMove(Directions targetDirection);
 
     void ChangeStates();
 
@@ -28,6 +28,8 @@ private:
     void MoveDown();
     void MoveRight();
     void MoveLeft();
+
+    void ChooseForntPointOfTarget(Directions targetDirection, Coords &targetCoords);
 
 private:
 
