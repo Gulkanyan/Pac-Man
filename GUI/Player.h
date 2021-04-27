@@ -40,6 +40,7 @@ private:
 
 signals:
     void ScoreIsUpdated(int);
+    void PillIsEaten(bool);
     void HealthIsUpdated(int);
 
 private:
@@ -47,6 +48,7 @@ private:
     int stepSize;
 
     int m_score;
+    bool m_pill;
     int m_health;
 
 public:

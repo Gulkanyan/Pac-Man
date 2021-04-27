@@ -250,6 +250,7 @@ bool Player::IsCollided(Directions currentDirection)
                 {
                     m_eatfruit_sound.play();
                     delete pill;
+                    emit PillIsEaten(m_pill);
                 }
                 else if(!pill)
                 {

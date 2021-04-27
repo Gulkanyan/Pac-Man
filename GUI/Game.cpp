@@ -3,6 +3,7 @@
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
 #include "CoreGlobals.h"
+#include "Player.h"
 
 #include <QTimer>
 #include <QSound>
