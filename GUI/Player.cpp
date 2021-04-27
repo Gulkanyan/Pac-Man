@@ -15,7 +15,6 @@
 #include <QtDebug>
 #include <QSound>
 
-
 namespace
 {
     Directions m_previousDirection = Directions::Up;

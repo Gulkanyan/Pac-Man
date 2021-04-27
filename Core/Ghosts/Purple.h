@@ -13,6 +13,10 @@ public:
 
     void ChangeStates();
 
+    void SetState(GhostsStates);
+
+    void SetCounter(int);
+
 private:
     void InitDefaultSettings();
 

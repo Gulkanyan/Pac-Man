@@ -41,6 +41,8 @@ private:
 
     void InitEnemysTimer();
 
+    void NextLevel();
+
 private slots:
     void DoMovement();
 

@@ -212,3 +212,12 @@ void Orange::ChangeStates()
     m_state = (GhostsStates)x;
 }
 
+void Orange::SetState(GhostsStates state)
+{
+    m_state = state;
+}
+
+void Orange::SetCounter(int count)
+{
+    m_counter = count;
+}

@@ -163,3 +163,13 @@ void Red::ChangeStates()
         x = 0;
     m_state = (GhostsStates)x;
 }
+
+void Red::SetState(GhostsStates state)
+{
+    m_state = state;
+}
+
+void Red::SetCounter(int count)
+{
+    m_counter = count;
+}

@@ -209,3 +209,13 @@ void Blue::ChangeStates()
         x = 0;
     m_state = (GhostsStates)x;
 }
+
+void Blue::SetState(GhostsStates state)
+{
+    m_state = state;
+}
+
+void Blue::SetCounter(int count)
+{
+    m_counter = count;
+}

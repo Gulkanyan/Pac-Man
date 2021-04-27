@@ -193,3 +193,13 @@ void Purple::ChangeStates()
         x = 0;
     m_state = (GhostsStates)x;
 }
+
+void Purple::SetState(GhostsStates state)
+{
+    m_state = state;
+}
+
+void Purple::SetCounter(int count)
+{
+    m_counter = count;
+}

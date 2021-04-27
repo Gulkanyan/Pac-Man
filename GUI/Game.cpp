@@ -13,6 +13,8 @@ namespace
     QTimer *m_playerTimer;
     QTimer *m_enemysTimer;
     QSound m_beggining_sound(":/Sound/Music/pacman_beginning.wav");
+    int m_coinsCount = 0;
+    int m_currentLevel = 0;
 }
 
 Game::Game(QWidget *parent) :
@@ -83,6 +85,7 @@ void Game::AddEnemies()
 
 void Game::UpdateScore(int score)
 {
+    m_coinsCount--;
     m_scoreText->setPlainText("");
     m_scoreText->setPlainText(QString("Միավոր: ")+ QString::number(score));
 }
@@ -97,14 +100,14 @@ void Game::InitPlayerTimer()
 {
     m_playerTimer = new QTimer();
     connect(m_playerTimer, SIGNAL(timeout()), this, SLOT(DoMovement()));
-    m_playerTimer->start(100);
+    m_playerTimer->start(PLAYER_TIMER_DEF_TIMEOUT);
 }
 
 void Game::InitEnemysTimer()
 {
     m_enemysTimer = new QTimer();
     connect(m_enemysTimer, SIGNAL(timeout()), this, SLOT(DoEnemysMovement()));
-    m_enemysTimer->start(100);
+    m_enemysTimer->start(ENEMYS_TIMER_DEF_TIMEOUT);
 }
 
 Game::~Game()
@@ -155,6 +158,9 @@ void Game::keyPressEvent(QKeyEvent *event)
 void Game::DoMovement()
 {
     m_player->DoMovement();
+
+    if(m_coinsCount <= 0)
+        NextLevel();
 }
 
 void Game::DoEnemysMovement()
@@ -192,6 +198,7 @@ void Game::fill_Coin(int x, int y)
     Coin *coin = new Coin();
     coin->SetPosition(x * DEFAULT_BLOCK_SIZE, y * DEFAULT_BLOCK_SIZE);
     scene->addItem(coin);
+    m_coinsCount++;
 }
 
 void Game::fill_Pill(int x, int y)
@@ -206,4 +213,51 @@ void Game::fill(int x, int y)
     StandardBlock *block = new StandardBlock();
     block->SetPosition(x * DEFAULT_BLOCK_SIZE, y * DEFAULT_BLOCK_SIZE);
     scene->addItem(block);
+}
+
+void Game::NextLevel()
+{
+    m_currentLevel++;
+
+    m_playerTimer->stop();
+    m_enemysTimer->stop();
+
+    m_player->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+
+    m_red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
+    m_red->SetCounter(0);
+    m_red->SetState(GhostsStates::Chase);
+
+    m_blue->setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
+    m_blue->SetCounter(0);
+    m_blue->SetState(GhostsStates::Chase);
+
+    m_orange->setPos(9 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
+    m_orange->SetCounter(0);
+    m_orange->SetState(GhostsStates::Chase);
+
+    m_purple->setPos(10 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
+    m_purple->SetCounter(0);
+    m_purple->SetState(GhostsStates::Chase);
+
+    for (size_t i = 0; i < Levels::level.at(0).size(); ++i)
+        for (size_t j = 0; j < Levels::level.size(); ++j)
+        {
+
+            if(Levels::level[j][i] == 0)
+                fill_Coin(i,j);
+
+            if(Levels::level[j][i] == 2)
+                fill_Pill(i,j);
+        }
+
+    if(PLAYER_TIMER_DEF_TIMEOUT - m_currentLevel * 10 <= 0)
+        m_playerTimer->start(1);
+    else
+        m_playerTimer->start(PLAYER_TIMER_DEF_TIMEOUT - m_currentLevel * 10);
+
+    if(ENEMYS_TIMER_DEF_TIMEOUT - m_currentLevel * 20 <= 0)
+        m_enemysTimer->start(1);
+    else
+        m_enemysTimer->start(ENEMYS_TIMER_DEF_TIMEOUT - m_currentLevel * 20);
 }
