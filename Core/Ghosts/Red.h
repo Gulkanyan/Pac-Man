@@ -1,9 +1,6 @@
 #ifndef RED_H
 #define RED_H
 
-#include <QGraphicsRectItem>
-
-#include "CoreGlobals.h"
 #include "Ghost.h"
 
 class Red: public Ghost{

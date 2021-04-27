@@ -48,4 +48,10 @@
         <file>Images/Blue/BlueEnemyRight.png</file>
         <file>Images/Blue/BlueEnemyUp.png</file>
     </qresource>
+    <qresource prefix="/Orange">
+        <file>Images/Orange/OrangeEnemyDown.png</file>
+        <file>Images/Orange/OrangeEnemyLeft.png</file>
+        <file>Images/Orange/OrangeEnemyRight.png</file>
+        <file>Images/Orange/OrangeEnemyUp.png</file>
+    </qresource>
 </RCC>

@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "Utils/Levels.h"
-#include "GlobalDefs.h"
 #include "Utils/StandardBlock.h"
 #include "Core/Utils/Coin.h"
 #include "Core/Utils/Pill.h"
@@ -46,7 +44,6 @@ void Game::InitInterface()
     setAutoFillBackground( true );
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
 
-
     m_scoreText = new QGraphicsTextItem();
     m_scoreText->setDefaultTextColor(Qt::cyan);
     m_scoreText->setFont(QFont("times",16));
@@ -73,9 +70,8 @@ void Game::AddEnemies()
     m_red = new Red();
     scene->addItem(m_red);
 
-//    m_orange = new Orange();
-//    m_orange->setPos(400,350);
-//    scene->addItem(m_orange);
+    m_orange = new Orange();
+    scene->addItem(m_orange);
 
     m_blue = new Blue();
     scene->addItem(m_blue);
@@ -148,7 +144,7 @@ void Game::keyPressEvent(QKeyEvent *event)
         break;
 
         case Qt::Key_M:
-            m_blue->ChangeStates();
+            m_orange->ChangeStates();
         break;
     }
 }
@@ -164,13 +160,10 @@ void Game::DoEnemysMovement()
     CoreGlobals::playersCoords.y = m_player->y() / DEFAULT_BLOCK_SIZE;
 
     m_red->DoMove();
-    /// red - move
-    ///
-    /// blue - move
-    ///
+
     m_blue->DoMove(m_player->m_directions);
-    ///
-    /// orange - move
+
+    m_orange->DoMove(m_player->m_directions);
     ///
     /// purple - move
 }

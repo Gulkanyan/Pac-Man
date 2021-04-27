@@ -2,9 +2,6 @@
 
 #include <QBrush>
 
-#include "Utils/Levels.h"
-#include "CoreGlobals.h"
-
 namespace
 {
     Directions m_movementDirection = Directions::Unknown;

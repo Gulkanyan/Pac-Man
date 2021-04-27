@@ -2,9 +2,6 @@
 
 #include <QBrush>
 
-#include "Utils/Levels.h"
-#include "CoreGlobals.h"
-
 namespace
 {
     Directions m_movementDirection = Directions::Unknown;
@@ -47,7 +44,7 @@ void Blue::DoMove(Directions targetDirection)
             DisableScatteBlueLoop();
 
             Coords targetCords;
-            ChooseForntPointOfTarget(targetDirection, targetCords);
+            ChooseFrontPointOfTarget(targetDirection, targetCords);
 
             m_movementDirection = GetShortestWay(targetCords.x, targetCords.y, m_coordinates);
         }
@@ -57,7 +54,7 @@ void Blue::DoMove(Directions targetDirection)
                 m_onScatteringLoop = true;
 
             if(m_onScatteringLoop)
-                ScatteBlueLoop();
+                ScatteringLoop();
             else
             {
                 m_movementDirection = GetShortestWay(1, 20, m_coordinates);
@@ -135,7 +132,7 @@ void Blue::MoveLeft()
 }
 
 // Scattered mode
-void Blue::ScatteBlueLoop()
+void Blue::ScatteringLoop()
 {
     switch (m_scatteringStep)
     {
@@ -172,7 +169,7 @@ void Blue::ScatteBlueLoop()
     }
 }
 
-void Blue::ChooseForntPointOfTarget(Directions targetDirection, Coords &targetCoords)
+void Blue::ChooseFrontPointOfTarget(Directions targetDirection, Coords &targetCoords)
 {
     targetCoords = CoreGlobals::playersCoords;
 

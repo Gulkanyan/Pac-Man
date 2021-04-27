@@ -1,9 +1,6 @@
 #ifndef Blue_H
 #define Blue_H
 
-#include <QGraphicsRectItem>
-
-#include "CoreGlobals.h"
 #include "Ghost.h"
 
 class Blue: public Ghost{
@@ -19,7 +16,7 @@ private:
     void InitDefaultSettings();
 
     // ScatteBlue
-    void ScatteBlueLoop();
+    void ScatteringLoop();
     void DisableScatteBlueLoop();
 
     void SetPositions() override;
@@ -29,7 +26,7 @@ private:
     void MoveRight();
     void MoveLeft();
 
-    void ChooseForntPointOfTarget(Directions targetDirection, Coords &targetCoords);
+    void ChooseFrontPointOfTarget(Directions targetDirection, Coords &targetCoords);
 
 private:
 
