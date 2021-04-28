@@ -26,5 +26,5 @@ void About::on_pushButton_clicked()
     MainWindow * main = new MainWindow();
     main->show();
     this->close();
-    this->~About();
+    delete this;
 }

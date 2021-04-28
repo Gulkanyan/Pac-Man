@@ -13,7 +13,6 @@ Help::Help(QWidget *parent) :
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
     QSound::play(":/Sound/Music/pacman_beginning.wav");
-
 }
 
 Help::~Help()
@@ -26,6 +25,5 @@ void Help::on_pushButton_clicked()
     MainWindow *main = new MainWindow();
     main->show();
     this->close();
-    this->~Help();
-
+    delete this;
 }

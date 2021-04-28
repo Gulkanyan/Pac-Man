@@ -43,6 +43,8 @@ private:
 
     void NextLevel();
 
+    bool DoYouWantToExit();
+
 private slots:
     void DoMovement();
 
@@ -61,8 +63,6 @@ private:
     Blue * m_blue;
     QGraphicsTextItem *m_scoreText;
     QGraphicsTextItem *m_healthText;
-
-
 
     Player * m_player;
 };

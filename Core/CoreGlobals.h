@@ -6,6 +6,9 @@
 #include "Utils/Levels.h"
 #include "GlobalDefs.h"
 
+#include <QPushButton>
+#include <QMessageBox>
+
 namespace CoreGlobals
 {
     extern Coords playersCoords;

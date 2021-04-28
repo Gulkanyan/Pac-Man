@@ -34,7 +34,7 @@ Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
     stepSize = DEFAULT_BLOCK_SIZE / 5;
 
     m_score = 0;
-    m_health = 5;
+    m_health = 1;
 
     m_IsMovementEnabled = true;
     m_directions = Directions::Up;
@@ -265,10 +265,12 @@ bool Player::IsCollided(Directions currentDirection)
 
                             m_counter = 0;          //  start movement from first step
                             this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                            red->SetState(GhostsStates::Chase);
                         }
+                        else
+                            red->SetState(GhostsStates::Scattered);
 
                         red->m_counter = 5;     //  start movement from first step
-                        red->SetState(GhostsStates::Scattered);
                         red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
                     }
                     else if(!red)
@@ -284,10 +286,12 @@ bool Player::IsCollided(Directions currentDirection)
 
                                 m_counter = 0;          //  start movement from first step
                                 this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                                blue->SetState(GhostsStates::Chase);
                             }
+                            else
+                                blue->SetState(GhostsStates::Scattered);
 
                             blue->m_counter = 5;
-                            blue->SetState(GhostsStates::Scattered);
                             blue->setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
                         }
                         else
@@ -303,10 +307,12 @@ bool Player::IsCollided(Directions currentDirection)
 
                                     m_counter = 0;          //  start movement from first step
                                     this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                                    orange->SetState(GhostsStates::Chase);
                                 }
+                                else
+                                    orange->SetState(GhostsStates::Scattered);
 
                                 orange->m_counter = 5;
-                                orange->SetState(GhostsStates::Scattered);
                                 orange->setPos(9 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
                             }
                             else
@@ -322,7 +328,10 @@ bool Player::IsCollided(Directions currentDirection)
 
                                         m_counter = 0;          //  start movement from first step
                                         this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                                        purple->SetState(GhostsStates::Chase);
                                     }
+                                    else
+                                        purple->SetState(GhostsStates::Scattered);
 
                                     purple->m_counter = 5;
                                     purple->SetState(GhostsStates::Scattered);

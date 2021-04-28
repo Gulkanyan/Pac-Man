@@ -5,6 +5,8 @@
 #include "CoreGlobals.h"
 #include "Player.h"
 
+#include "GUI/MainWindow.h"
+
 #include <QTimer>
 #include <QSound>
 #include <QMainWindow>
@@ -97,6 +99,34 @@ void Game::UpdateHealth(int health)
     m_healthText->setPlainText("");
     m_healthText->setPlainText(QString("Health: ")+ QString::number(health));
 
+    if(health <= 0)
+    {
+        m_playerTimer->stop();
+        m_enemysTimer->stop();
+        QMessageBox *box = new QMessageBox();
+        box->setText("<center>Game Over!!!</center>");
+        box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+        box->setStyleSheet(QString("QMessageBox {"
+                                     "background-color: rgb(255, 255, 255);"
+                                     "font-size: 50pt;"
+                                     "}"
+                                      "QMessageBox QPushButton { color: blue; background-color: white;"
+                                      "width: 150px; height: 35px;}"
+                                      ));
+
+        QPushButton *pButtonOk = box->addButton("Ok", QMessageBox::AcceptRole);
+        pButtonOk->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 170, 0); font-size: 25pt; font:bold;");
+        pButtonOk->setShortcut(Qt::Key_Enter);
+        box->exec();
+
+        MainWindow * main = new MainWindow();
+        main->show();
+        this->close();
+        delete box;
+        delete this;
+        return;
+    }
+
     m_red->Reset();
     m_blue->Reset();
     m_orange->Reset();
@@ -128,11 +158,15 @@ void Game::InitEnemysTimer()
 Game::~Game()
 {
     delete m_playerTimer;
+    delete m_enemysTimer;
+    delete m_scoreText;
+    delete m_healthText;
     delete m_player;
     delete m_red;
     delete m_blue;
     delete m_purple;
     delete m_orange;
+
     scene->clear();
     delete scene;
 }
@@ -166,6 +200,16 @@ void Game::keyPressEvent(QKeyEvent *event)
             m_blue->ChangeStates();
             m_orange->ChangeStates();
             m_purple->ChangeStates();
+        break;
+
+        case Qt::Key_Escape:
+            if(DoYouWantToExit())
+            {
+                MainWindow * main = new MainWindow();
+                main->show();
+                this->close();
+                delete this;
+            }
         break;
     }
 }
@@ -275,4 +319,35 @@ void Game::NextLevel()
         m_enemysTimer->start(1);
     else
         m_enemysTimer->start(ENEMYS_TIMER_DEF_TIMEOUT - m_currentLevel * 20);
+}
+
+bool Game::DoYouWantToExit()
+{
+    m_playerTimer->stop();
+    m_enemysTimer->stop();
+    QMessageBox *box = new QMessageBox();
+    box->setText("<center>Do you want to exit?</center>");
+    box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+    box->setStyleSheet(QString("QMessageBox {"
+                                 "background-color: rgb(255, 255, 255);"
+                                 "font-size: 50pt;"
+                                 "}"
+                                  "QMessageBox QPushButton { color: blue; background-color: white;"
+                                  "width: 150px; height: 35px;}"
+                                  ));
+
+    QPushButton *pButtonYes = box->addButton("Yes", QMessageBox::AcceptRole);
+    pButtonYes->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(170, 0, 0); font-size: 25pt; font:bold;");
+    QPushButton *pButtonNo = box->addButton("No", QMessageBox::AcceptRole);
+    pButtonNo->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 170, 0); font-size: 25pt; font:bold;");
+    pButtonNo->setShortcut(Qt::Key_Enter);
+    bool accept = box->exec() == QMessageBox::AcceptRole;
+    if(!accept)
+    {
+        m_playerTimer->start();
+        m_enemysTimer->start();
+    }
+
+    delete box;
+    return accept;
 }

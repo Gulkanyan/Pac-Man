@@ -24,13 +24,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::on_play_clicked()
 {
     Game *game = new Game();
     game->show();
     this->close();
-    this->~MainWindow();
+    delete this;
 }
 
 void MainWindow::on_about_clicked()
@@ -38,7 +37,7 @@ void MainWindow::on_about_clicked()
     About *about = new About();
     about->show();
     this->close();
-    this->~MainWindow();
+    delete this;
 }
 
 void MainWindow::on_settings_clicked()
@@ -46,7 +45,7 @@ void MainWindow::on_settings_clicked()
     Settings *settings= new Settings();
     settings->show();
     this->close();
-    this->~MainWindow();
+    delete this;
 }
 
 void MainWindow::on_help_clicked()
@@ -54,5 +53,5 @@ void MainWindow::on_help_clicked()
     Help *help=new Help();
     help->show();
     this->close();
-    this->~MainWindow();
+    delete this;
 }
