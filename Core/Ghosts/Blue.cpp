@@ -81,12 +81,15 @@ void Blue::DoMove(Directions targetDirection)
         m_frightenedCounter = 0;
     }
 
-    if(m_state == GhostsStates::Frightend)
+    if(m_state == GhostsStates::Frightend || m_state == GhostsStates::Scattered)
     {
-        QPixmap pixmapItem(":/images/Images/Frightened.png");
-        pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
-        setBrush(QBrush(pixmapItem));
-        m_oldMoveDirection = m_movementDirection;
+        if(m_state == GhostsStates::Frightend)
+        {
+            QPixmap pixmapItem(":/images/Images/Frightened.png");
+            pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+            setBrush(QBrush(pixmapItem));
+            m_oldMoveDirection = m_movementDirection;
+        }
         m_frightenedCounter++;
     }
 
@@ -261,5 +264,6 @@ void Blue::Reset()
     m_movementDirection = Directions::Unknown;
     m_oldMoveDirection = Directions::Unknown;
     m_counter = 5;     //  start movement from first step
+    m_frightenedCounter = 0;
     setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
 }

@@ -268,6 +268,7 @@ bool Player::IsCollided(Directions currentDirection)
                         }
 
                         red->m_counter = 5;     //  start movement from first step
+                        red->SetState(GhostsStates::Scattered);
                         red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
                     }
                     else if(!red)
@@ -286,6 +287,7 @@ bool Player::IsCollided(Directions currentDirection)
                             }
 
                             blue->m_counter = 5;
+                            blue->SetState(GhostsStates::Scattered);
                             blue->setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
                         }
                         else
@@ -304,6 +306,7 @@ bool Player::IsCollided(Directions currentDirection)
                                 }
 
                                 orange->m_counter = 5;
+                                orange->SetState(GhostsStates::Scattered);
                                 orange->setPos(9 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
                             }
                             else
@@ -322,6 +325,7 @@ bool Player::IsCollided(Directions currentDirection)
                                     }
 
                                     purple->m_counter = 5;
+                                    purple->SetState(GhostsStates::Scattered);
                                     purple->setPos(10 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
                                 }
                             }
