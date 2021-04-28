@@ -5,8 +5,10 @@
 namespace
 {
     Directions m_movementDirection = Directions::Unknown;
+    Directions m_oldMoveDirection = Directions::Unknown;
     bool m_onScatteringLoop = false;
     int m_scatteringStep = 0;
+    int m_frightenedCounter = 0;
 }
 
 Blue::Blue(Ghost *parent): Ghost(parent)
@@ -73,6 +75,21 @@ void Blue::DoMove(Directions targetDirection)
         m_counter = 5;
     }
 
+    if(m_frightenedCounter == FRIGHTENED_MODE_STEPS)
+    {
+        m_state = GhostsStates::Chase;
+        m_frightenedCounter = 0;
+    }
+
+    if(m_state == GhostsStates::Frightend)
+    {
+        QPixmap pixmapItem(":/images/Images/Frightened.png");
+        pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+        setBrush(QBrush(pixmapItem));
+        m_oldMoveDirection = m_movementDirection;
+        m_frightenedCounter++;
+    }
+
     switch (m_movementDirection)
     {
         case Directions::Up: MoveUp(); break;
@@ -85,6 +102,7 @@ void Blue::DoMove(Directions targetDirection)
 
         default: qDebug() << "Direction is uncnown"; m_counter--; break;
     }
+    m_oldMoveDirection = m_movementDirection;
 }
 
 void Blue::MoveUp()
@@ -92,6 +110,9 @@ void Blue::MoveUp()
     setPos(pos().x(), pos().y() - DEFAULT_BLOCK_SIZE / 5);
     SetPositions();
     m_counter--;
+
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
 
     QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyUp.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
@@ -104,6 +125,9 @@ void Blue::MoveDown()
     SetPositions();
     m_counter--;
 
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
+
     QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyDown.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
@@ -115,6 +139,9 @@ void Blue::MoveRight()
     SetPositions();
     m_counter--;
 
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
+
     QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyRight.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
@@ -125,6 +152,9 @@ void Blue::MoveLeft()
     setPos(pos().x() - DEFAULT_BLOCK_SIZE / 5, pos().y());
     SetPositions();
     m_counter--;
+
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
 
     QPixmap pixmapItem(":/blue/Images/Blue/BlueEnemyLeft.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
@@ -215,7 +245,21 @@ void Blue::SetState(GhostsStates state)
     m_state = state;
 }
 
+GhostsStates Blue::GetState()
+{
+    return m_state;
+}
+
 void Blue::SetCounter(int count)
 {
     m_counter = count;
+}
+
+void Blue::Reset()
+{
+    m_state = GhostsStates::Chase;
+    m_movementDirection = Directions::Unknown;
+    m_oldMoveDirection = Directions::Unknown;
+    m_counter = 5;     //  start movement from first step
+    setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
 }

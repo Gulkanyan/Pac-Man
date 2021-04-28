@@ -37,6 +37,7 @@ Game::Game(QWidget *parent) :
 
     connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
     connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
+    connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
 }
 
 void Game::InitInterface()
@@ -95,6 +96,19 @@ void Game::UpdateHealth(int health)
 {
     m_healthText->setPlainText("");
     m_healthText->setPlainText(QString("Health: ")+ QString::number(health));
+
+    m_red->Reset();
+    m_blue->Reset();
+    m_orange->Reset();
+    m_purple->Reset();
+}
+
+void Game::GoToFrightenedMode()
+{
+    m_red->SetState(GhostsStates::Frightend);
+    m_blue->SetState(GhostsStates::Frightend);
+    m_orange->SetState(GhostsStates::Frightend);
+    m_purple->SetState(GhostsStates::Frightend);
 }
 
 void Game::InitPlayerTimer()

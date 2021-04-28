@@ -4,8 +4,10 @@
 namespace
 {
     Directions m_movementDirection = Directions::Unknown;
+    Directions m_oldMoveDirection = Directions::Unknown;
     bool m_onScatteringLoop = false;
     int m_scatteringStep = 0;
+    int m_frightenedCounter = 0;
 }
 
 Purple::Purple(Ghost *parent): Ghost(parent)
@@ -72,6 +74,21 @@ void Purple::DoMove(Directions targetDirection)
         m_counter = 5;
     }
 
+    if(m_frightenedCounter == FRIGHTENED_MODE_STEPS)
+    {
+        m_state = GhostsStates::Chase;
+        m_frightenedCounter = 0;
+    }
+
+    if(m_state == GhostsStates::Frightend)
+    {
+        QPixmap pixmapItem(":/images/Images/Frightened.png");
+        pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+        setBrush(QBrush(pixmapItem));
+        m_oldMoveDirection = m_movementDirection;
+        m_frightenedCounter++;
+    }
+
     switch (m_movementDirection)
     {
         case Directions::Up: MoveUp(); break;
@@ -84,6 +101,7 @@ void Purple::DoMove(Directions targetDirection)
 
         default: qDebug() << "Direction is uncnown"; m_counter--; break;
     }
+    m_oldMoveDirection = m_movementDirection;
 }
 
 void Purple::MoveUp()
@@ -91,6 +109,9 @@ void Purple::MoveUp()
     setPos(pos().x(), pos().y() - DEFAULT_BLOCK_SIZE / 5);
     SetPositions();
     m_counter--;
+
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
 
     QPixmap pixmapItem(":/Purple/Images/Purple/PurpleEnemyUp.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
@@ -103,6 +124,9 @@ void Purple::MoveDown()
     SetPositions();
     m_counter--;
 
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
+
     QPixmap pixmapItem(":/Purple/Images/Purple/PurpleEnemyDown.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
@@ -114,6 +138,9 @@ void Purple::MoveRight()
     SetPositions();
     m_counter--;
 
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
+
     QPixmap pixmapItem(":/Purple/Images/Purple/PurpleEnemyRight.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
@@ -124,6 +151,9 @@ void Purple::MoveLeft()
     setPos(pos().x() - DEFAULT_BLOCK_SIZE / 5, pos().y());
     SetPositions();
     m_counter--;
+
+    if(m_oldMoveDirection == m_movementDirection)
+        return;
 
     QPixmap pixmapItem(":/Purple/Images/Purple/PurpleEnemyLeft.png");
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
@@ -199,7 +229,21 @@ void Purple::SetState(GhostsStates state)
     m_state = state;
 }
 
+GhostsStates Purple::GetState()
+{
+    return m_state;
+}
+
 void Purple::SetCounter(int count)
 {
     m_counter = count;
+}
+
+void Purple::Reset()
+{
+    m_state = GhostsStates::Chase;
+    m_movementDirection = Directions::Unknown;
+    m_oldMoveDirection = Directions::Unknown;
+    m_counter = 5;     //  start movement from first step
+    setPos(10 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
 }

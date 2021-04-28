@@ -15,8 +15,8 @@
         <file>Images/Rectangle.png</file>
         <file>Images/Pill.png</file>
         <file>Images/Point.png</file>
-        <file>Images/pla.jpg</file>
         <file>Images/logo.jpg</file>
+        <file>Images/Frightened.png</file>
     </qresource>
     <qresource prefix="/red">
         <file>Images/Red/RedEnemyDown.png</file>

@@ -48,6 +48,7 @@ private slots:
 
     void UpdateScore(int);
     void UpdateHealth(int);
+    void GoToFrightenedMode();
 
     void DoEnemysMovement();
 

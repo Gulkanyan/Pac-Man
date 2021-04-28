@@ -9,10 +9,12 @@
     #define DEBUG_LOG qDebug() << __func__ << " " << __LINE__;
 #endif
 
-#define DEFAULT_BLOCK_SIZE 25
+#define DEFAULT_BLOCK_SIZE          25
 
-#define PLAYER_TIMER_DEF_TIMEOUT 100
+#define PLAYER_TIMER_DEF_TIMEOUT    100
 
-#define ENEMYS_TIMER_DEF_TIMEOUT 150
+#define ENEMYS_TIMER_DEF_TIMEOUT    150
+
+#define FRIGHTENED_MODE_STEPS       100     //  count for DoMove function ::: menas FRIGHTENED_MODE_STEPS / 5 == count of real steps
 
 #endif // GLOBALDEFS_H

@@ -250,39 +250,81 @@ bool Player::IsCollided(Directions currentDirection)
                 {
                     m_eatfruit_sound.play();
                     delete pill;
-                    emit PillIsEaten(m_pill);
+                    emit PillIsEaten();
                 }
                 else if(!pill)
                 {
                     Red *red = dynamic_cast<Red*>(cItems[i]);
                     if(red)
                     {
-                        m_death_sound.play();
-                        m_health--;
-                        emit HealthIsUpdated(m_health);
+                        if(red->GetState() == GhostsStates::Chase || red->GetState() == GhostsStates::Scattered)
+                        {
+                            m_death_sound.play();
+                            m_health--;
+                            emit HealthIsUpdated(m_health);
 
-                        m_counter = 0;          //  start movement from first step
-                        this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                            m_counter = 0;          //  start movement from first step
+                            this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                        }
 
                         red->m_counter = 5;     //  start movement from first step
                         red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
-
-
                     }
                     else if(!red)
                     {
                         Blue * blue = dynamic_cast<Blue*>(cItems[i]);
                         if(blue)
                         {
-                            m_death_sound.play();
-                            m_health--;
-                            emit HealthIsUpdated(m_health);
+                            if(blue->GetState() == GhostsStates::Chase || blue->GetState() == GhostsStates::Scattered)
+                            {
+                                m_death_sound.play();
+                                m_health--;
+                                emit HealthIsUpdated(m_health);
 
-                            m_counter = 0;
-                            this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                                m_counter = 0;          //  start movement from first step
+                                this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                            }
 
                             blue->m_counter = 5;
                             blue->setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
+                        }
+                        else
+                        {
+                            Orange * orange = dynamic_cast<Orange*>(cItems[i]);
+                            if(orange)
+                            {
+                                if(orange->GetState() == GhostsStates::Chase || orange->GetState() == GhostsStates::Scattered)
+                                {
+                                    m_death_sound.play();
+                                    m_health--;
+                                    emit HealthIsUpdated(m_health);
+
+                                    m_counter = 0;          //  start movement from first step
+                                    this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                                }
+
+                                orange->m_counter = 5;
+                                orange->setPos(9 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
+                            }
+                            else
+                            {
+                                Purple * purple = dynamic_cast<Purple*>(cItems[i]);
+                                if(purple)
+                                {
+                                    if(purple->GetState() == GhostsStates::Chase || purple->GetState() == GhostsStates::Scattered)
+                                    {
+                                        m_death_sound.play();
+                                        m_health--;
+                                        emit HealthIsUpdated(m_health);
+
+                                        m_counter = 0;          //  start movement from first step
+                                        this->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+                                    }
+
+                                    purple->m_counter = 5;
+                                    purple->setPos(10 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
+                                }
+                            }
                         }
                     }
                 }
