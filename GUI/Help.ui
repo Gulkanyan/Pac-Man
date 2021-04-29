@@ -36,8 +36,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>419</y>
+      <x>235</x>
+      <y>395</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -46,7 +46,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Rec.qrc">:/images/Images/Open.png</pixmap>
+     <pixmap resource="../Rec.qrc">:/pacman/Images/PacMan/RightOpen.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -55,10 +55,10 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>430</y>
-      <width>61</width>
-      <height>16</height>
+      <x>280</x>
+      <y>390</y>
+      <width>60</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -76,14 +76,17 @@ background-color: black;
     <property name="text">
      <string>Pac Man</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>420</y>
-      <width>201</width>
-      <height>41</height>
+      <x>350</x>
+      <y>390</y>
+      <width>250</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -95,6 +98,9 @@ background-color: black;
     <property name="text">
      <string>meet your player- Pac Man. He is moving with four directions , left-right , up-down. You must escae from ghosts </string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -102,8 +108,8 @@ background-color: black;
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>470</y>
+      <x>235</x>
+      <y>445</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -112,7 +118,7 @@ background-color: black;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Rec.qrc">:/images/Images/Group 4.png</pixmap>
+     <pixmap resource="../Rec.qrc">:/red/Images/Red/RedEnemyRight.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -124,10 +130,10 @@ background-color: black;
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>480</y>
-      <width>61</width>
-      <height>16</height>
+      <x>280</x>
+      <y>440</y>
+      <width>60</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -145,14 +151,17 @@ background-color: black;
     <property name="text">
      <string>Red</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>470</y>
-      <width>201</width>
-      <height>41</height>
+      <x>350</x>
+      <y>440</y>
+      <width>250</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -164,6 +173,9 @@ background-color: black;
     <property name="text">
      <string>meet your player- Pac Man. He is moving with four directions , left-right , up-down. You must escae from ghosts </string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -171,8 +183,8 @@ background-color: black;
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>520</y>
+      <x>235</x>
+      <y>495</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -181,7 +193,7 @@ background-color: black;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Rec.qrc">:/images/Images/Group 3.png</pixmap>
+     <pixmap resource="../Rec.qrc">:/Orange/Images/Orange/OrangeEnemyRight.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -193,10 +205,10 @@ background-color: black;
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>530</y>
-      <width>61</width>
-      <height>16</height>
+      <x>280</x>
+      <y>490</y>
+      <width>60</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -212,16 +224,19 @@ background-color: black;
 </string>
     </property>
     <property name="text">
-     <string>Yellow</string>
+     <string>Orange</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>520</y>
-      <width>201</width>
-      <height>41</height>
+      <x>350</x>
+      <y>490</y>
+      <width>250</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -233,6 +248,9 @@ background-color: black;
     <property name="text">
      <string>meet your player- Pac Man. He is moving with four directions , left-right , up-down. You must escae from ghosts </string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -240,8 +258,8 @@ background-color: black;
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>570</y>
+      <x>235</x>
+      <y>545</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -250,7 +268,7 @@ background-color: black;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Rec.qrc">:/images/Images/Group 5.png</pixmap>
+     <pixmap resource="../Rec.qrc">:/blue/Images/Blue/BlueEnemyRight.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -262,10 +280,10 @@ background-color: black;
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>580</y>
-      <width>61</width>
-      <height>16</height>
+      <x>280</x>
+      <y>540</y>
+      <width>60</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -283,14 +301,17 @@ background-color: black;
     <property name="text">
      <string>Blue</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>570</y>
-      <width>201</width>
-      <height>41</height>
+      <x>350</x>
+      <y>540</y>
+      <width>250</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -301,6 +322,9 @@ background-color: black;
     </property>
     <property name="text">
      <string>meet your player- Pac Man. He is moving with four directions , left-right , up-down. You must escae from ghosts </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
@@ -309,10 +333,10 @@ background-color: black;
    <widget class="QLabel" name="label_14">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>620</y>
-      <width>201</width>
-      <height>41</height>
+      <x>350</x>
+      <y>590</y>
+      <width>250</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -324,6 +348,9 @@ background-color: black;
     <property name="text">
      <string>meet your player- Pac Man. He is moving with four directions , left-right , up-down. You must escae from ghosts </string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -331,10 +358,10 @@ background-color: black;
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>620</y>
-      <width>61</width>
-      <height>16</height>
+      <x>280</x>
+      <y>590</y>
+      <width>60</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -352,12 +379,15 @@ background-color: black;
     <property name="text">
      <string>Pink</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>620</y>
+      <x>235</x>
+      <y>595</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -366,7 +396,7 @@ background-color: black;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Rec.qrc">:/images/Images/Group 6.png</pixmap>
+     <pixmap resource="../Rec.qrc">:/Purple/Images/Purple/PurpleEnemyRight.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -378,20 +408,39 @@ background-color: black;
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>0</x>
       <y>610</y>
-      <width>80</width>
-      <height>30</height>
+      <width>186</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:black;
-background-color:white;</string>
+     <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgba(180, 0, 0, 180);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+
+QPushButton::pressed 
+{
+	color: rgb(255, 255, 255);
+    background-color: rgba(150, 0, 0, 130);
+    border-style: inset;
+}</string>
     </property>
     <property name="text">
      <string>Back</string>
@@ -400,7 +449,7 @@ background-color:white;</string>
   </widget>
  </widget>
  <resources>
-  <include location="Rec.qrc"/>
+  <include location="../Rec.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -22,6 +22,8 @@ void ScoresPage::InitUi()
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
     QSound::play(":/Sound/Music/pacman_beginning.wav");
+    this->setWindowTitle("Scores");
+    ui->pushButton->setShortcut(Qt::Key_Escape);
 }
 
 void ScoresPage::InitData()

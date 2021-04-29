@@ -38,18 +38,37 @@
      <rect>
       <x>0</x>
       <y>630</y>
-      <width>180</width>
+      <width>186</width>
       <height>40</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(170, 0, 0);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgba(180, 0, 0, 180);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+
+QPushButton::pressed 
+{
+	color: rgb(255, 255, 255);
+    background-color: rgba(150, 0, 0, 130);
+    border-style: inset;
+}</string>
     </property>
     <property name="text">
      <string>Back</string>

@@ -7,13 +7,12 @@ About::About(QWidget *parent) :
     ui(new Ui::About)
 {
     ui->setupUi(this);
-    setFixedSize(800,800);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
-
-
+    this->setWindowTitle("About Pac Man Qt");
+    ui->pushButton->setShortcut(Qt::Key_Escape);
 }
 
 About::~About()

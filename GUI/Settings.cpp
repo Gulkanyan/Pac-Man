@@ -7,11 +7,13 @@ Settings::Settings(QWidget *parent) :
     ui(new Ui::Settings)
 {
     ui->setupUi(this);
-    setFixedSize(800,800);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
+    this->setWindowTitle("Settings");
+
+    ui->pushButton->setShortcut(Qt::Key_Escape);
 }
 
 Settings::~Settings()

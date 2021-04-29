@@ -33,15 +33,15 @@
    <widget class="QLabel" name="Sound">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>170</x>
       <y>450</y>
-      <width>41</width>
-      <height>20</height>
+      <width>120</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -51,14 +51,17 @@ color:white;</string>
     <property name="text">
      <string>Sound</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QRadioButton" name="turnOn">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>170</x>
       <y>480</y>
-      <width>83</width>
-      <height>18</height>
+      <width>120</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -72,10 +75,10 @@ background-color:black;</string>
    <widget class="QRadioButton" name="turnOff">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>170</x>
       <y>510</y>
-      <width>83</width>
-      <height>18</height>
+      <width>120</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -89,10 +92,10 @@ background-color:black;</string>
    <widget class="QRadioButton" name="easy">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>520</x>
       <y>480</y>
-      <width>83</width>
-      <height>18</height>
+      <width>100</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -106,10 +109,10 @@ background-color:black;</string>
    <widget class="QRadioButton" name="normal">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>520</y>
-      <width>83</width>
-      <height>18</height>
+      <x>520</x>
+      <y>510</y>
+      <width>100</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -123,10 +126,10 @@ background-color:black;</string>
    <widget class="QRadioButton" name="Hard">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>560</y>
-      <width>83</width>
-      <height>18</height>
+      <x>520</x>
+      <y>540</y>
+      <width>100</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -140,10 +143,10 @@ background-color:black;</string>
    <widget class="QLabel" name="LevelDifficulty">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>440</y>
-      <width>111</width>
-      <height>31</height>
+      <x>510</x>
+      <y>450</y>
+      <width>120</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -158,24 +161,46 @@ background-color:black;</string>
     <property name="text">
      <string>Level  Difficulty</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>0</x>
       <y>610</y>
-      <width>80</width>
-      <height>30</height>
+      <width>186</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:white;
-color:black;</string>
+     <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgba(180, 0, 0, 180);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+
+QPushButton::pressed 
+{
+	color: rgb(255, 255, 255);
+    background-color: rgba(150, 0, 0, 130);
+    border-style: inset;
+}</string>
     </property>
     <property name="text">
      <string>Back</string>

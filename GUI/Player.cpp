@@ -34,7 +34,7 @@ Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
     stepSize = DEFAULT_BLOCK_SIZE / 5;
 
     m_score = 0;
-    m_health = 1;
+    m_health = 5;
 
     m_IsMovementEnabled = true;
     m_directions = Directions::Up;

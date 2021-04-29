@@ -25,11 +25,11 @@ MainWindow::~MainWindow()
 void MainWindow::InitPage()
 {
     ui->setupUi(this);
-    setFixedSize(800,800);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
+    this->setWindowTitle("Pac Man Qt");
 }
 
 void MainWindow::InitStarter() const

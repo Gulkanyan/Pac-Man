@@ -319,17 +319,19 @@ bool Game::DoYouWantToExit()
     box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     box->setStyleSheet(QString("QMessageBox {"
                                  "background-color: rgb(255, 255, 255);"
-                                 "font-size: 40pt;"
+                                 "font-size: 20pt;"
                                  "}"
                                   "QMessageBox QPushButton { color: blue; background-color: white;"
                                   "width: 150px; height: 35px;}"
                                   ));
 
     QPushButton *pButtonYes = box->addButton("Yes", QMessageBox::AcceptRole);
-    pButtonYes->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(170, 0, 0); font-size: 25pt; font:bold;");
+    pButtonYes->setStyleSheet("QPushButton{color: rgb(255, 255, 255); background-color: rgba(180, 0, 0, 180); border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; min-width: 10em; padding: 6px;}"
+                              "QPushButton::pressed {color: rgb(255, 255, 255); background-color: rgba(150, 0, 0, 130); border-style: inset;}");
     QPushButton *pButtonNo = box->addButton("No", QMessageBox::AcceptRole);
-    pButtonNo->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 170, 0); font-size: 25pt; font:bold;");
-    pButtonNo->setShortcut(Qt::Key_Enter);
+    pButtonNo->setStyleSheet("QPushButton{color: rgb(255, 255, 255); background-color: rgba(0, 180, 0, 180); border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; min-width: 10em; padding: 6px;}"
+                             "QPushButton::pressed {color: rgb(255, 255, 255); background-color: rgba(0, 150, 0, 130); border-style: inset;}");
+    pButtonNo->setShortcut(Qt::Key_Escape);
     bool accept = box->exec() == QMessageBox::AcceptRole;
     if(!accept)
     {
@@ -348,14 +350,15 @@ void Game::ShowMessageBox()
     box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     box->setStyleSheet(QString("QMessageBox {"
                                  "background-color: rgb(255, 255, 255);"
-                                 "font-size: 40pt;"
+                                 "font-size: 20pt;"
                                  "}"
                                   "QMessageBox QPushButton { color: blue; background-color: white;"
                                   "width: 150px; height: 35px;}"
                                   ));
 
     QPushButton *pButtonOk = box->addButton("Ok", QMessageBox::AcceptRole);
-    pButtonOk->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 170, 0); font-size: 25pt; font:bold;");
+    pButtonOk->setStyleSheet("QPushButton{color: rgb(255, 255, 255); background-color: rgba(0, 180, 0, 180); border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; min-width: 10em; padding: 6px;}"
+                             "QPushButton::pressed {color: rgb(255, 255, 255); background-color: rgba(0, 150, 0, 130); border-style: inset;}");
     pButtonOk->setShortcut(Qt::Key_Enter);
     box->exec();
 
