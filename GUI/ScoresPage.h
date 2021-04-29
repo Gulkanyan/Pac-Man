@@ -16,6 +16,14 @@ public:
     ~ScoresPage();
 
 private:
+    void InitUi();
+
+    void InitData();
+
+private slots:
+    void on_pushButton_clicked();
+
+private:
     Ui::ScoresPage *ui;
 };
 

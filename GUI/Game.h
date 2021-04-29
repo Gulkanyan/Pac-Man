@@ -45,6 +45,10 @@ private:
 
     bool DoYouWantToExit();
 
+    void ShowMessageBox();
+
+    void GetPlayerNameAndSave();
+
 private slots:
     void DoMovement();
 

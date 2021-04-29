@@ -10,6 +10,7 @@
 #include <QTimer>
 #include <QSound>
 #include <QMainWindow>
+#include "Dialog.h"
 
 namespace
 {
@@ -103,26 +104,14 @@ void Game::UpdateHealth(int health)
     {
         m_playerTimer->stop();
         m_enemysTimer->stop();
-        QMessageBox *box = new QMessageBox();
-        box->setText("<center>Game Over!!!</center>");
-        box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-        box->setStyleSheet(QString("QMessageBox {"
-                                     "background-color: rgb(255, 255, 255);"
-                                     "font-size: 50pt;"
-                                     "}"
-                                      "QMessageBox QPushButton { color: blue; background-color: white;"
-                                      "width: 150px; height: 35px;}"
-                                      ));
 
-        QPushButton *pButtonOk = box->addButton("Ok", QMessageBox::AcceptRole);
-        pButtonOk->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 170, 0); font-size: 25pt; font:bold;");
-        pButtonOk->setShortcut(Qt::Key_Enter);
-        box->exec();
+        ShowMessageBox();
+
+        GetPlayerNameAndSave();
 
         MainWindow * main = new MainWindow();
         main->show();
         this->close();
-        delete box;
         delete this;
         return;
     }
@@ -330,7 +319,7 @@ bool Game::DoYouWantToExit()
     box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     box->setStyleSheet(QString("QMessageBox {"
                                  "background-color: rgb(255, 255, 255);"
-                                 "font-size: 50pt;"
+                                 "font-size: 40pt;"
                                  "}"
                                   "QMessageBox QPushButton { color: blue; background-color: white;"
                                   "width: 150px; height: 35px;}"
@@ -350,4 +339,32 @@ bool Game::DoYouWantToExit()
 
     delete box;
     return accept;
+}
+
+void Game::ShowMessageBox()
+{
+    QMessageBox *box = new QMessageBox();
+    box->setText("<center>Game Over!!!</center>");
+    box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+    box->setStyleSheet(QString("QMessageBox {"
+                                 "background-color: rgb(255, 255, 255);"
+                                 "font-size: 40pt;"
+                                 "}"
+                                  "QMessageBox QPushButton { color: blue; background-color: white;"
+                                  "width: 150px; height: 35px;}"
+                                  ));
+
+    QPushButton *pButtonOk = box->addButton("Ok", QMessageBox::AcceptRole);
+    pButtonOk->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 170, 0); font-size: 25pt; font:bold;");
+    pButtonOk->setShortcut(Qt::Key_Enter);
+    box->exec();
+
+    delete box;
+}
+
+void Game::GetPlayerNameAndSave()
+{
+    Dialog *dialog = new Dialog(m_player->GetScore());
+    dialog->exec();
+    return;
 }

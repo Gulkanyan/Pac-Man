@@ -32,6 +32,7 @@ SOURCES += \
     Core/Ghosts/Red.cpp \
     Core/Utils/Pill.cpp \
     GUI/About.cpp \
+    GUI/Dialog.cpp \
     GUI/Game.cpp \
     GUI/Help.cpp \
     GUI/Player.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     Core/Ghosts/Red.h \
     Core/Utils/Pill.h \
     GUI/About.h \
+    GUI/Dialog.h \
     GUI/Game.h \
     GUI/Help.h \
     GUI/MainWindow.h \
@@ -67,6 +69,7 @@ HEADERS += \
 
 FORMS += \
     GUI/About.ui \
+    GUI/Dialog.ui \
     GUI/Help.ui \
     GUI/MainWindow.ui \
     GUI/ScoresPage.ui \

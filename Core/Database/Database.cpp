@@ -1,8 +1,8 @@
 #include "Database.h"
+
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
-#include "CoreGlobals.h"
 #include "Utils/StandardQueries.h"
 
 #include <QDebug>
@@ -102,4 +102,100 @@ bool Database::createTables()
         qDebug() << "Res from Create tables = " << res << "\n";
     }
     return res;
+}
+
+///         ***         ///         Public API`s            ///         ***         ///
+bool Database::GetBestScoreAndName(Score &bestScore)
+{
+    QSqlQuery query;
+    bool res = query.prepare("SELECT id, username, score FROM	scores WHERE score = (SELECT MAX(score) FROM scores);");
+    res = query.exec();
+
+    while(query.next())
+    {
+        qDebug() << query.value(0);
+        bestScore.name = query.value(1).toString();
+        bestScore.score = query.value(2).toInt();
+
+        qDebug() << "Data = " << bestScore.score << " + " << bestScore.name;
+    }
+
+    if(!res)
+    {
+        qDebug() << "Error in get best score = " << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool Database::GetTop5Scores(QList<Score> &scores)
+{
+    scores.clear();
+
+    QSqlQuery query;
+    bool res = query.prepare("SELECT id, username, score FROM scores ORDER BY score DESC LIMIT 5;");
+    res = query.exec();
+
+    while(query.next())
+    {
+        Score temp;
+
+        temp.name = query.value(1).toString();
+        temp.score = query.value(2).toInt();
+
+        qDebug() << "Data = " << temp.score << " + " << temp.name;
+
+        scores.append(temp);
+    }
+
+    if(!res)
+    {
+        qDebug() << "Error in getDepartment = " << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool Database::AddNewScore(Score score)
+{
+    int id;
+    GetLastScoreId(id);
+
+    QSqlQuery query;
+    bool res = query.prepare("INSERT INTO scores(id, username, score) VALUES(:id, :username, :score);");
+
+    query.bindValue(":id", ++id);
+    query.bindValue(":username", score.name);
+    query.bindValue(":score", score.score);
+
+    res = query.exec();
+
+    if(!res)
+    {
+        qDebug() << "Error in add score = " << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool Database::GetLastScoreId(int &last_id)
+{
+    QSqlQuery query;
+    bool res = query.prepare("SELECT count(*) FROM scores;");
+    res = query.exec();
+
+    last_id = -1;
+    while(query.next())
+    {
+        last_id = query.value(0).toInt();
+        qDebug() << "ids from query = " << last_id;
+        break;
+    }
+
+    if(!res)
+    {
+        qDebug() << "Error in get last scores id = " << query.lastError().text();
+        return false;
+    }
+    return true;
 }

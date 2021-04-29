@@ -5,6 +5,12 @@ Starter::Starter()
 
 }
 
+Starter::~Starter()
+{
+    disconnect(this, SIGNAL(started()), this, SLOT(initJob()));
+    delete m_parentThread;
+}
+
 Starter* Starter::get()
 {
     static Starter starter;

@@ -12,6 +12,7 @@ class Starter : public QThread
 
 public:
     Starter();
+    ~Starter();
 
     static Starter* get();
 

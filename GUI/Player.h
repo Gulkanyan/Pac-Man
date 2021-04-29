@@ -23,6 +23,8 @@ public:
     bool IsCollided(Directions);
     int GetStepSize();
 
+    int GetScore();
+
 private:
     void MoveRight();
     void MoveLeft();

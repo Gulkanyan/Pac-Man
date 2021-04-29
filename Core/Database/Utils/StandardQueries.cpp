@@ -9,6 +9,6 @@ namespace StandardQueries
 
     const QStringList createTables =
     {
-        "CREATE TABLE users (id INT PRIMARY KEY NOT NULL, username TEXT, score INT);"
+        "CREATE TABLE scores (id INT PRIMARY KEY NOT NULL, username TEXT, score INT);"
     };
 }

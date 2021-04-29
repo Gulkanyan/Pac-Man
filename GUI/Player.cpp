@@ -381,3 +381,8 @@ int Player::GetStepSize()
 {
     return stepSize;
 }
+
+int Player::GetScore()
+{
+    return m_score;
+}

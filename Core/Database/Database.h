@@ -3,6 +3,8 @@
 
 #include "Utils/DataStructs.h"
 
+#include <QList>
+
 class Database
 {
 public:
@@ -31,7 +33,13 @@ public:
 
 public:
 
+    bool GetBestScoreAndName(Score &bestScore);
 
+    bool GetTop5Scores(QList<Score> &cores);
+
+    bool AddNewScore(Score score);
+
+    bool GetLastScoreId(int &last_id);
 };
 
 #endif // DATABASE_H

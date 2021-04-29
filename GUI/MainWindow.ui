@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>540</y>
+      <y>520</y>
       <width>130</width>
       <height>27</height>
      </rect>
@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>460</y>
+      <y>440</y>
       <width>130</width>
       <height>27</height>
      </rect>
@@ -76,7 +76,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>580</y>
+      <y>560</y>
       <width>130</width>
       <height>27</height>
      </rect>
@@ -102,7 +102,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>500</y>
+      <y>480</y>
       <width>130</width>
       <height>27</height>
      </rect>
@@ -138,6 +138,31 @@
     </property>
     <property name="scaledContents">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="soresPageBtn">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>600</y>
+      <width>130</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 255);</string>
+    </property>
+    <property name="text">
+     <string>Scores</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>200</width>
+      <height>50</height>
+     </size>
     </property>
    </widget>
   </widget>
