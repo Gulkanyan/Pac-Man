@@ -4,11 +4,24 @@
 #include "About.h"
 #include "Settings.h"
 #include "Help.h"
-#include <Player.h>
+#include "Player.h"
+#include "Starter.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+{
+    InitPage();
+
+    InitStarter();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::InitPage()
 {
     ui->setupUi(this);
     setFixedSize(800,800);
@@ -16,12 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
-
 }
 
-MainWindow::~MainWindow()
+void MainWindow::InitStarter() const
 {
-    delete ui;
+    Starter::runStarter(QThread::currentThread());
 }
 
 void MainWindow::on_play_clicked()

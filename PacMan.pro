@@ -1,4 +1,4 @@
-QT       += core gui multimedia
+QT       += core gui multimedia sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,9 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += GUI/ Core/
 
 SOURCES += \
+    Core/Database/Database.cpp \
+    Core/Database/Utils/StandardQueries.cpp \
     Core/Ghost.cpp \
     Core/Ghosts/Blue.cpp \
     Core/CoreGlobals.cpp \
+    Core/Starter.cpp \
     Core/Utils/StandardBlock.cpp \
     Core/Utils/Coin.cpp \
     Core/Utils/Levels.cpp \
@@ -32,15 +35,19 @@ SOURCES += \
     GUI/Game.cpp \
     GUI/Help.cpp \
     GUI/Player.cpp \
+    GUI/ScoresPage.cpp \
     GUI/Settings.cpp \
     GUI/MainWindow.cpp \
     main.cpp
 
 HEADERS += \
+    Core/Database/Database.h \
+    Core/Database/Utils/StandardQueries.h \
     Core/Ghost.h \
     Core/Ghosts/Blue.h \
     Core/CoreGlobals.h \
     Core/GlobalDefs.h \
+    Core/Starter.h \
     Core/Utils/StandardBlock.h \
     Core/Utils/Coin.h \
     Core/Utils/DataStructs.h \
@@ -55,12 +62,14 @@ HEADERS += \
     GUI/Help.h \
     GUI/MainWindow.h \
     GUI/Player.h \
+    GUI/ScoresPage.h \
     GUI/Settings.h \
 
 FORMS += \
     GUI/About.ui \
     GUI/Help.ui \
     GUI/MainWindow.ui \
+    GUI/ScoresPage.ui \
     GUI/Settings.ui
 
 # Default rules for deployment.

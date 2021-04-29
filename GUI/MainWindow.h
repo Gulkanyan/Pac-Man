@@ -25,6 +25,11 @@ private slots:
     void on_help_clicked();
 
 private:
+    void InitPage();
+
+    void InitStarter() const;
+
+private:
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
