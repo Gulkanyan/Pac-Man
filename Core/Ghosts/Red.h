@@ -8,7 +8,7 @@ public:
     // constructors
     Red(Ghost* parent=NULL);
 
-    void DoMove();
+    void DoMove(Directions manualMovementDirection = Directions::Unknown);
 
     void ChangeStates();
 

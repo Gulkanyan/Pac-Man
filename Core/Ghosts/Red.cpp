@@ -37,38 +37,57 @@ void Red::SetPositions()
     m_coordinates.y = this->pos().y() / DEFAULT_BLOCK_SIZE;
 }
 
-void Red::DoMove()
+void Red::DoMove(Directions manualMovementDirection)
 {
-    if(m_counter == 0)
+    if(CoreGlobals::multiplayerSettings.isEnabled == true)
     {
-        if(m_state == GhostsStates::Chase)
+        if(m_counter == 0)
         {
-            DisableScatteredLoop();
-
-            m_movementDirection = GetShortestWay(CoreGlobals::playersCoords.x, CoreGlobals::playersCoords.y, m_coordinates);
-        }
-        else if(m_state == GhostsStates::Scattered)
-        {
-            if(m_coordinates.x == 17 && m_coordinates.y == 1)
-                m_onScatteringLoop = true;
-
-            if(m_onScatteringLoop)
-                ScatteredLoop();
-            else
+            if(IsDirectionValid(m_coordinates, manualMovementDirection))
             {
-                m_movementDirection = GetShortestWay(17, 1, m_coordinates);
+                m_movementDirection = manualMovementDirection;
             }
+            if(IsDirectionValid(m_coordinates, m_movementDirection) == false)
+            {
+                m_movementDirection = Directions::Unknown;
+            }
+
+            m_counter = 5;
         }
-        else if(m_state == GhostsStates::Frightend)
+    }
+    else
+    {
+        if(m_counter == 0)
         {
-            DisableScatteredLoop();
+            if(m_state == GhostsStates::Chase)
+            {
+                DisableScatteredLoop();
 
-            m_movementDirection = ChooseFrightendWay(m_coordinates);
+                m_movementDirection = GetShortestWay(CoreGlobals::playersCoords.x, CoreGlobals::playersCoords.y, m_coordinates);
+            }
+            else if(m_state == GhostsStates::Scattered)
+            {
+                if(m_coordinates.x == 17 && m_coordinates.y == 1)
+                    m_onScatteringLoop = true;
+
+                if(m_onScatteringLoop)
+                    ScatteredLoop();
+                else
+                {
+                    m_movementDirection = GetShortestWay(17, 1, m_coordinates);
+                }
+            }
+            else if(m_state == GhostsStates::Frightend)
+            {
+                DisableScatteredLoop();
+
+                m_movementDirection = ChooseFrightendWay(m_coordinates);
+            }
+            if(m_movementDirection == Directions::Unknown)
+                m_movementDirection = MoveToAvilablePoint(m_coordinates);
+
+            m_counter = 5;
         }
-        if(m_movementDirection == Directions::Unknown)
-            m_movementDirection = MoveToAvilablePoint(m_coordinates);
-
-        m_counter = 5;
     }
 
     if(m_frightenedCounter == FRIGHTENED_MODE_STEPS)

@@ -19,6 +19,7 @@ namespace
     QSound m_beggining_sound(":/Sound/Music/pacman_beginning.wav");
     int m_coinsCount = 0;
     int m_currentLevel = 0;
+    Directions m_manualDirectionForEnemy = Unknown;
 }
 
 Game::Game(QWidget *parent) :
@@ -31,16 +32,32 @@ Game::Game(QWidget *parent) :
 
     DrawMap(Levels::level);
 
-    InitPlayerTimer();
+    if(CoreGlobals::multiplayerSettings.isEnabled == true)
+    {
+        InitPlayerTimer(PLAYER_TIMER_DEF_TIMEOUT);
 
-    AddEnemies();
+        AddEnemies();
 
-    InitEnemysTimer();
-    m_beggining_sound.play();
+        InitEnemysTimer(ENEMYS_TIMER_DEF_TIMEOUT);
+        m_beggining_sound.play();
 
-    connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
-    connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
-    connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
+        connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
+        connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
+        connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
+    }
+    else
+    {
+        InitPlayerTimer(PLAYER_TIMER_DEF_TIMEOUT);
+
+        AddEnemies();
+
+        InitEnemysTimer(ENEMYS_TIMER_DEF_TIMEOUT);
+        m_beggining_sound.play();
+
+        connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
+        connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
+        connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
+    }
 }
 
 void Game::InitInterface()
@@ -75,17 +92,34 @@ void Game::AddPlayer()
 
 void Game::AddEnemies()
 {
-    m_red = new Red();
-    scene->addItem(m_red);
+    m_red = nullptr;
+    m_blue = nullptr;
+    m_orange = nullptr;
+    m_purple = nullptr;
 
-    m_orange = new Orange();
-    scene->addItem(m_orange);
+    if(CoreGlobals::multiplayerSettings.selectedGhost == Red_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
+    {
+        m_red = new Red();
+        scene->addItem(m_red);
+    }
 
-    m_blue = new Blue();
-    scene->addItem(m_blue);
+    if(CoreGlobals::multiplayerSettings.selectedGhost == Orange_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
+    {
+        m_orange = new Orange();
+        scene->addItem(m_orange);
+    }
 
-    m_purple = new Purple();
-    scene->addItem(m_purple);
+    if(CoreGlobals::multiplayerSettings.selectedGhost == Blue_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
+    {
+        m_blue = new Blue();
+        scene->addItem(m_blue);
+    }
+
+    if(CoreGlobals::multiplayerSettings.selectedGhost == Purple_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
+    {
+        m_purple = new Purple();
+        scene->addItem(m_purple);
+    }
 }
 
 void Game::UpdateScore(int score)
@@ -116,32 +150,40 @@ void Game::UpdateHealth(int health)
         return;
     }
 
-    m_red->Reset();
-    m_blue->Reset();
-    m_orange->Reset();
-    m_purple->Reset();
+    if(m_red != nullptr)
+        m_red->Reset();
+    if(m_blue != nullptr)
+        m_blue->Reset();
+    if(m_orange != nullptr)
+        m_orange->Reset();
+    if(m_purple != nullptr)
+        m_purple->Reset();
 }
 
 void Game::GoToFrightenedMode()
 {
-    m_red->SetState(GhostsStates::Frightend);
-    m_blue->SetState(GhostsStates::Frightend);
-    m_orange->SetState(GhostsStates::Frightend);
-    m_purple->SetState(GhostsStates::Frightend);
+    if(m_red != nullptr)
+        m_red->SetState(GhostsStates::Frightend);
+    if(m_blue != nullptr)
+        m_blue->SetState(GhostsStates::Frightend);
+    if(m_orange != nullptr)
+        m_orange->SetState(GhostsStates::Frightend);
+    if(m_purple != nullptr)
+        m_purple->SetState(GhostsStates::Frightend);
 }
 
-void Game::InitPlayerTimer()
+void Game::InitPlayerTimer(int msec)
 {
     m_playerTimer = new QTimer();
     connect(m_playerTimer, SIGNAL(timeout()), this, SLOT(DoMovement()));
-    m_playerTimer->start(PLAYER_TIMER_DEF_TIMEOUT);
+    m_playerTimer->start(msec);
 }
 
-void Game::InitEnemysTimer()
+void Game::InitEnemysTimer(int msec)
 {
     m_enemysTimer = new QTimer();
     connect(m_enemysTimer, SIGNAL(timeout()), this, SLOT(DoEnemysMovement()));
-    m_enemysTimer->start(ENEMYS_TIMER_DEF_TIMEOUT);
+    m_enemysTimer->start(msec);
 }
 
 Game::~Game()
@@ -184,11 +226,31 @@ void Game::keyPressEvent(QKeyEvent *event)
             m_player->m_IsMovementEnabled = true;
         break;
 
+        case Qt::Key_W:
+            m_manualDirectionForEnemy = Directions::Up;
+        break;
+
+        case Qt::Key_A:
+            m_manualDirectionForEnemy = Directions::Left;
+        break;
+
+        case Qt::Key_D:
+            m_manualDirectionForEnemy = Directions::Right;
+        break;
+
+        case Qt::Key_S:
+            m_manualDirectionForEnemy = Directions::Down;
+        break;
+
         case Qt::Key_M:
-            m_red->ChangeStates();
-            m_blue->ChangeStates();
-            m_orange->ChangeStates();
-            m_purple->ChangeStates();
+            if(m_red != nullptr)
+                m_red->ChangeStates();
+            if(m_blue != nullptr)
+                m_blue->ChangeStates();
+            if(m_orange != nullptr)
+                m_orange->ChangeStates();
+            if(m_purple != nullptr)
+                m_purple->ChangeStates();
         break;
 
         case Qt::Key_Escape:
@@ -216,13 +278,14 @@ void Game::DoEnemysMovement()
     CoreGlobals::playersCoords.x = m_player->x() / DEFAULT_BLOCK_SIZE;
     CoreGlobals::playersCoords.y = m_player->y() / DEFAULT_BLOCK_SIZE;
 
-    m_red->DoMove();
-
-    m_blue->DoMove(m_player->m_directions);
-
-    m_orange->DoMove(m_player->m_directions);
-
-    m_purple->DoMove(m_player->m_directions);
+    if(m_red != nullptr)
+        m_red->DoMove(m_manualDirectionForEnemy);
+    if(m_blue != nullptr)
+        m_blue->DoMove(m_player->m_directions);
+    if(m_orange != nullptr)
+        m_orange->DoMove(m_player->m_directions);
+    if(m_purple != nullptr)
+        m_purple->DoMove(m_player->m_directions);
 }
 
 void Game::DrawMap(const std::vector<std::vector<int>> &vec)
@@ -272,21 +335,30 @@ void Game::NextLevel()
 
     m_player->setPos(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
 
-    m_red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
-    m_red->SetCounter(0);
-    m_red->SetState(GhostsStates::Chase);
-
-    m_blue->setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
-    m_blue->SetCounter(0);
-    m_blue->SetState(GhostsStates::Chase);
-
-    m_orange->setPos(9 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
-    m_orange->SetCounter(0);
-    m_orange->SetState(GhostsStates::Chase);
-
-    m_purple->setPos(10 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
-    m_purple->SetCounter(0);
-    m_purple->SetState(GhostsStates::Chase);
+    if(m_red != nullptr)
+    {
+        m_red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
+        m_red->SetCounter(0);
+        m_red->SetState(GhostsStates::Chase);
+    }
+    if(m_blue != nullptr)
+    {
+        m_blue->setPos(10 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
+        m_blue->SetCounter(0);
+        m_blue->SetState(GhostsStates::Chase);
+    }
+    if(m_orange != nullptr)
+    {
+        m_orange->setPos(9 * DEFAULT_BLOCK_SIZE, 10 * DEFAULT_BLOCK_SIZE);
+        m_orange->SetCounter(0);
+        m_orange->SetState(GhostsStates::Chase);
+    }
+    if(m_purple != nullptr)
+    {
+        m_purple->setPos(10 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
+        m_purple->SetCounter(0);
+        m_purple->SetState(GhostsStates::Chase);
+    }
 
     for (size_t i = 0; i < Levels::level.at(0).size(); ++i)
         for (size_t j = 0; j < Levels::level.size(); ++j)

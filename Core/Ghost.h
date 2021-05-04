@@ -21,6 +21,8 @@ protected:
 
     virtual Directions MoveToAvilablePoint(Coords selfCords);
 
+    virtual bool IsDirectionValid(Coords selfCords, Directions movementDirection);
+
     Directions GetShortestWay(double targetX, double targetY, Coords selfCords);
     Directions GetShortestWayForPurple(double targetX, double targetY, Coords selfCords);
 

@@ -296,3 +296,35 @@ Directions Ghost::MoveToAvilablePoint(Coords selfCords)
     int randVal = availableDirections.count();
     return availableDirections.at(rand() % randVal);
 }
+
+bool Ghost::IsDirectionValid(Coords selfCords, Directions movementDirection)
+{
+    if(movementDirection == Directions::Up)
+        if(Levels::level.at(selfCords.y - 1).at(selfCords.x) == 1)
+            return false;
+
+    if(movementDirection == Directions::Down)
+        if(Levels::level.at(selfCords.y + 1).at(selfCords.x) == 1)
+            return false;
+
+    if(movementDirection == Directions::Right)
+    {
+        if(int(selfCords.x) == 14 && int(selfCords.y) == 10)
+            return false;
+
+        if(Levels::level.at(selfCords.y).at(selfCords.x + 1) == 1)
+            return false;
+    }
+    if(movementDirection == Directions::Left)
+    {
+        if(int(selfCords.x) == 4 && int(selfCords.y) == 10)
+            return false;
+
+        if(Levels::level.at(selfCords.y).at(selfCords.x - 1) == 1)
+            return false;
+    }
+    if(movementDirection == Directions::Unknown)
+        return false;
+
+    return true;
+}

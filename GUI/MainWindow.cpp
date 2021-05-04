@@ -5,7 +5,6 @@
 #include "Settings.h"
 #include "Help.h"
 #include "Player.h"
-#include "Starter.h"
 #include "ScoresPage.h"
 #include "ChooseGhost.h"
 
@@ -14,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     InitPage();
-
-    InitStarter();
 }
 
 MainWindow::~MainWindow()
@@ -33,13 +30,10 @@ void MainWindow::InitPage()
     this->setWindowTitle("Pac Man Qt");
 }
 
-void MainWindow::InitStarter() const
-{
-    Starter::runStarter(QThread::currentThread());
-}
-
 void MainWindow::on_play_clicked()
 {
+    CoreGlobals::multiplayerSettings.isEnabled = false;
+    CoreGlobals::multiplayerSettings.selectedGhost = Ghosts::Unknown_Ghost;
     Game *game = new Game();
     game->show();
     this->close();
@@ -80,7 +74,14 @@ void MainWindow::on_soresPageBtn_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    ChooseGhost *chooseghost = new ChooseGhost();
+    ChooseGhost *chooseghost = new ChooseGhost(this);
     chooseghost->show();
+}
 
+void MainWindow::StartMultiplayer()
+{
+    Game *game = new Game();
+    game->show();
+    this->close();
+    this->deleteLater();
 }

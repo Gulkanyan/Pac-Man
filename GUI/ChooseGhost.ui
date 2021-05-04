@@ -10,6 +10,18 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -17,13 +29,13 @@
    <string notr="true">background-color:rgb(0, 0, 0)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QRadioButton" name="radioButton_2">
+   <widget class="QRadioButton" name="OrangeRadioButton">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>50</x>
       <y>150</y>
       <width>100</width>
-      <height>20</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -34,13 +46,13 @@
      <string>Orange Ghost</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_3">
+   <widget class="QRadioButton" name="BlueRadioButton">
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>60</y>
-      <width>80</width>
-      <height>20</height>
+      <y>50</y>
+      <width>100</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -50,13 +62,13 @@
      <string>Blue Ghost</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_4">
+   <widget class="QRadioButton" name="PurpleRadioButton">
     <property name="geometry">
      <rect>
       <x>250</x>
       <y>150</y>
-      <width>91</width>
-      <height>20</height>
+      <width>100</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -69,9 +81,9 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>170</y>
-      <width>80</width>
+      <x>50</x>
+      <y>180</y>
+      <width>100</width>
       <height>60</height>
      </rect>
     </property>
@@ -81,13 +93,16 @@
     <property name="pixmap">
      <pixmap resource="../Rec.qrc">:/Orange/Images/Orange/OrangeEnemyUp.png</pixmap>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
       <x>250</x>
       <y>80</y>
-      <width>80</width>
+      <width>100</width>
       <height>60</height>
      </rect>
     </property>
@@ -97,13 +112,16 @@
     <property name="pixmap">
      <pixmap resource="../Rec.qrc">:/blue/Images/Blue/BlueEnemyDown.png</pixmap>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>170</y>
-      <width>80</width>
+      <y>180</y>
+      <width>100</width>
       <height>60</height>
      </rect>
     </property>
@@ -113,46 +131,16 @@
     <property name="pixmap">
      <pixmap resource="../Rec.qrc">:/Purple/Images/Purple/PurpleEnemyLeft.png</pixmap>
     </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>249</y>
-      <width>186</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	color: rgb(255, 255, 255);
-	background-color:rgb(127, 170, 127);
-    border-style: outset;
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 14px;
-    min-width: 10em;
-    padding: 6px;
-}
-
-QPushButton::pressed 
-{
-	color:rgb(85, 170, 127);
-    background-color:rgb(255, 255, 255);
-    border-style: inset;
-}</string>
-    </property>
-    <property name="text">
-     <string>Play</string>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>50</x>
       <y>80</y>
-      <width>80</width>
+      <width>100</width>
       <height>60</height>
      </rect>
     </property>
@@ -162,14 +150,17 @@ QPushButton::pressed
     <property name="pixmap">
      <pixmap resource="../Rec.qrc">:/red/Images/Red/RedEnemyRight.png</pixmap>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>10</y>
-      <width>180</width>
-      <height>30</height>
+      <x>0</x>
+      <y>0</y>
+      <width>400</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -183,14 +174,17 @@ QPushButton::pressed
     <property name="text">
      <string>Choose Your Ghost</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="RedRadioButton">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>60</y>
-      <width>80</width>
-      <height>20</height>
+      <x>50</x>
+      <y>50</y>
+      <width>100</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -199,6 +193,86 @@ QPushButton::pressed
     </property>
     <property name="text">
      <string>Red Ghost</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BackButton">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>270</y>
+      <width>150</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgba(180, 0, 0, 180);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    padding: 6px;
+}
+
+QPushButton::pressed 
+{
+	color: rgb(255, 255, 255);
+    background-color: rgba(150, 0, 0, 130);
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>270</y>
+      <width>150</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgba(0, 200, 0, 180);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    padding: 6px;
+}
+
+QPushButton::pressed 
+{
+	color: rgb(255, 255, 255);
+    background-color: rgba(0, 160, 0, 130);
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Save</string>
     </property>
    </widget>
   </widget>

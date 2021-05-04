@@ -28,10 +28,10 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void StartMultiplayer();
+
 private:
     void InitPage();
-
-    void InitStarter() const;
 
 private:
     Ui::MainWindow *ui;

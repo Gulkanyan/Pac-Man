@@ -37,9 +37,9 @@ private:
 
     void AddEnemies();
 
-    void InitPlayerTimer();
+    void InitPlayerTimer(int msec);
 
-    void InitEnemysTimer();
+    void InitEnemysTimer(int msec);
 
     void NextLevel();
 

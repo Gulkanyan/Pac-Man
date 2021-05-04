@@ -19,6 +19,8 @@ namespace CoreGlobals
     extern Database* g_database;
 
     extern Coords playersCoords;
+
+    extern MultiplayerMode multiplayerSettings;
 };
 
 Database& db();

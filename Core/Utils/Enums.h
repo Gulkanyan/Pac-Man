@@ -17,4 +17,13 @@ enum GhostsStates
     Frightend   // 2
 };
 
+enum Ghosts
+{
+    Red_Ghost,
+    Blue_Ghost,
+    Orange_Ghost,
+    Purple_Ghost,
+    Unknown_Ghost
+};
+
 #endif // ENUMS_H

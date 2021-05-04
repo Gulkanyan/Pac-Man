@@ -7,6 +7,8 @@ namespace CoreGlobals
     Database *g_database = 0;
 
     Coords playersCoords;
+
+    MultiplayerMode multiplayerSettings;
 }
 
 Database& db()
