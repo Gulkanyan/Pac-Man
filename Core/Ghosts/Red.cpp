@@ -240,3 +240,9 @@ void Red::Reset()
     m_frightenedCounter = 0;
     setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
 }
+
+void Red::ResetMovementDirection()
+{
+    m_movementDirection = Directions::Unknown;
+    m_oldMoveDirection = Directions::Down;
+}

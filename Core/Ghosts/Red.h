@@ -19,6 +19,8 @@ public:
 
     void Reset();
 
+    void ResetMovementDirection();
+
 private:
     void InitDefaultSettings();
 

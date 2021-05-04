@@ -32,33 +32,26 @@ Game::Game(QWidget *parent) :
 
     DrawMap(Levels::level);
 
+    InitPlayerTimer(PLAYER_TIMER_DEF_TIMEOUT);
+
+    AddEnemies();
+
     if(CoreGlobals::multiplayerSettings.isEnabled == true)
     {
-        InitPlayerTimer(PLAYER_TIMER_DEF_TIMEOUT);
+        InitEnemysTimer(PLAYER_TIMER_DEF_TIMEOUT);
 
-        AddEnemies();
-
-        InitEnemysTimer(ENEMYS_TIMER_DEF_TIMEOUT);
-        m_beggining_sound.play();
-
-        connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
-        connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
         connect(m_player, SIGNAL(GhostHealthisUpdated(int)), this, SLOT(UpdateGhostHealth(int)));
-        connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
     }
     else
     {
-        InitPlayerTimer(PLAYER_TIMER_DEF_TIMEOUT);
-
-        AddEnemies();
-
         InitEnemysTimer(ENEMYS_TIMER_DEF_TIMEOUT);
-        m_beggining_sound.play();
-
-        connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
-        connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
-        connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
     }
+
+    m_beggining_sound.play();
+
+    connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
+    connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
+    connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
 }
 
 void Game::InitInterface()

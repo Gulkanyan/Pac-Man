@@ -275,6 +275,7 @@ bool Player::IsCollided(Directions currentDirection)
                                 emit GhostHealthisUpdated(CoreGlobals::multiplayerSettings.enemyLives);
                             }
                             red->SetState(GhostsStates::Scattered);
+                            red->ResetMovementDirection();
                         }
 
                         red->m_counter = 5;     //  start movement from first step
