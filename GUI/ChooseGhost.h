@@ -15,6 +15,9 @@ public:
     explicit ChooseGhost(QWidget *parent = nullptr);
     ~ChooseGhost();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::ChooseGhost *ui;
 };

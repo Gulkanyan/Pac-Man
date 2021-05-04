@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Starter.h"
 #include "ScoresPage.h"
+#include "ChooseGhost.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -75,4 +76,11 @@ void MainWindow::on_soresPageBtn_clicked()
     scores->show();
     this->close();
     delete this;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    ChooseGhost *chooseghost = new ChooseGhost();
+    chooseghost->show();
+
 }

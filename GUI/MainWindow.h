@@ -26,6 +26,8 @@ private slots:
 
     void on_soresPageBtn_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     void InitPage();
 
