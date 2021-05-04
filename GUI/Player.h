@@ -44,6 +44,7 @@ signals:
     void ScoreIsUpdated(int);
     void PillIsEaten();
     void HealthIsUpdated(int);
+    void GhostHealthisUpdated(int);
 
 private:
     Step m_currentStep;

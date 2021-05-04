@@ -26,11 +26,13 @@ struct MultiplayerMode
 {
     bool isEnabled;
     Ghosts selectedGhost;
+    int enemyLives;
 
     MultiplayerMode()
     {
         isEnabled = false;
         selectedGhost = Unknown_Ghost;
+        enemyLives = 5;
     }
 };
 

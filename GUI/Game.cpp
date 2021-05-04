@@ -43,6 +43,7 @@ Game::Game(QWidget *parent) :
 
         connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
         connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));
+        connect(m_player, SIGNAL(GhostHealthisUpdated(int)), this, SLOT(UpdateGhostHealth(int)));
         connect(m_player, SIGNAL(PillIsEaten()), this, SLOT(GoToFrightenedMode()));
     }
     else
@@ -81,6 +82,16 @@ void Game::InitInterface()
     m_healthText->setPos(500, 100);
     m_healthText->setPlainText(QString("Health: ")+ QString::number(5));
     scene->addItem(m_healthText);
+
+    if(CoreGlobals::multiplayerSettings.isEnabled)
+    {
+        m_enemyHealthText = new QGraphicsTextItem();
+        m_enemyHealthText->setDefaultTextColor(Qt::cyan);
+        m_enemyHealthText-> setFont(QFont("times",16));
+        m_enemyHealthText->setPos(500, 170);
+        m_enemyHealthText->setPlainText(QString("Ghost Health: ")+ QString::number(CoreGlobals::multiplayerSettings.enemyLives));
+        scene->addItem(m_enemyHealthText);
+    }
 }
 
 void Game::AddPlayer()
@@ -139,9 +150,14 @@ void Game::UpdateHealth(int health)
         m_playerTimer->stop();
         m_enemysTimer->stop();
 
-        ShowMessageBox();
+        if(CoreGlobals::multiplayerSettings.isEnabled == true)
+            ShowMessageBox("Ghost won!!!");
+        else
+        {
+            ShowMessageBox("Game Over!!!");
 
-        GetPlayerNameAndSave();
+            GetPlayerNameAndSave();
+        }
 
         MainWindow * main = new MainWindow();
         main->show();
@@ -270,7 +286,12 @@ void Game::DoMovement()
     m_player->DoMovement();
 
     if(m_coinsCount <= 0)
-        NextLevel();
+    {
+        if(CoreGlobals::multiplayerSettings.isEnabled == true)
+            ShowMessageBox("Pac Man won");
+        else
+            NextLevel();
+    }
 }
 
 void Game::DoEnemysMovement()
@@ -415,10 +436,10 @@ bool Game::DoYouWantToExit()
     return accept;
 }
 
-void Game::ShowMessageBox()
+void Game::ShowMessageBox(QString message)
 {
     QMessageBox *box = new QMessageBox();
-    box->setText("<center>Game Over!!!</center>");
+    box->setText("<center>" + message + "</center>");
     box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     box->setStyleSheet(QString("QMessageBox {"
                                  "background-color: rgb(255, 255, 255);"
@@ -442,4 +463,33 @@ void Game::GetPlayerNameAndSave()
     Dialog *dialog = new Dialog(m_player->GetScore());
     dialog->exec();
     return;
+}
+
+void Game::UpdateGhostHealth(int health)
+{
+    m_enemyHealthText->setPlainText("");
+    m_enemyHealthText->setPlainText(QString("Ghost Health: ")+ QString::number(health));
+
+    if(health <= 0)
+    {
+        m_playerTimer->stop();
+        m_enemysTimer->stop();
+
+        ShowMessageBox("Pac man won!!!");
+
+        MainWindow * main = new MainWindow();
+        main->show();
+        this->close();
+        delete this;
+        return;
+    }
+
+    if(m_red != nullptr)
+        m_red->Reset();
+    if(m_blue != nullptr)
+        m_blue->Reset();
+    if(m_orange != nullptr)
+        m_orange->Reset();
+    if(m_purple != nullptr)
+        m_purple->Reset();
 }

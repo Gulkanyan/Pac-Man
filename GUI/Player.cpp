@@ -268,10 +268,18 @@ bool Player::IsCollided(Directions currentDirection)
                             red->SetState(GhostsStates::Chase);
                         }
                         else
+                        {
+                            if(CoreGlobals::multiplayerSettings.isEnabled)
+                            {
+                                CoreGlobals::multiplayerSettings.enemyLives--;
+                                emit GhostHealthisUpdated(CoreGlobals::multiplayerSettings.enemyLives);
+                            }
                             red->SetState(GhostsStates::Scattered);
+                        }
 
                         red->m_counter = 5;     //  start movement from first step
-                        red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
+                        if(CoreGlobals::multiplayerSettings.isEnabled == false)
+                            red->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
                     }
                     else if(!red)
                     {

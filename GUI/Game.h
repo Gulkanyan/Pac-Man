@@ -45,7 +45,7 @@ private:
 
     bool DoYouWantToExit();
 
-    void ShowMessageBox();
+    void ShowMessageBox(QString message);
 
     void GetPlayerNameAndSave();
 
@@ -54,6 +54,7 @@ private slots:
 
     void UpdateScore(int);
     void UpdateHealth(int);
+    void UpdateGhostHealth(int);
     void GoToFrightenedMode();
 
     void DoEnemysMovement();
@@ -67,6 +68,7 @@ private:
     Blue * m_blue;
     QGraphicsTextItem *m_scoreText;
     QGraphicsTextItem *m_healthText;
+    QGraphicsTextItem *m_enemyHealthText;
 
     Player * m_player;
 };
