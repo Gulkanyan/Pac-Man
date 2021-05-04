@@ -32,6 +32,7 @@ SOURCES += \
     Core/Ghosts/Red.cpp \
     Core/Utils/Pill.cpp \
     GUI/About.cpp \
+    GUI/ChooseGhost.cpp \
     GUI/Dialog.cpp \
     GUI/Game.cpp \
     GUI/Help.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     Core/Ghosts/Red.h \
     Core/Utils/Pill.h \
     GUI/About.h \
+    GUI/ChooseGhost.h \
     GUI/Dialog.h \
     GUI/Game.h \
     GUI/Help.h \
@@ -69,6 +71,7 @@ HEADERS += \
 
 FORMS += \
     GUI/About.ui \
+    GUI/ChooseGhost.ui \
     GUI/Dialog.ui \
     GUI/Help.ui \
     GUI/MainWindow.ui \
