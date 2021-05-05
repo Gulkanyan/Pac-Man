@@ -104,6 +104,7 @@ void Game::AddEnemies()
     {
         m_red = new Red();
         scene->addItem(m_red);
+        m_red->setPos(DEFAULT_BLOCK_SIZE*17, DEFAULT_BLOCK_SIZE*20);
         return;
     }
         m_red = new Red();
