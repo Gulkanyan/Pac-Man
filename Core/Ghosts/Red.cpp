@@ -236,12 +236,15 @@ void Red::SetCounter(int count)
 
 void Red::Reset()
 {
-    m_state = GhostsStates::Chase;
-    m_movementDirection = Directions::Unknown;
-    m_oldMoveDirection = Directions::Unknown;
+    m_state = GhostsStates::Chase; // Ghost change mode to chase
+    m_movementDirection = Directions::Unknown; // changes the movement dir to unknown
+    m_oldMoveDirection = Directions::Unknown; //old direction is sert to be unknown
     m_counter = 5;     //  start movement from first step
-    m_frightenedCounter = 0;
-    setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
+    m_frightenedCounter = 0; // frightened mode = 0
+    if(CoreGlobals::multiplayerSettings.isEnabled == true)
+      setPos(17 * DEFAULT_BLOCK_SIZE, 20 * DEFAULT_BLOCK_SIZE);
+    else
+      setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
 }
 
 void Red::ResetMovementDirection()

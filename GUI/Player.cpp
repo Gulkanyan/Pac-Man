@@ -273,6 +273,7 @@ bool Player::IsCollided(Directions currentDirection)
                         {
                             if(CoreGlobals::multiplayerSettings.isEnabled)
                             {
+                                red->setPos(18 * DEFAULT_BLOCK_SIZE, 21 * DEFAULT_BLOCK_SIZE);
                                 CoreGlobals::multiplayerSettings.enemyLives--;
                                 emit GhostHealthisUpdated(CoreGlobals::multiplayerSettings.enemyLives);
                             }
