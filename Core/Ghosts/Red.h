@@ -35,6 +35,8 @@ private:
     void MoveRight();
     void MoveLeft();
 
+    QString GetPixmapStringForMultiplayer(Directions dir);
+
 private:
 
     Coords m_coordinates;

@@ -19,16 +19,19 @@ Red::Red(Ghost *parent): Ghost(parent)
 void Red::InitDefaultSettings()
 {
     setRect(0,0,DEFAULT_BLOCK_SIZE,DEFAULT_BLOCK_SIZE);
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyDown.png");
-    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
-    setBrush(QBrush(pixmapItem));
 
     this->setPos(9 * DEFAULT_BLOCK_SIZE, 9 * DEFAULT_BLOCK_SIZE);
 
     SetPositions();
 
+    m_movementDirection = Directions::Unknown;
     m_state = GhostsStates::Chase;
     m_counter = 5;
+
+    QPixmap pixmapItem(GetPixmapStringForMultiplayer(m_movementDirection));
+
+    pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
+    setBrush(QBrush(pixmapItem));
 }
 
 void Red::SetPositions()
@@ -132,7 +135,7 @@ void Red::MoveUp()
     if(m_oldMoveDirection == m_movementDirection)
         return;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyUp.png");
+    QPixmap pixmapItem(GetPixmapStringForMultiplayer(m_movementDirection));
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
@@ -146,7 +149,7 @@ void Red::MoveDown()
     if(m_oldMoveDirection == m_movementDirection)
         return;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyDown.png");
+    QPixmap pixmapItem(GetPixmapStringForMultiplayer(m_movementDirection));
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
@@ -160,7 +163,7 @@ void Red::MoveRight()
     if(m_oldMoveDirection == m_movementDirection)
         return;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyRight.png");
+    QPixmap pixmapItem(GetPixmapStringForMultiplayer(m_movementDirection));
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
@@ -174,7 +177,7 @@ void Red::MoveLeft()
     if(m_oldMoveDirection == m_movementDirection)
         return;
 
-    QPixmap pixmapItem(":/red/Images/Red/RedEnemyLeft.png");
+    QPixmap pixmapItem(GetPixmapStringForMultiplayer(m_movementDirection));
     pixmapItem = pixmapItem.scaled(DEFAULT_BLOCK_SIZE, DEFAULT_BLOCK_SIZE);
     setBrush(QBrush(pixmapItem));
 }
@@ -245,4 +248,71 @@ void Red::ResetMovementDirection()
 {
     m_movementDirection = Directions::Unknown;
     m_oldMoveDirection = Directions::Down;
+}
+
+QString Red::GetPixmapStringForMultiplayer(Directions dir)
+{
+    QString pixmapItemPath = ":/red/Images/Red/RedEnemyDown.png";
+
+    if(CoreGlobals::multiplayerSettings.isEnabled)
+    {
+        switch (CoreGlobals::multiplayerSettings.selectedGhost)
+        {
+            case Ghosts::Red_Ghost :
+                switch (dir)
+                {
+                    case Directions::Up : pixmapItemPath = ":/red/Images/Red/RedEnemyUp.png"; break;
+                    case Directions::Down : pixmapItemPath = ":/red/Images/Red/RedEnemyDown.png"; break;
+                    case Directions::Left : pixmapItemPath = ":/red/Images/Red/RedEnemyLeft.png"; break;
+                    case Directions::Right : pixmapItemPath = ":/red/Images/Red/RedEnemyRight.png"; break;
+                    default : pixmapItemPath = ":/red/Images/Red/RedEnemyDown.png"; break;
+                }
+            break;
+
+            case Ghosts::Blue_Ghost :
+                switch (dir)
+                {
+                    case Directions::Up : pixmapItemPath = ":/blue/Images/Blue/BlueEnemyUp.png"; break;
+                    case Directions::Down : pixmapItemPath = ":/blue/Images/Blue/BlueEnemyDown.png"; break;
+                    case Directions::Left : pixmapItemPath = ":/blue/Images/Blue/BlueEnemyLeft.png"; break;
+                    case Directions::Right : pixmapItemPath = ":/blue/Images/Blue/BlueEnemyRight.png"; break;
+                    default : pixmapItemPath = ":/blue/Images/Blue/BlueEnemyDown.png"; break;
+                }
+            break;
+            case Ghosts::Orange_Ghost :
+                switch (dir)
+                {
+                    case Directions::Up : pixmapItemPath = ":/Orange/Images/Orange/OrangeEnemyUp.png"; break;
+                    case Directions::Down : pixmapItemPath = ":/Orange/Images/Orange/OrangeEnemyDown.png"; break;
+                    case Directions::Left : pixmapItemPath = ":/Orange/Images/Orange/OrangeEnemyLeft.png"; break;
+                    case Directions::Right : pixmapItemPath = ":/Orange/Images/Orange/OrangeEnemyRight.png"; break;
+                    default : pixmapItemPath = ":/Orange/Images/Orange/OrangeEnemyDown.png"; break;
+                }
+            break;
+            case Ghosts::Purple_Ghost :
+                switch (dir)
+                {
+                    case Directions::Up : pixmapItemPath = ":/Purple/Images/Purple/PurpleEnemyUp.png"; break;
+                    case Directions::Down : pixmapItemPath = ":/Purple/Images/Purple/PurpleEnemyDown.png"; break;
+                    case Directions::Left : pixmapItemPath = ":/Purple/Images/Purple/PurpleEnemyLeft.png"; break;
+                    case Directions::Right : pixmapItemPath = ":/Purple/Images/Purple/PurpleEnemyRight.png"; break;
+                    default : pixmapItemPath = ":/Purple/Images/Purple/PurpleEnemyDown.png"; break;
+                }
+            break;
+            default : pixmapItemPath = ":/red/Images/Red/RedEnemyDown.png"; break;
+        }
+    }
+    else
+    {
+        switch (dir)
+        {
+            case Directions::Up : pixmapItemPath = ":/red/Images/Red/RedEnemyUp.png"; break;
+            case Directions::Down : pixmapItemPath = ":/red/Images/Red/RedEnemyDown.png"; break;
+            case Directions::Left : pixmapItemPath = ":/red/Images/Red/RedEnemyLeft.png"; break;
+            case Directions::Right : pixmapItemPath = ":/red/Images/Red/RedEnemyRight.png"; break;
+            default : pixmapItemPath = ":/red/Images/Red/RedEnemyDown.png"; break;
+        }
+    }
+
+    return pixmapItemPath;
 }

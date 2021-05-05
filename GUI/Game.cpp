@@ -101,29 +101,23 @@ void Game::AddEnemies()
     m_orange = nullptr;
     m_purple = nullptr;
 
-    if(CoreGlobals::multiplayerSettings.selectedGhost == Red_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
+    if(CoreGlobals::multiplayerSettings.isEnabled && CoreGlobals::multiplayerSettings.selectedGhost != Unknown_Ghost)
     {
         m_red = new Red();
         scene->addItem(m_red);
+        return;
     }
+        m_red = new Red();
+        scene->addItem(m_red);
 
-    if(CoreGlobals::multiplayerSettings.selectedGhost == Orange_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
-    {
         m_orange = new Orange();
         scene->addItem(m_orange);
-    }
 
-    if(CoreGlobals::multiplayerSettings.selectedGhost == Blue_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
-    {
         m_blue = new Blue();
         scene->addItem(m_blue);
-    }
 
-    if(CoreGlobals::multiplayerSettings.selectedGhost == Purple_Ghost || CoreGlobals::multiplayerSettings.selectedGhost == Unknown_Ghost)
-    {
         m_purple = new Purple();
         scene->addItem(m_purple);
-    }
 }
 
 void Game::UpdateScore(int score)
