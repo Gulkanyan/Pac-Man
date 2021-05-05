@@ -9,6 +9,8 @@ namespace CoreGlobals
     Coords playersCoords;
 
     MultiplayerMode multiplayerSettings;
+
+    GameSettings gameSettings;
 }
 
 Database& db()

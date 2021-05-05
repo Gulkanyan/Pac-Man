@@ -1,7 +1,8 @@
 #include "Help.h"
 #include "ui_Help.h"
 #include "MainWindow.h"
-#include <QSound>
+#include "CoreGlobals.h"
+
 Help::Help(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Help)
@@ -11,7 +12,8 @@ Help::Help(QWidget *parent) :
     setAutoFillBackground( true );
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
-    QSound::play(":/Sound/Music/pacman_beginning.wav");
+    if(CoreGlobals::gameSettings.musicIsEnabled)
+        QSound::play(":/Sound/Music/pacman_beginning.wav");
     this->setWindowTitle("Help");
     ui->pushButton->setShortcut(Qt::Key_Escape);
 }

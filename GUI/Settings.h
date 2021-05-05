@@ -15,8 +15,21 @@ public:
     explicit Settings(QWidget *parent = nullptr);
     ~Settings();
 
+private:
+    void InitUi();
+
 private slots:
     void on_pushButton_clicked();
+
+    void on_turnOn_clicked();
+
+    void on_turnOff_clicked();
+
+    void on_easy_clicked();
+
+    void on_normal_clicked();
+
+    void on_Hard_clicked();
 
 private:
     Ui::Settings *ui;

@@ -21,7 +21,6 @@ namespace
     int m_counter = 0;
     QSound m_eatfruit_sound(":/Sound/Music/pacman_eatfruit.wav");
     QSound m_death_sound(":/Sound/Music/pacman_death.wav");
-
 }
 
 Player::Player(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(parent)
@@ -237,7 +236,8 @@ bool Player::IsCollided(Directions currentDirection)
             Coin* coin = dynamic_cast<Coin*>(cItems[i]);
             if(coin)
             {
-                m_eatfruit_sound.play();
+                if(CoreGlobals::gameSettings.musicIsEnabled)
+                    m_eatfruit_sound.play();
 
                 m_score += 50;
                 emit ScoreIsUpdated(m_score);
@@ -248,7 +248,8 @@ bool Player::IsCollided(Directions currentDirection)
                 Pill* pill = dynamic_cast<Pill*>(cItems[i]);
                 if(pill)
                 {
-                    m_eatfruit_sound.play();
+                    if(CoreGlobals::gameSettings.musicIsEnabled)
+                        m_eatfruit_sound.play();
                     delete pill;
                     emit PillIsEaten();
                 }
@@ -259,7 +260,8 @@ bool Player::IsCollided(Directions currentDirection)
                     {
                         if(red->GetState() == GhostsStates::Chase || red->GetState() == GhostsStates::Scattered)
                         {
-                            m_death_sound.play();
+                            if(CoreGlobals::gameSettings.musicIsEnabled)
+                                m_death_sound.play();
                             m_health--;
                             emit HealthIsUpdated(m_health);
 
@@ -289,7 +291,8 @@ bool Player::IsCollided(Directions currentDirection)
                         {
                             if(blue->GetState() == GhostsStates::Chase || blue->GetState() == GhostsStates::Scattered)
                             {
-                                m_death_sound.play();
+                                if(CoreGlobals::gameSettings.musicIsEnabled)
+                                    m_death_sound.play();
                                 m_health--;
                                 emit HealthIsUpdated(m_health);
 
@@ -310,7 +313,8 @@ bool Player::IsCollided(Directions currentDirection)
                             {
                                 if(orange->GetState() == GhostsStates::Chase || orange->GetState() == GhostsStates::Scattered)
                                 {
-                                    m_death_sound.play();
+                                    if(CoreGlobals::gameSettings.musicIsEnabled)
+                                        m_death_sound.play();
                                     m_health--;
                                     emit HealthIsUpdated(m_health);
 
@@ -331,7 +335,8 @@ bool Player::IsCollided(Directions currentDirection)
                                 {
                                     if(purple->GetState() == GhostsStates::Chase || purple->GetState() == GhostsStates::Scattered)
                                     {
-                                        m_death_sound.play();
+                                        if(CoreGlobals::gameSettings.musicIsEnabled)
+                                            m_death_sound.play();
                                         m_health--;
                                         emit HealthIsUpdated(m_health);
 

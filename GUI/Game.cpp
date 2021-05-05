@@ -4,13 +4,10 @@
 #include "Core/Utils/Pill.h"
 #include "CoreGlobals.h"
 #include "Player.h"
-
-#include "GUI/MainWindow.h"
+#include "MainWindow.h"
+#include "Dialog.h"
 
 #include <QTimer>
-#include <QSound>
-#include <QMainWindow>
-#include "Dialog.h"
 
 namespace
 {
@@ -47,7 +44,9 @@ Game::Game(QWidget *parent) :
         InitEnemysTimer(ENEMYS_TIMER_DEF_TIMEOUT);
     }
 
-    m_beggining_sound.play();
+    qDebug() << "CoreGlobals::gameSettings.musicIsEnabled = " << CoreGlobals::gameSettings.musicIsEnabled;
+    if(CoreGlobals::gameSettings.musicIsEnabled)
+        m_beggining_sound.play();
 
     connect(m_player, SIGNAL(ScoreIsUpdated(int)), this, SLOT(UpdateScore(int)));
     connect(m_player, SIGNAL(HealthIsUpdated(int)), this, SLOT(UpdateHealth(int)));

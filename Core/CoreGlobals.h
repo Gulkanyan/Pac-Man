@@ -21,6 +21,8 @@ namespace CoreGlobals
     extern Coords playersCoords;
 
     extern MultiplayerMode multiplayerSettings;
+
+    extern GameSettings gameSettings;
 };
 
 Database& db();

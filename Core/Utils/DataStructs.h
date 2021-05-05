@@ -36,4 +36,16 @@ struct MultiplayerMode
     }
 };
 
+struct GameSettings
+{
+    bool musicIsEnabled;
+    int complexityLevel;            // 0 means easy, 1 - norm, 2 - hard
+
+    GameSettings()
+    {
+        musicIsEnabled = true;
+        complexityLevel = 1;
+    }
+};
+
 #endif // DATASTRUCTS_H
