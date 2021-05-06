@@ -124,7 +124,7 @@ void Game::UpdateScore(int score)
 {
     m_coinsCount--;
     m_scoreText->setPlainText("");
-    m_scoreText->setPlainText(QString("Միավոր: ")+ QString::number(score));
+    m_scoreText->setPlainText(QString("Score: ")+ QString::number(score));
 }
 
 void Game::UpdateHealth(int health)
