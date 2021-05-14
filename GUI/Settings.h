@@ -31,6 +31,8 @@ private slots:
 
     void on_Hard_clicked();
 
+    void on_LangComboBox_currentIndexChanged(int index);
+
 private:
     Ui::Settings *ui;
 };

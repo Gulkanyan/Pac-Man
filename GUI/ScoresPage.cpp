@@ -25,6 +25,21 @@ void ScoresPage::InitUi()
         QSound::play(":/Sound/Music/pacman_beginning.wav");
     this->setWindowTitle("Scores");
     ui->pushButton->setShortcut(Qt::Key_Escape);
+
+    if(CoreGlobals::gameSettings.language == Armenian)
+    {
+        this->setWindowTitle(QString::fromUtf8("Միավորներ"));
+        ui->top5Label->setText(QString::fromUtf8("Թոփ 5"));
+        ui->pushButton->setText(QString::fromUtf8("Հետ"));
+        ui->bestLabel->setText(QString::fromUtf8("Լավագույն միավոր"));
+    }
+    else if(CoreGlobals::gameSettings.language == Russian)
+    {
+        this->setWindowTitle(QString::fromUtf8("Очки"));
+        ui->top5Label->setText(QString::fromUtf8("Топ 5"));
+        ui->pushButton->setText(QString::fromUtf8("Назад"));
+        ui->bestLabel->setText(QString::fromUtf8("Лучший результат"));
+    }
 }
 
 void ScoresPage::InitData()

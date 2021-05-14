@@ -107,9 +107,9 @@ QPushButton::pressed
    <widget class="QLabel" name="bestLabel">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>80</x>
       <y>450</y>
-      <width>150</width>
+      <width>190</width>
       <height>30</height>
      </rect>
     </property>
@@ -128,7 +128,7 @@ QPushButton::pressed
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="top5Label">
     <property name="geometry">
      <rect>
       <x>490</x>

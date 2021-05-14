@@ -104,9 +104,9 @@ background-color:black;</string>
    <widget class="QLabel" name="LevelDifficulty">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>470</x>
       <y>450</y>
-      <width>120</width>
+      <width>220</width>
       <height>30</height>
      </rect>
     </property>
@@ -167,7 +167,7 @@ QPushButton::pressed
      <string>Back</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>520</x>
@@ -229,6 +229,75 @@ background-color:black;</string>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="LanguagesLabel">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>450</y>
+      <width>120</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:black;
+color:white;</string>
+    </property>
+    <property name="text">
+     <string>Languages</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="LangComboBox">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>490</y>
+      <width>120</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+color: rgb(0, 0, 0);
+border: 1px solid gray;
+border-radius: 3px;
+padding: 1px 18px 1px 3px;
+
+ subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+	
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Armenian</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Russian</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>English</string>
+     </property>
+    </item>
    </widget>
   </widget>
  </widget>

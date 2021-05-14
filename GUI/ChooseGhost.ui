@@ -34,7 +34,7 @@
      <rect>
       <x>50</x>
       <y>150</y>
-      <width>100</width>
+      <width>165</width>
       <height>30</height>
      </rect>
     </property>
@@ -49,9 +49,9 @@
    <widget class="QRadioButton" name="BlueRadioButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>230</x>
       <y>50</y>
-      <width>100</width>
+      <width>165</width>
       <height>30</height>
      </rect>
     </property>
@@ -65,9 +65,9 @@
    <widget class="QRadioButton" name="PurpleRadioButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>230</x>
       <y>150</y>
-      <width>100</width>
+      <width>165</width>
       <height>30</height>
      </rect>
     </property>
@@ -100,7 +100,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>230</x>
       <y>80</y>
       <width>100</width>
       <height>60</height>
@@ -119,7 +119,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>230</x>
       <y>180</y>
       <width>100</width>
       <height>60</height>
@@ -183,7 +183,7 @@
      <rect>
       <x>50</x>
       <y>50</y>
-      <width>100</width>
+      <width>165</width>
       <height>30</height>
      </rect>
     </property>

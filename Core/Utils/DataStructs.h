@@ -40,11 +40,13 @@ struct GameSettings
 {
     bool musicIsEnabled;
     int complexityLevel;            // 0 means easy, 1 - norm, 2 - hard
+    Languages language;
 
     GameSettings()
     {
         musicIsEnabled = true;
         complexityLevel = 1;
+        language = Languages::Armenian;
     }
 };
 

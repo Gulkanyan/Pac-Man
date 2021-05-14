@@ -10,11 +10,39 @@ ChooseGhost::ChooseGhost(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    InitUi();
+
+    connect(this, SIGNAL(StartMultiplayer()), reinterpret_cast<MainWindow *>(parent), SLOT(StartMultiplayer()));
+}
+
+void ChooseGhost::InitUi()
+{
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
     this->setWindowTitle("Multiplayer Settings");
     ui->BackButton->setShortcut(Qt::Key_Escape);
 
-    connect(this, SIGNAL(StartMultiplayer()), reinterpret_cast<MainWindow *>(parent), SLOT(StartMultiplayer()));
+    if(CoreGlobals::gameSettings.language == Armenian)
+    {
+        this->setWindowTitle(QString::fromUtf8("Ցանցային խաղի կարգաբերումներ"));
+        ui->BackButton->setText(QString::fromUtf8("Հետ"));
+        ui->pushButton->setText(QString::fromUtf8("Պահպանել"));
+        ui->label->setText(QString::fromUtf8("Ընտրեք ձեր ուրվականը"));
+        ui->RedRadioButton->setText(QString::fromUtf8("Կարմիր ուրվական"));
+        ui->BlueRadioButton->setText(QString::fromUtf8("Կապույտ ուրվական"));
+        ui->OrangeRadioButton->setText(QString::fromUtf8("Նարնջագույն ուրվական"));
+        ui->PurpleRadioButton->setText(QString::fromUtf8("Մանուշակագույն ուրվական"));
+    }
+    else if(CoreGlobals::gameSettings.language == Russian)
+    {
+        this->setWindowTitle(QString::fromUtf8("Настройки сетевой игры"));
+        ui->BackButton->setText(QString::fromUtf8("Назад"));
+        ui->pushButton->setText(QString::fromUtf8("Сохранить"));
+        ui->label->setText(QString::fromUtf8("Выбери своего призрака"));
+        ui->RedRadioButton->setText(QString::fromUtf8("Красный Призрак"));
+        ui->BlueRadioButton->setText(QString::fromUtf8("Синий призрак"));
+        ui->OrangeRadioButton->setText(QString::fromUtf8("Оранжевый призрак"));
+        ui->PurpleRadioButton->setText(QString::fromUtf8("Фиолетовый призрак"));
+    }
 }
 
 ChooseGhost::~ChooseGhost()
@@ -49,7 +77,12 @@ void ChooseGhost::on_pushButton_clicked()
 void ChooseGhost::ShowMessageBox()
 {
     QMessageBox *box = new QMessageBox();
-    box->setText("<center>Please select Ghost</center>");
+    if(CoreGlobals::gameSettings.language == Armenian)
+        box->setText("<center>Անհրաժեշտ է ընտրել ուրվականին</center>");
+    else if(CoreGlobals::gameSettings.language == Russian)
+        box->setText("<center>Необходимо выбрать призрака</center>");
+    else if(CoreGlobals::gameSettings.language == English)
+        box->setText("<center>Must choose a ghost</center>");
     box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     box->setStyleSheet(QString("QMessageBox {"
                                  "background-color: rgb(255, 255, 255);"

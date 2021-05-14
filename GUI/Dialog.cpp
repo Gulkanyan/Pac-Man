@@ -1,8 +1,6 @@
 #include "Dialog.h"
 #include "ui_Dialog.h"
 
-#include <QtDebug>
-
 #include "CoreGlobals.h"
 
 Dialog::Dialog(int currentPlayerScore, QWidget *parent) :
@@ -14,6 +12,24 @@ Dialog::Dialog(int currentPlayerScore, QWidget *parent) :
     m_score = currentPlayerScore;
 }
 
+void Dialog::InitUi()
+{
+    this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
+    this->setWindowTitle("Player Name");
+    ui->pushButton->setShortcut(Qt::Key_Enter);
+
+    if(CoreGlobals::gameSettings.language == Armenian)
+    {
+        this->setWindowTitle(QString::fromUtf8("Խաղացողի անունը"));
+        ui->pushButton->setText(QString::fromUtf8("Հետ"));
+    }
+    else if(CoreGlobals::gameSettings.language == Russian)
+    {
+        this->setWindowTitle(QString::fromUtf8("Имя игрока"));
+        ui->pushButton->setText(QString::fromUtf8("Назад"));
+    }
+}
+
 Dialog::~Dialog()
 {
     delete ui;
@@ -21,8 +37,6 @@ Dialog::~Dialog()
 
 void Dialog::on_pushButton_clicked()
 {
-    qDebug() << "name of player :::: " << ui->lineEdit->text();
-
     if(ui->lineEdit->text().length() < 1)
     {
         return;

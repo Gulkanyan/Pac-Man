@@ -19,6 +19,9 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+    void InitUi();
+
+private:
     Ui::Dialog *ui;
 
     int m_score;

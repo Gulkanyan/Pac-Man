@@ -18,6 +18,8 @@ public:
 private:
     void ShowMessageBox();
 
+    void InitUi();
+
 private slots:
     void on_pushButton_clicked();
 

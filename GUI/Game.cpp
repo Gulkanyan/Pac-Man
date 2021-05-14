@@ -35,7 +35,7 @@ Game::Game(QWidget *parent) :
 
     if(CoreGlobals::multiplayerSettings.isEnabled == true)
     {
-        InitEnemysTimer(PLAYER_TIMER_DEF_TIMEOUT);
+        InitEnemysTimer(PLAYER_TIMER_DEF_TIMEOUT - 20);
 
         connect(m_player, SIGNAL(GhostHealthisUpdated(int)), this, SLOT(UpdateGhostHealth(int)));
     }
@@ -44,7 +44,6 @@ Game::Game(QWidget *parent) :
         InitEnemysTimer(ENEMYS_TIMER_DEF_TIMEOUT);
     }
 
-    qDebug() << "CoreGlobals::gameSettings.musicIsEnabled = " << CoreGlobals::gameSettings.musicIsEnabled;
     if(CoreGlobals::gameSettings.musicIsEnabled)
         m_beggining_sound.play();
 
@@ -55,9 +54,9 @@ Game::Game(QWidget *parent) :
 
 void Game::InitInterface()
 {
-    scene = new QGraphicsScene(0,0,650,550);
+    scene = new QGraphicsScene(0,0,680,550);
     setScene(scene);
-    setFixedSize(660,560);
+    setFixedSize(690,560);
     setStyleSheet("background-color:black;");
     setAutoFillBackground( true );
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
@@ -65,14 +64,19 @@ void Game::InitInterface()
     m_scoreText = new QGraphicsTextItem();
     m_scoreText->setDefaultTextColor(Qt::cyan);
     m_scoreText->setFont(QFont("times",16));
-    m_scoreText->setPos(500,30);
+    m_scoreText->setPos(480,30);
     scene->addItem(m_scoreText);
 
     m_healthText = new QGraphicsTextItem();
     m_healthText->setDefaultTextColor(Qt::cyan);
     m_healthText-> setFont(QFont("times",16));
-    m_healthText->setPos(500, 100);
-    m_healthText->setPlainText(QString("Health: ")+ QString::number(5));
+    m_healthText->setPos(480, 100);
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        m_healthText->setPlainText(QString("Առողջություն: ")+ QString::number(5));
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        m_healthText->setPlainText(QString("Здоровье: ")+ QString::number(5));
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        m_healthText->setPlainText(QString("Health: ")+ QString::number(5));
     scene->addItem(m_healthText);
 
     if(CoreGlobals::multiplayerSettings.isEnabled)
@@ -80,8 +84,13 @@ void Game::InitInterface()
         m_enemyHealthText = new QGraphicsTextItem();
         m_enemyHealthText->setDefaultTextColor(Qt::cyan);
         m_enemyHealthText-> setFont(QFont("times",16));
-        m_enemyHealthText->setPos(500, 170);
-        m_enemyHealthText->setPlainText(QString("Ghost Health: ")+ QString::number(CoreGlobals::multiplayerSettings.enemyLives));
+        m_enemyHealthText->setPos(480, 170);
+        if(CoreGlobals::gameSettings.language == Languages::Armenian)
+            m_enemyHealthText->setPlainText(QString("Ուրվականի\nառողջություն: ")+ QString::number(CoreGlobals::multiplayerSettings.enemyLives));
+        else if(CoreGlobals::gameSettings.language == Languages::Russian)
+            m_enemyHealthText->setPlainText(QString("Здоровье\nпризрака: ")+ QString::number(CoreGlobals::multiplayerSettings.enemyLives));
+        else if(CoreGlobals::gameSettings.language == Languages::English)
+            m_enemyHealthText->setPlainText(QString("Ghost\nHealth: ")+ QString::number(CoreGlobals::multiplayerSettings.enemyLives));
         scene->addItem(m_enemyHealthText);
     }
 }
@@ -107,30 +116,42 @@ void Game::AddEnemies()
         m_red->setPos(DEFAULT_BLOCK_SIZE*17, DEFAULT_BLOCK_SIZE*20);
         return;
     }
-        m_red = new Red();
-        scene->addItem(m_red);
 
-        m_orange = new Orange();
-        scene->addItem(m_orange);
+    m_red = new Red();
+    scene->addItem(m_red);
 
-        m_blue = new Blue();
-        scene->addItem(m_blue);
+    m_orange = new Orange();
+    scene->addItem(m_orange);
 
-        m_purple = new Purple();
-        scene->addItem(m_purple);
+    m_blue = new Blue();
+    scene->addItem(m_blue);
+
+    m_purple = new Purple();
+    scene->addItem(m_purple);
 }
 
 void Game::UpdateScore(int score)
 {
     m_coinsCount--;
     m_scoreText->setPlainText("");
-    m_scoreText->setPlainText(QString("Score: ")+ QString::number(score));
+
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        m_scoreText->setPlainText(QString("Միավորներ: ")+ QString::number(score));
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        m_scoreText->setPlainText(QString("Очки: ")+ QString::number(score));
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        m_scoreText->setPlainText(QString("Score: ")+ QString::number(score));
 }
 
 void Game::UpdateHealth(int health)
 {
     m_healthText->setPlainText("");
-    m_healthText->setPlainText(QString("Health: ")+ QString::number(health));
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        m_healthText->setPlainText(QString("Առողջություն: ")+ QString::number(health));
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        m_healthText->setPlainText(QString("Здоровье: ")+ QString::number(health));
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        m_healthText->setPlainText(QString("Health: ")+ QString::number(health));
 
     if(health <= 0)
     {
@@ -138,10 +159,22 @@ void Game::UpdateHealth(int health)
         m_enemysTimer->stop();
 
         if(CoreGlobals::multiplayerSettings.isEnabled == true)
-            ShowMessageBox("Ghost won!!!");
+        {
+            if(CoreGlobals::gameSettings.language == Languages::Armenian)
+                ShowMessageBox("Հաղթեց ուրվականը !!!");
+            else if(CoreGlobals::gameSettings.language == Languages::Russian)
+                ShowMessageBox("Призрак победил !!!");
+            else if(CoreGlobals::gameSettings.language == Languages::English)
+                ShowMessageBox("Ghost won!!!");
+        }
         else
         {
-            ShowMessageBox("Game Over!!!");
+            if(CoreGlobals::gameSettings.language == Languages::Armenian)
+                ShowMessageBox("Խաղն ավարտված է!!!");
+            else if(CoreGlobals::gameSettings.language == Languages::Russian)
+                ShowMessageBox("Игра окончена!!!");
+            else if(CoreGlobals::gameSettings.language == Languages::English)
+                ShowMessageBox("Game Over!!!");
 
             GetPlayerNameAndSave();
         }
@@ -275,7 +308,14 @@ void Game::DoMovement()
     if(m_coinsCount <= 0)
     {
         if(CoreGlobals::multiplayerSettings.isEnabled == true)
-            ShowMessageBox("Pac Man won");
+        {
+            if(CoreGlobals::gameSettings.language == Languages::Armenian)
+                ShowMessageBox("Pac Man - ը հաղթեց");
+            else if(CoreGlobals::gameSettings.language == Languages::Russian)
+                ShowMessageBox("Pac Man выиграл !!!");
+            else if(CoreGlobals::gameSettings.language == Languages::English)
+                ShowMessageBox("Pac Man won !!!");
+        }
         else
             NextLevel();
     }
@@ -395,7 +435,14 @@ bool Game::DoYouWantToExit()
     m_playerTimer->stop();
     m_enemysTimer->stop();
     QMessageBox *box = new QMessageBox();
-    box->setText("<center>Do you want to exit?</center>");
+
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        box->setText("<center>Ուզու՞մ եք դուրս գալ</center>");
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        box->setText("<center>Вы хотите выйти?</center>");
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        box->setText("<center>Do you want to exit?</center>");
+
     box->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     box->setStyleSheet(QString("QMessageBox {"
                                  "background-color: rgb(255, 255, 255);"
@@ -405,10 +452,24 @@ bool Game::DoYouWantToExit()
                                   "width: 150px; height: 35px;}"
                                   ));
 
-    QPushButton *pButtonYes = box->addButton("Yes", QMessageBox::AcceptRole);
+    QString btnText = "Yes";
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        btnText = "Այո";
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        btnText = "Да";
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        btnText = "Yes";
+    QPushButton *pButtonYes = box->addButton(btnText, QMessageBox::AcceptRole);
     pButtonYes->setStyleSheet("QPushButton{color: rgb(255, 255, 255); background-color: rgba(180, 0, 0, 180); border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; min-width: 10em; padding: 6px;}"
                               "QPushButton::pressed {color: rgb(255, 255, 255); background-color: rgba(150, 0, 0, 130); border-style: inset;}");
-    QPushButton *pButtonNo = box->addButton("No", QMessageBox::AcceptRole);
+
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        btnText = "Ոչ";
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        btnText = "Нет";
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        btnText = "No";
+    QPushButton *pButtonNo = box->addButton(btnText, QMessageBox::AcceptRole);
     pButtonNo->setStyleSheet("QPushButton{color: rgb(255, 255, 255); background-color: rgba(0, 180, 0, 180); border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; min-width: 10em; padding: 6px;}"
                              "QPushButton::pressed {color: rgb(255, 255, 255); background-color: rgba(0, 150, 0, 130); border-style: inset;}");
     pButtonNo->setShortcut(Qt::Key_Escape);
@@ -436,7 +497,14 @@ void Game::ShowMessageBox(QString message)
                                   "width: 150px; height: 35px;}"
                                   ));
 
-    QPushButton *pButtonOk = box->addButton("Ok", QMessageBox::AcceptRole);
+    QString btnText = "Yes";
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        btnText = "Այո";
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        btnText = "Да";
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        btnText = "Yes";
+    QPushButton *pButtonOk = box->addButton(btnText, QMessageBox::AcceptRole);
     pButtonOk->setStyleSheet("QPushButton{color: rgb(255, 255, 255); background-color: rgba(0, 180, 0, 180); border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; min-width: 10em; padding: 6px;}"
                              "QPushButton::pressed {color: rgb(255, 255, 255); background-color: rgba(0, 150, 0, 130); border-style: inset;}");
     pButtonOk->setShortcut(Qt::Key_Enter);
@@ -455,14 +523,25 @@ void Game::GetPlayerNameAndSave()
 void Game::UpdateGhostHealth(int health)
 {
     m_enemyHealthText->setPlainText("");
-    m_enemyHealthText->setPlainText(QString("Ghost Health: ")+ QString::number(health));
+
+    if(CoreGlobals::gameSettings.language == Languages::Armenian)
+        m_enemyHealthText->setPlainText(QString("Ուրվականի\nառողջություն: ")+ QString::number(health));
+    else if(CoreGlobals::gameSettings.language == Languages::Russian)
+        m_enemyHealthText->setPlainText(QString("Здоровье\nпризрака: ")+ QString::number(health));
+    else if(CoreGlobals::gameSettings.language == Languages::English)
+        m_enemyHealthText->setPlainText(QString("Ghost\nHealth: ")+ QString::number(health));
 
     if(health <= 0)
     {
         m_playerTimer->stop();
         m_enemysTimer->stop();
 
-        ShowMessageBox("Pac man won!!!");
+        if(CoreGlobals::gameSettings.language == Languages::Armenian)
+            ShowMessageBox("Pac Man - ը հաղթեց");
+        else if(CoreGlobals::gameSettings.language == Languages::Russian)
+            ShowMessageBox("Pac Man выиграл !!!");
+        else if(CoreGlobals::gameSettings.language == Languages::English)
+            ShowMessageBox("Pac Man won !!!");
 
         MainWindow * main = new MainWindow();
         main->show();

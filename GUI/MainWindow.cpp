@@ -28,6 +28,25 @@ void MainWindow::InitPage()
     ui->label->setPixmap(QPixmap(":/images/Images/mainBackground.jpg"));
     this->setWindowIcon(QIcon(":/images/Images/logo.jpg"));
     this->setWindowTitle("Pac Man Qt");
+
+    if(CoreGlobals::gameSettings.language == Armenian)
+    {
+        ui->play->setText(QString::fromUtf8("Խաղալ"));
+        ui->pushButton->setText(QString::fromUtf8("Խաղալ ընկերոջ հետ"));
+        ui->about->setText(QString::fromUtf8("Խաղի մասին"));
+        ui->settings->setText(QString::fromUtf8("Կարգավորումներ"));
+        ui->help->setText(QString::fromUtf8("Օգնություն"));
+        ui->soresPageBtn->setText(QString::fromUtf8("Միավորներ"));
+    }
+    else if(CoreGlobals::gameSettings.language == Russian)
+    {
+        ui->play->setText(QString::fromUtf8("Играть"));
+        ui->pushButton->setText(QString::fromUtf8("Играть с другом"));
+        ui->about->setText(QString::fromUtf8("Об игре"));
+        ui->settings->setText(QString::fromUtf8("Настройки"));
+        ui->help->setText(QString::fromUtf8("Помощь"));
+        ui->soresPageBtn->setText(QString::fromUtf8("Очки"));
+    }
 }
 
 void MainWindow::on_play_clicked()

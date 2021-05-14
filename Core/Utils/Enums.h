@@ -26,4 +26,11 @@ enum Ghosts
     Unknown_Ghost
 };
 
+enum Languages
+{
+    Armenian,   // 0
+    Russian,    // 1
+    English     // 2
+};
+
 #endif // ENUMS_H
